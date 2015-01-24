@@ -75,8 +75,7 @@ public EntityChiGuard(World world) {
         this.owner = owner;
         this.setPosition(owner.posX, owner.posY, owner.posZ);
         this.setSize(0.6F, 0.8F);
-        this.isAirBorne = true;
-        this.jumpMovementFactor = 2;
+       
     }
 
     protected void applyEntityAttributes()
@@ -218,7 +217,17 @@ public EntityChiGuard(World world) {
         if(lifeTime <= 0){
         	this.setDead();
         }
-   
+        if(this.getAttackTarget() != null ){
+        	if(this.getAttackTarget().posY > this.posY + 2.2){
+                this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
+        	}	else{
+        	}
+        	
+        }
+        if (this.getEntityToAttack() != null && this.getEntityToAttack().posY + (double)this.getEntityToAttack().getEyeHeight() > this.posY + (double)this.getEyeHeight() + (double)0.2)
+        {
+            this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
+        }
 
         if (this.newPosRotationIncrements > 0)
         {
