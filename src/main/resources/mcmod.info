@@ -1,0 +1,16 @@
+[
+{
+  "modid": "MysteryMain",
+  "name": "MysteryMod",
+  "description": "A whole new mod Idea",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CiDsModding"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
