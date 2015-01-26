@@ -4,8 +4,8 @@ public class ItemPage extends BaseItem{
 
 	public ItemPage(String tooltip) {
 		super(tooltip);
-		// TODO Auto-generated constructor stub
 
+		
 	}
 
 }
