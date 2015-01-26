@@ -20,14 +20,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BaseItem extends Item
 {
 	private String Itemtooltip;
-	public BaseItem(String tooltip){
+	public BaseItem(String tooltip,String name){
 
 		super();
 	Itemtooltip = tooltip;
 	this.maxStackSize = 64;
 	this.setCreativeTab(MysteryMain.item_tab);
-	this.setTextureName(this.getUnlocalizedName().substring(5));
-	GameRegistry.registerItem(this, this.getUnlocalizedName());
+	this.setTextureName(name);
+	GameRegistry.registerItem(this, name);
 	}
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,

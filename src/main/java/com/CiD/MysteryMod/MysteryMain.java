@@ -13,9 +13,12 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.CiD.MysteryMod.Blocks.BlockGreenCrystal;
 import com.CiD.MysteryMod.Items.ItemChiSword;
+import com.CiD.MysteryMod.Items.ItemMystBook;
+import com.CiD.MysteryMod.Items.ItemPageSword;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.Network.packet.PacketPipeline;
+import com.CiD.MysteryMod.Pages.EnumBookType;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -79,6 +82,12 @@ public static BlockGreenCrystal green_crystal;
 //ITEMS
 public static ItemChiSword chi_sword;
 
+public static ItemMystBook book_mystery;
+
+
+
+public static ItemPageSword page_sword;
+
 
 @EventHandler
 public void preInit(FMLPreInitializationEvent event)
@@ -86,10 +95,12 @@ public void preInit(FMLPreInitializationEvent event)
 	green_crystal = (BlockGreenCrystal) new BlockGreenCrystal(Material.iron, 1.0F, TileEntityGreenCrystal.class, "Green_crystal").setLightOpacity(10).setResistance(1).setLightLevel(1);
 
 
-	chi_sword = (ItemChiSword) new ItemChiSword().setUnlocalizedName("chi_sword");
+	chi_sword = (ItemChiSword) new ItemChiSword("chi_sword").setUnlocalizedName("chi_sword");
+	
+	book_mystery = (ItemMystBook) new ItemMystBook("","book_mystery").setUnlocalizedName("book_mystery");
 	
 	
-	
+	page_sword = (ItemPageSword) new ItemPageSword("", EnumBookType.Mystery, 1, "", "Page_sword").setUnlocalizedName("Page_sword");
 //	registerEntity(EntityChiGuard.class, "EntityChiGuard");
 	int ChiGuardentityID = EntityRegistry.findGlobalUniqueEntityId();
 

@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 
 public class ItemChiSword extends BaseItem{
 
-	public ItemChiSword() {
-		super("");
+	public ItemChiSword(String name) {
+		super("",name);
 	}
 
 	@Override

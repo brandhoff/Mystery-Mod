@@ -12,16 +12,18 @@ public class ItemPage extends BaseItem{
 public EnumBookType bktype;
 public int pageNumber;
 public String PageTitle;
-	public ItemPage(String tooltip, EnumBookType bookType, int PageNumber, String PageTitle) {
-		super(tooltip);
-
+	public ItemPage(String tooltip, EnumBookType bookType, int PageNumber, String PageTitle, String name) {
+		super(tooltip, name);
+		this.PageTitle = PageTitle;
+		this.pageNumber = PageNumber;
 		
 	}
+	
 	@Override
 		public void onUpdate(ItemStack stack, World world,
 				Entity entity, int p_77663_4_, boolean p_77663_5_) {
 			super.onUpdate(stack, world, entity, p_77663_4_, p_77663_5_);
-			if(!stack.stackTagCompound.hasKey("pageTitle")){
+			if(stack.stackTagCompound != null&&!stack.stackTagCompound.hasKey("pageTitle")){
 				if(entity instanceof EntityPlayer){
 					EntityPlayer player = (EntityPlayer)entity;
 					onCreated(stack, world, player);

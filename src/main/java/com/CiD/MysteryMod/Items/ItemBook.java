@@ -11,13 +11,13 @@ public class ItemBook extends BaseItem{
 public String[] PageNames;
 public boolean[] HasPage;
 public EnumBookType bkType;
-public ItemStack[] pageAT;
-	public ItemBook(String tooltip, EnumBookType bookType) {
-		super(tooltip);
+public ItemPage[] pageAT;
+	public ItemBook(String tooltip, EnumBookType bookType, String name) {
+		super(tooltip, name);
 		bkType = bookType;
 		PageNames = new String[bkType.getTotalPagesByType(bkType)];
 		HasPage = new boolean[bkType.getTotalPagesByType(bkType)];
-		pageAT = new ItemStack[bkType.getTotalPagesByType(bkType)];
+		pageAT = new ItemPage[bkType.getTotalPagesByType(bkType)];
 
 	}
 
@@ -26,6 +26,8 @@ public ItemStack[] pageAT;
 			HasPage[page.getPageNumber()] = true;
 			stack.stackTagCompound = new NBTTagCompound();
 			stack.stackTagCompound.setBoolean("HasPage"+page.getPageNumber(), HasPage[page.getPageNumber()]);
+//			stack.stackTagCompound.setInteger("ItemPageAt"+page.getPageNumber(), p_74768_2_)
+			System.out.println("added page "+page.getPageNumber()+" to the book");
 		}
 	}
 	
@@ -33,9 +35,6 @@ public ItemStack[] pageAT;
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
 	    itemStack.stackTagCompound = new NBTTagCompound();
-	    ItemPage page = (ItemPage) itemStack.getItem();
-	    itemStack.stackTagCompound.setString("pageTitle", page.PageTitle);
-	    itemStack.stackTagCompound.setInteger("pageNumber", page.pageNumber);
-
+	   
 	}
 }
