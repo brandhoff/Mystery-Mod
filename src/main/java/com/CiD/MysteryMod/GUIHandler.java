@@ -1,5 +1,7 @@
 package com.CiD.MysteryMod;
 
+import com.CiD.MysteryMod.GUI.Book.GUImystBook;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -9,25 +11,22 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GUIHandler implements IGuiHandler {
 	  private Minecraft mc;
-
+public static final int MYSTBOOK_GUI_ID = 0;
 public GUIHandler() {
-NetworkRegistry.INSTANCE.registerGuiHandler(MysteryMain.instance, this);//instance().registerGuiHandler(Basis.instance, this);
+NetworkRegistry.INSTANCE.registerGuiHandler(MysteryMain.instance, this);
 }
 
 @Override
 public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 TileEntity entity = world.getTileEntity(x, y, z);
 
-//switch(id) {
-//case 0:
-//return id == 0  ? new InventoryCsmelter(player.inventory, (TileCsmelter) entity) : null;
-//case 1:
-//return id == 0  ? new InventoryForcer(player.inventory, (TileForcer) entity) : null;
-//default:
-//return null;
-//}
+switch(id) {
+case MYSTBOOK_GUI_ID:
+return null;
 
-	return null;
+default:
+return null;
+}
 
 }
 
@@ -46,17 +45,15 @@ TileEntity entity = world.getTileEntity(x, y, z);
 public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 TileEntity entity = world.getTileEntity(x, y, z);
 
-//switch(id) {
-//case 0:
-//	return id == 0 ? new GUIcSmelter(player.inventory, (TileCsmelter) entity) : null;
-//case 1:
-//	return id == 1 ? new GUIforcer(player.inventory, (TileForcer) entity) : null;
-//
-//default:
-//return null;
-//
-//		}
-//	}
+switch(id) {
+case MYSTBOOK_GUI_ID:
+	return id == 0 ? new GUImystBook(player, player.getCurrentEquippedItem()) : null;
+
+
+default:
 return null;
-	}
+
+			}
+		}
+	
 }
