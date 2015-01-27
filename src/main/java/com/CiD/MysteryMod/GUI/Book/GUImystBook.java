@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Pages.BookInfo;
 import com.CiD.MysteryMod.Pages.PageInfo;
 
@@ -22,10 +23,10 @@ public class GUImystBook extends GuiScreen {
     private int bookImageWidth = 192;
     private int bookImageHeight = 192;
 	private static final int TOTAL_PAGES = BookInfo.TOTAL_MYST_BOOK_PAGES;
-	private static final ResourceLocation texture = new ResourceLocation("minecraft:textures/gui/book.png");
+	private static final ResourceLocation texture = new ResourceLocation(MysteryMain.MODID+":textures/gui/mystBook.png");
     private GUImystBook.NextPageButton buttonNextPage;
     private GUImystBook.NextPageButton buttonPreviousPage;
-    private static final ResourceLocation bookGuiTextures = new ResourceLocation("textures/gui/book.png");
+    private static final ResourceLocation bookGuiTextures = new ResourceLocation(MysteryMain.MODID+":textures/gui/mystBook.png");
 
     private GuiButton buttonDone;
 
@@ -56,8 +57,8 @@ public class GUImystBook extends GuiScreen {
 
         int i = (this.width - this.bookImageWidth) / 2;
         byte b0 = 2;
-        this.buttonList.add(this.buttonNextPage = new GUImystBook.NextPageButton(1, i + 120, b0 + 154, true));
-        this.buttonList.add(this.buttonPreviousPage = new GUImystBook.NextPageButton(2, i + 38, b0 + 154, false));
+        this.buttonList.add(this.buttonNextPage = new GUImystBook.NextPageButton(1, i + 120, b0 + 174, true));
+        this.buttonList.add(this.buttonPreviousPage = new GUImystBook.NextPageButton(2, i + 38, b0 + 174, false));
     }
 	
 	@Override
@@ -95,8 +96,8 @@ public class GUImystBook extends GuiScreen {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(bookGuiTextures);
         int k = (this.width - this.bookImageWidth) / 2;
-        byte b0 = 2;
-        this.drawTexturedModalRect(k, b0, 0, 0, this.bookImageWidth, this.bookImageHeight);
+        byte b0 = 4;
+        this.drawTexturedModalRect(k+16, b0+30, 20, 1, this.bookImageWidth -46, this.bookImageHeight-15);
         String s;
         String s1;
         int l;
@@ -127,9 +128,9 @@ public class GUImystBook extends GuiScreen {
      
 
             l = this.fontRendererObj.getStringWidth(s);
-            this.fontRendererObj.drawString(s, k - l + this.bookImageWidth - 44, b0 + 16, 0);
+            this.fontRendererObj.drawString(s, k - l + this.bookImageWidth - 44, b0 + 46, 0);
 
-            this.fontRendererObj.drawSplitString(s1, k + 36, b0 + 16 + 16, 116, 0);
+            this.fontRendererObj.drawSplitString(s1, k + 36, b0 + 46 + 16, 116, 0);
         
 
         super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
