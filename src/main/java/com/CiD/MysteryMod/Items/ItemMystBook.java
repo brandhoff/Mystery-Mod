@@ -20,6 +20,7 @@ public class ItemMystBook extends ItemBook{
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		world.playSoundEffect(player.posX, player.posY, player.posZ, MysteryMain.MODID+":kyrie", 0.25F, 1F);
 
 		player.openGui(MysteryMain.instance, GUIHandler.MYSTBOOK_GUI_ID, world,(int) player.posX, (int) player.posY, (int) player.posZ);
 		

@@ -32,7 +32,6 @@ public class BaseItem extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
-		// TODO Auto-generated method stub
 		return super.onItemRightClick(stack, world, player);
 	}
 

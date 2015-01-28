@@ -18,7 +18,7 @@ public ItemPage[] pageAT;
 		PageNames = new String[bkType.getTotalPagesByType(bkType)];
 		HasPage = new boolean[bkType.getTotalPagesByType(bkType)];
 		pageAT = new ItemPage[bkType.getTotalPagesByType(bkType)];
-
+		this.maxStackSize = 1;
 	}
 
 	public void addPageToBook(ItemPage page, ItemStack stack, EntityPlayer player){
@@ -31,7 +31,9 @@ public ItemPage[] pageAT;
 		}
 	}
 	
-	
+	public boolean[] getPageArry(){
+		return this.HasPage;
+	}
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
 	    itemStack.stackTagCompound = new NBTTagCompound();

@@ -90,7 +90,11 @@ public class GUImystBook extends GuiScreen {
 	    {
 	        Keyboard.enableRepeatEvents(false);
 	    }
-
+	@Override
+	 public boolean doesGuiPauseGame()
+	    {
+	        return false;
+	    }
     public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -110,7 +114,10 @@ public class GUImystBook extends GuiScreen {
             {
             	if(hasPage[currentPage]){
             		switch(currentPage){
-            		case 1 : s1 = PageInfo.TEXT_PAGE1_SWORD;
+            		case 1 :{
+            			s1 = PageInfo.TEXT_PAGE1_SWORD;
+
+            		}
             		}
                
             	}else{

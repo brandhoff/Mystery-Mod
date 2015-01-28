@@ -23,7 +23,15 @@ public class ItemPageSword extends ItemPage{
 				for(int i = 0; i < 35;i++){
 					if(player.inventory.getStackInSlot(i) != null&&player.inventory.getStackInSlot(i).getItem() != null&&player.inventory.getStackInSlot(i).getItem() == MysteryMain.book_mystery){
 						ItemMystBook book = (ItemMystBook)player.inventory.getStackInSlot(i).getItem();
+						ItemStack BookStack = player.inventory.getStackInSlot(i);
+						if(BookStack.stackTagCompound == null){
+							// && !BookStack.stackTagCompound.getBoolean("HasPage"+MysteryMain.page_sword.pageNumber)){
 						book.addPageToBook(MysteryMain.page_sword, player.inventory.getStackInSlot(i), player);
+						return super.onItemRightClick(stack, world, player);
+						}else if(BookStack.stackTagCompound != null && !BookStack.stackTagCompound.getBoolean("HasPage"+MysteryMain.page_sword.pageNumber)){
+							book.addPageToBook(MysteryMain.page_sword, player.inventory.getStackInSlot(i), player);
+							return super.onItemRightClick(stack, world, player);
+						}
 					}
 				}
 			}

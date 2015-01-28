@@ -9,6 +9,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Events.ActiveEvent;
 import com.CiD.MysteryMod.Events.BaseEvent;
 import com.CiD.MysteryMod.Pages.PageInfo;
@@ -44,6 +45,8 @@ public class BlockGreenCrystal extends BlockBase{
 			player.getHeldItem().stackSize = player.getHeldItem().stackSize - 1;
 			tile.setActive(true);
 			BaseEvent.startPlayerGreenCrystalEvent(player, tile);
+			 world.playSoundEffect(x, y, z, MysteryMain.MODID+":da da da aaaa", 1.5F, 1F);
+
 			if(!world.isRemote){
 				ExtendedPlayer exPlayer = ExtendedPlayer.get(player);
 				exPlayer.setKnowsPage(PageInfo.PAGE1_sword, true);
