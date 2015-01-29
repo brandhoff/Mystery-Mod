@@ -13,6 +13,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.CiD.MysteryMod.Blocks.BlockGreenCrystal;
 import com.CiD.MysteryMod.Items.ItemChiSword;
+import com.CiD.MysteryMod.Items.ItemDebug;
 import com.CiD.MysteryMod.Items.ItemMystBook;
 import com.CiD.MysteryMod.Items.ItemPageSword;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
@@ -89,6 +90,9 @@ public static ItemMystBook book_mystery;
 public static ItemPageSword page_sword;
 
 
+public static ItemDebug debug_item;
+
+
 @EventHandler
 public void preInit(FMLPreInitializationEvent event)
 {    
@@ -101,12 +105,23 @@ public void preInit(FMLPreInitializationEvent event)
 	
 	
 	page_sword = (ItemPageSword) new ItemPageSword("", EnumBookType.Mystery, 1, "", "Page_sword").setUnlocalizedName("Page_sword");
-//	registerEntity(EntityChiGuard.class, "EntityChiGuard");
+	
+	
+	
+	
+	
+	
+	
+	
+	debug_item = (ItemDebug) new ItemDebug("Plz dont use", "debug_item").setUnlocalizedName("debug_item");
+	
+	
+	
+	
 	int ChiGuardentityID = EntityRegistry.findGlobalUniqueEntityId();
 
 	EntityRegistry.registerGlobalEntityID(EntityChiGuard.class, "EntityChiGuard", ChiGuardentityID);
 	EntityRegistry.registerModEntity(EntityChiGuard.class, "EntityChiGuard", ChiGuardentityID, instance, 64, 1, true);
-//	
 	FMLCommonHandler.instance().bus().register(new TickHandler());
 	MinecraftForge.EVENT_BUS.register(new SecondaryBusTickHandler());
 	GameRegistry.registerTileEntity(TileEntityGreenCrystal.class, "MysteryMod_TileEntityGreenCrystal");

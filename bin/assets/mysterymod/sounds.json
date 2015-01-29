@@ -2,6 +2,5 @@
   "a mystery": {"category": "master","sounds": [{"name": "da da da aaaa","stream": false}]},
   "da da da aaaa": {"category": "master","sounds": [{"name": "da da da aaaa","stream": false}]},
   "kyrie": {"category": "master","sounds": [{"name": "kyrie","stream": false}]},
-  "page turn": {"category": "master","sounds": [{"name": "page turn","stream": false}]},
   "energy puls": {"category": "master","sounds": [{"name": "energy puls","stream": false}]}
   }
