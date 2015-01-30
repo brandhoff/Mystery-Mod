@@ -12,10 +12,9 @@ private World world;
 	public CScriptToJava(String[] code, World world) {
 		this.program = code;
 		this.totalLinesOfCode = code.length;
-		if(world.isRemote){
-			
-		}else{
-		this.world = world;
+		if(!world.isRemote){
+			this.world = world;
+
 		}
 	}
 

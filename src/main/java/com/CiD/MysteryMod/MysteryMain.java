@@ -12,6 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.CiD.MysteryMod.Blocks.BlockGreenCrystal;
+import com.CiD.MysteryMod.Blocks.BlockLift;
+import com.CiD.MysteryMod.Blocks.BlockSwiftStone;
 import com.CiD.MysteryMod.Items.ItemChiSword;
 import com.CiD.MysteryMod.Items.ItemDebug;
 import com.CiD.MysteryMod.Items.ItemMystBook;
@@ -21,6 +23,8 @@ import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.Network.packet.PacketPipeline;
 import com.CiD.MysteryMod.Pages.EnumBookType;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
+import com.CiD.MysteryMod.TileEntity.TileEntityLift;
+import com.CiD.MysteryMod.TileEntity.TileSwiftStone;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -79,7 +83,8 @@ public static CreativeTabs item_tab = new CreativeTabs(13,"MysteryMod Items") {
 
 //Blocks
 public static BlockGreenCrystal green_crystal;
-
+public static BlockLift block_lift;
+public static BlockSwiftStone swift_stone;
 //ITEMS
 public static ItemChiSword chi_sword;
 
@@ -99,6 +104,11 @@ public void preInit(FMLPreInitializationEvent event)
 	green_crystal = (BlockGreenCrystal) new BlockGreenCrystal(Material.iron, 1.0F, TileEntityGreenCrystal.class, "Green_crystal").setLightOpacity(10).setResistance(1).setLightLevel(1);
 
 
+	block_lift = (BlockLift) new BlockLift(TileEntityLift.class, "block_lift");
+	
+	swift_stone = (BlockSwiftStone) new BlockSwiftStone(Material.iron, 0.8F, TileSwiftStone.class, "swift_stone");
+	
+	
 	chi_sword = (ItemChiSword) new ItemChiSword("chi_sword").setUnlocalizedName("chi_sword");
 	
 	book_mystery = (ItemMystBook) new ItemMystBook("","book_mystery").setUnlocalizedName("book_mystery");
@@ -114,6 +124,9 @@ public void preInit(FMLPreInitializationEvent event)
 	
 	
 	debug_item = (ItemDebug) new ItemDebug("Plz dont use", "debug_item").setUnlocalizedName("debug_item");
+	
+	
+	
 	
 	
 	
