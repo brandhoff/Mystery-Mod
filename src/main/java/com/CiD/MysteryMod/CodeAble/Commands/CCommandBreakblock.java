@@ -16,9 +16,9 @@ public class CCommandBreakblock extends CCommand{
 		int x = Integer.parseInt(this.arguments[0]);
 		int y = Integer.parseInt(this.arguments[1]);
 		int z = Integer.parseInt(this.arguments[2]);
-
-		world.func_147480_a(x, y, z, false);
-
+		System.err.println("ARGS: "+x +" "+y+" "+z);
+		world.func_147480_a(x, y, z, true);
+		
 	}
 	
 	
