@@ -22,6 +22,7 @@ import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.Network.packet.PacketPipeline;
 import com.CiD.MysteryMod.Pages.EnumBookType;
+import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 import com.CiD.MysteryMod.TileEntity.TileEntityLift;
 import com.CiD.MysteryMod.TileEntity.TileSwiftStone;
@@ -85,6 +86,7 @@ public static CreativeTabs item_tab = new CreativeTabs(13,"MysteryMod Items") {
 public static BlockGreenCrystal green_crystal;
 public static BlockLift block_lift;
 public static BlockSwiftStone swift_stone;
+
 //ITEMS
 public static ItemChiSword chi_sword;
 
@@ -99,8 +101,7 @@ public static ItemDebug debug_item;
 
 
 @EventHandler
-public void preInit(FMLPreInitializationEvent event)
-{    
+public void preInit(FMLPreInitializationEvent event){    
 	green_crystal = (BlockGreenCrystal) new BlockGreenCrystal(Material.iron, 1.0F, TileEntityGreenCrystal.class, "Green_crystal").setLightOpacity(10).setResistance(1).setLightLevel(1);
 
 
@@ -130,7 +131,7 @@ public void preInit(FMLPreInitializationEvent event)
 	
 	
 	
-	
+	TecEvolutionMain.preIni();
 	int ChiGuardentityID = EntityRegistry.findGlobalUniqueEntityId();
 
 	EntityRegistry.registerGlobalEntityID(EntityChiGuard.class, "EntityChiGuard", ChiGuardentityID);
@@ -162,6 +163,7 @@ packetPipeline.initialise();
 
 
 
+TecEvolutionMain.Ini();
 
 
 }
@@ -170,8 +172,7 @@ packetPipeline.initialise();
 
 
 @EventHandler
-public void postInit(FMLPostInitializationEvent event)
-{
+public void postInit(FMLPostInitializationEvent event){
 
 
 	NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
@@ -179,10 +180,10 @@ public void postInit(FMLPostInitializationEvent event)
 
 
 
+	TecEvolutionMain.PostIni();
 
 }
-public static void registerEntity(Class entityClass, String name)
-{
+public static void registerEntity(Class entityClass, String name){
 int entityID = EntityRegistry.findGlobalUniqueEntityId();
 
 
