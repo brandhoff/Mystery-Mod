@@ -24,3 +24,4 @@ public class BlockSolarGenerator extends BlockBase{
 		return tl;
 	}
 }
+

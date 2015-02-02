@@ -3,6 +3,9 @@ package com.CiD.MysteryMod.TecEvolution.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.Blocks.BlockBase;
@@ -30,8 +33,9 @@ public class BlockSmallEnergyBank extends BlockBase{
 			EntityPlayer player, int side, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
 		TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(x, y, z);
-		
+		if(!world.isRemote){
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
+			if( player.isSneaking()){
 			switch(side){
 			case 0: tl.setSideOutput(TecHelper.SIDE_DOWN, true);
 			case 1: tl.setSideOutput(TecHelper.SIDE_UP, true);
@@ -40,6 +44,11 @@ public class BlockSmallEnergyBank extends BlockBase{
 			case 4: tl.setSideOutput(TecHelper.SIDE_X, true);
 			case 5: tl.setSideOutput(TecHelper.SIDE_MX, true);
 
+					}
+				}else{
+				//TODO ADD CHAT MESSAGE
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Energy: "+tl.getMomEnergy()));
+				}
 			}
 		}
 		

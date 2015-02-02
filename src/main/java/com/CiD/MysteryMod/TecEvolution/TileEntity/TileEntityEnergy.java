@@ -28,17 +28,14 @@ public class TileEntityEnergy extends TileEntity{
 	
 	public void ini(int MaxE, int drPerTick){
 		setMaxEnergy(MaxE);
-		setMomEnergy(1);
+		setMomEnergy(0);
 		setDrainPerTickConnection(drPerTick);
 	}
 	
 	   @Override
 	    public Packet getDescriptionPacket()
 	    {
-	      // The server calls this function and if we return the NBT filled
-	      //  with data, this.onDataPacket() will be called for the client with
-	      //  the server's NBT info
-	      
+	     
 	      NBTTagCompound tag = new NBTTagCompound();
 	      this.writeToNBT(tag);
 	      
