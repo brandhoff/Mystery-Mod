@@ -175,6 +175,11 @@ public class TileEntityEnergy extends TileEntity{
 		this.isOutputSide[Side] = output; 
 	}
 	
+	public boolean[] getAllOutputSides(){
+		return this.isOutputSide;
+	}
+	
+	
 	public void setMaxEnergy(int maxEnergy) {
 		MaxEnergy = maxEnergy;
 	}
