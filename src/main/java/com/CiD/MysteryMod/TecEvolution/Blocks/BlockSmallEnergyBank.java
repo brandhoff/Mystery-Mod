@@ -13,12 +13,13 @@ import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
 public class BlockSmallEnergyBank extends BlockBase{
 
 	public BlockSmallEnergyBank(Material material, Float hardness,
 			 String BlockName) {
-		super(material, hardness, TileEntityEnergy.class, BlockName);
+		super(material, hardness, TileEntityStorage.class, BlockName);
 
 	
 	}
@@ -32,10 +33,10 @@ public class BlockSmallEnergyBank extends BlockBase{
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int side, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
-		TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(x, y, z);
+		TileEntityEnergy tl = (TileEntityStorage) world.getTileEntity(x, y, z);
 		if(!world.isRemote){
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
-			if( player.isSneaking()){
+
 			switch(side){
 			case 0: tl.setSideOutput(TecHelper.SIDE_DOWN, true);
 			case 1: tl.setSideOutput(TecHelper.SIDE_UP, true);
@@ -45,22 +46,31 @@ public class BlockSmallEnergyBank extends BlockBase{
 			case 5: tl.setSideOutput(TecHelper.SIDE_MX, true);
 
 					}
-				}else{
-				//TODO ADD CHAT MESSAGE
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Energy: "+tl.getMomEnergy()));
 				}
 			}
-		}
+		
 		
 		
 		
 		return true;
 	}
 	
+	@Override
+	public void onBlockClicked(World world, int x,
+			int y, int z, EntityPlayer player) {
+		TileEntityEnergy tl = (TileEntityStorage) world.getTileEntity(x, y, z);
+		if(!world.isRemote){
+		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
+			
+				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Energy: "+tl.getMomEnergy()));
+				}
+			}
+		}
+		
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
-		TileEntityEnergy tl = new TileEntityEnergy();
+		TileEntityStorage tl = new TileEntityStorage();
 		tl.ini(1000000, 100);
 		return tl;
 	}

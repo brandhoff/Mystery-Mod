@@ -9,6 +9,7 @@ import com.CiD.MysteryMod.TecEvolution.Items.ItemWrench;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -32,7 +33,7 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
 		GameRegistry.registerTileEntity(TileEntityCable.class, "MysteryMod_TileEntityCable");
-
+		GameRegistry.registerTileEntity(TileEntityStorage.class, "MysteryMod_TileEntityStorage");
 	}
 	
 	public static void Ini(){
