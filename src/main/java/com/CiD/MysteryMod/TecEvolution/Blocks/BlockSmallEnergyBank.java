@@ -1,13 +1,16 @@
 package com.CiD.MysteryMod.TecEvolution.Blocks;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
@@ -15,8 +18,11 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
-public class BlockSmallEnergyBank extends BlockBase{
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+public class BlockSmallEnergyBank extends BlockBase{
+private IIcon OtherSides;
 	public BlockSmallEnergyBank(Material material, Float hardness,
 			 String BlockName) {
 		super(material, hardness, TileEntityStorage.class, BlockName);
@@ -51,7 +57,8 @@ public class BlockSmallEnergyBank extends BlockBase{
 		
 		
 		
-		
+		world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+		world.markBlockForUpdate(x, y, z);
 		return true;
 	}
 	
@@ -74,5 +81,25 @@ public class BlockSmallEnergyBank extends BlockBase{
 		tl.ini(1000000, 100);
 		return tl;
 	}
+	
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
+		
+		blockIcon = reg.registerIcon(MysteryMain.MODID + ":" + this.getUnlocalizedName().substring(5));
+		OtherSides = reg.registerIcon(MysteryMain.MODID + ":white");
+	}
+	
+	
+	@Override
+		@SideOnly(Side.CLIENT)
+		public IIcon getIcon(int side, int meta) {
+			if(side > 1){
+				return this.blockIcon;
+				}else{
+					return this.OtherSides;
+				}
+		}
 }
 

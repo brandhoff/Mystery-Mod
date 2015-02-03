@@ -19,7 +19,6 @@ public class TileEntityCable extends TileEntityEnergy{
 	
 	@Override
 	public void updateEntity() {
-//		super.updateEntity();
 	
 		if(hasProducer()){
 			tradeFromProducer();

@@ -4,6 +4,9 @@ import com.CiD.MysteryMod.GUI.GUIexPlayer;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
 import com.CiD.MysteryMod.Render.RenderGreenCrystal;
+import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
 import net.minecraft.client.Minecraft;
@@ -27,6 +30,10 @@ public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.
 
 		  
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGreenCrystal.class, new RenderGreenCrystal(TEXTUREmodel_white, MODELgreencrystal));
+		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStorage.class, new RenderConnections());
+
+		  
+		  
 		  RenderingRegistry.registerEntityRenderingHandler(EntityChiGuard.class, new RenderChiGuard(TEXTUREmodel_white, MODELchiguard));
 		  
 			MinecraftForge.EVENT_BUS.register(new GUIexPlayer(Minecraft.getMinecraft()));
