@@ -165,6 +165,10 @@ public class TileEntityEnergy extends TileEntity{
 		
 	}
 	
+	public boolean[] getConnections(){
+		return TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+	}
+	
 	
 	/**
 	 * 

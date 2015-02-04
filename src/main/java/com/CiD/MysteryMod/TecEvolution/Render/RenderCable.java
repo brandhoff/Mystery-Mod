@@ -29,31 +29,72 @@ public class RenderCable extends TileEntitySpecialRenderer{
 		GL11.glPopMatrix();
 		
 		
-		boolean connections[] = tl.//TecHelper.checkConnections(tl.getWorldObj(),(int) x, (int)y,(int) z);
+		boolean connections[] = tl.getConnections();
  		for(int i = 0; i < connections.length; i++){
  			if(connections[i]){
  				switch(i){
  				case TecHelper.SIDE_DOWN:{
- 					System.out.println("YEAH");
  					GL11.glPushMatrix();
- 					GL11.glTranslated(x+0.21,y,z+0.21);
+ 					GL11.glTranslated(x+0.21,y-0.1,z+0.21);
  										
  					 bindTexture(client.TEXTUREmodel_white);
  				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
  					GL11.glPopMatrix();
+ 					break;
+
  				}
 
  				case TecHelper.SIDE_UP:{
- 					
+ 					GL11.glPushMatrix();
+ 					GL11.glTranslated(x+0.21,y+0.52,z+0.21);
+ 										
+ 					 bindTexture(client.TEXTUREmodel_white);
+ 				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+ 					GL11.glPopMatrix();
+ 					break;
+
  				}
 
- 				case TecHelper.SIDE_MX: ;
- 				case TecHelper.SIDE_X: ;
+ 				case TecHelper.SIDE_MX:{
+ 					GL11.glPushMatrix();
+ 					GL11.glTranslated(x-0.1,y+0.21,z+0.21);
+ 										
+ 					 bindTexture(client.TEXTUREmodel_white);
+ 				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+ 					GL11.glPopMatrix();
+ 					break;
+ 				}
+ 				case TecHelper.SIDE_X:{
+ 					GL11.glPushMatrix();
+ 					GL11.glTranslated(x+0.52,y+0.21,z+0.21);
+ 										
+ 					 bindTexture(client.TEXTUREmodel_white);
+ 				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+ 					GL11.glPopMatrix();
+ 					break;
 
- 				case TecHelper.SIDE_MZ: ;
- 				case TecHelper.SIDE_Z: ;
+ 				}
 
- 				
+ 				case TecHelper.SIDE_MZ:{
+ 					GL11.glPushMatrix();
+ 					GL11.glTranslated(x+0.21,y+0.21,z-0.1);
+ 										
+ 					 bindTexture(client.TEXTUREmodel_white);
+ 				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+ 					GL11.glPopMatrix();
+ 					break;
+
+ 				}
+ 				case TecHelper.SIDE_Z: {
+ 				GL11.glPushMatrix();
+					GL11.glTranslated(x+0.21,y+0.21,z+0.52);
+										
+					 bindTexture(client.TEXTUREmodel_white);
+				     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+					GL11.glPopMatrix();
+ 					break;
+
+ 					}
  				}
  			}
  		}

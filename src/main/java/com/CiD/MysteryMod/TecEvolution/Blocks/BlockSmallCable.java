@@ -49,7 +49,20 @@ public class BlockSmallCable extends BlockBase{
 		return false;
 	}
 	
-	
+	@Override
+	public void onBlockAdded(World world, int x,
+			int y, int z) {
+		world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
+		world.markBlockForUpdate(x, y, z);
+		world.markBlockForUpdate(x+1, y, z);
+		world.markBlockForUpdate(x-1, y, z);
+		world.markBlockForUpdate(x, y, z+1);
+		world.markBlockForUpdate(x, y, z-1);
+		world.markBlockForUpdate(x, y+1, z);
+		world.markBlockForUpdate(x, y-1, z);
+
+		super.onBlockAdded(world, x, y, z);
+	}
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
 		TileEntityCable tl = new TileEntityCable();
