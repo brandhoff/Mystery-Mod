@@ -4,6 +4,7 @@ import com.CiD.MysteryMod.GUI.GUIexPlayer;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
 import com.CiD.MysteryMod.Render.RenderGreenCrystal;
+import com.CiD.MysteryMod.TecEvolution.Render.RenderCable;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
@@ -31,6 +32,7 @@ public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.
 		  
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGreenCrystal.class, new RenderGreenCrystal(TEXTUREmodel_white, MODELgreencrystal));
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStorage.class, new RenderConnections());
+		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 
 		  
 		  

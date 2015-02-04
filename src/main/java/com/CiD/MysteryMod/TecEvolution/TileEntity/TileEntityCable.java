@@ -3,7 +3,7 @@ package com.CiD.MysteryMod.TecEvolution.TileEntity;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 
 public class TileEntityCable extends TileEntityEnergy{
-	
+	private int renderTick;
 	private boolean sleeping;
 	public TileEntityCable() {
 
@@ -14,12 +14,16 @@ public class TileEntityCable extends TileEntityEnergy{
 		setDrainPerTickConnection(100);
 		setMaxEnergy(1000);
 		setMomEnergy(0);
+	
 	}
 	
 	
 	@Override
 	public void updateEntity() {
-	
+		renderTick++;
+		if(renderTick >= 360){
+			renderTick = 0;
+		}
 		if(hasProducer()){
 			tradeFromProducer();
 		}else
@@ -38,7 +42,16 @@ public class TileEntityCable extends TileEntityEnergy{
 		
 	}
 	
-	
+	public boolean isConnected(){
+		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+		for(int i = 0 ; i < connections.length; i++){
+			if (connections[i]) {
+				return true;
+			}
+		}
+		return false;
+
+	}
 	
 	
 	public boolean hasProducer(){
@@ -458,7 +471,9 @@ public class TileEntityCable extends TileEntityEnergy{
 	public boolean isSleeping() {
 		return sleeping;
 	}
-	
+	public int getRenderTick() {
+		return renderTick;
+	}
 	
 	
 }

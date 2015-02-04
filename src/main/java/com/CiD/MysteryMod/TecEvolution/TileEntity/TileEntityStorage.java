@@ -4,7 +4,6 @@ public class TileEntityStorage extends TileEntityEnergy{
 
 	
 	public TileEntityStorage() {
-
 	}
 	
 }

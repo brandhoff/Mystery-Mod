@@ -23,6 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSmallEnergyBank extends BlockBase{
 private IIcon OtherSides;
+public static IIcon Connector;
 	public BlockSmallEnergyBank(Material material, Float hardness,
 			 String BlockName) {
 		super(material, hardness, TileEntityStorage.class, BlockName);
@@ -44,8 +45,8 @@ private IIcon OtherSides;
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
 
 			switch(side){
-			case 0: tl.setSideOutput(TecHelper.SIDE_DOWN, true);
-			case 1: tl.setSideOutput(TecHelper.SIDE_UP, true);
+//			case 0: tl.setSideOutput(TecHelper.SIDE_DOWN, true);
+//			case 1: tl.setSideOutput(TecHelper.SIDE_UP, true);
 			case 2: tl.setSideOutput(TecHelper.SIDE_MZ, true);
 			case 3: tl.setSideOutput(TecHelper.SIDE_Z, true);
 			case 4: tl.setSideOutput(TecHelper.SIDE_X, true);
@@ -89,6 +90,7 @@ private IIcon OtherSides;
 		
 		blockIcon = reg.registerIcon(MysteryMain.MODID + ":" + this.getUnlocalizedName().substring(5));
 		OtherSides = reg.registerIcon(MysteryMain.MODID + ":white");
+		Connector = reg.registerIcon(MysteryMain.MODID+":textures/blocks/output_connecter.png");
 	}
 	
 	
