@@ -84,6 +84,7 @@ public class TileEntityEnergy extends TileEntity{
 		super.updateEntity();
 		drainPower();
 	
+		this.markDirty();
 	}
 	
 	
