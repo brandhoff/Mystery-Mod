@@ -20,7 +20,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
+//TODO CLIENT AND SEVER OUT OF SYN ON WORLD RELOAD WITH LEFT CLICK
 public class BlockSmallEnergyBank extends BlockBase{
 private IIcon OtherSides;
 public static IIcon Connector;
@@ -47,10 +47,10 @@ public static IIcon Connector;
 			switch(side){
 //			case 0: tl.setSideOutput(TecHelper.SIDE_DOWN, true);
 //			case 1: tl.setSideOutput(TecHelper.SIDE_UP, true);
-			case 2: tl.setSideOutput(TecHelper.SIDE_MZ, true);
-			case 3: tl.setSideOutput(TecHelper.SIDE_Z, true);
-			case 4: tl.setSideOutput(TecHelper.SIDE_X, true);
-			case 5: tl.setSideOutput(TecHelper.SIDE_MX, true);
+			case 2:{ tl.setSideOutput(TecHelper.SIDE_MZ, true); break;}
+			case 3:{ tl.setSideOutput(TecHelper.SIDE_Z, true); break;}
+			case 4:{ tl.setSideOutput(TecHelper.SIDE_X, true); break;}
+			case 5:{ tl.setSideOutput(TecHelper.SIDE_MX, true); break;}
 
 					}
 				}
@@ -66,12 +66,12 @@ public static IIcon Connector;
 	@Override
 	public void onBlockClicked(World world, int x,
 			int y, int z, EntityPlayer player) {
-		TileEntityEnergy tl = (TileEntityStorage) world.getTileEntity(x, y, z);
+		TileEntityStorage tl = (TileEntityStorage) world.getTileEntity(x, y, z);
 		if(!world.isRemote){
+			world.markBlockForUpdate(x, y, z);
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
-			
-				player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED+"Energy: "+tl.getMomEnergy()));
-				}
+			tl.printEnergy(player);
+		}
 			}
 		}
 		

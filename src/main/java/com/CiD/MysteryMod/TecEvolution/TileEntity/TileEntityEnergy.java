@@ -38,7 +38,7 @@ public class TileEntityEnergy extends TileEntity{
 	     
 	      NBTTagCompound tag = new NBTTagCompound();
 	      this.writeToNBT(tag);
-	      
+	      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, tag);
 	    }
 	   
@@ -46,11 +46,25 @@ public class TileEntityEnergy extends TileEntity{
 	   @Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		      this.readFromNBT(pkt.func_148857_g());
+		      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
-	
+		@Override
+		public void readFromNBT(NBTTagCompound tag) {
+			for(int i = 0; i < sideConnected.length; i++){
+				sideConnected[i] = tag.getBoolean("sideConnected"+i);
+			}
+			for(int i = 0; i < isOutputSide.length; i++){
+				isOutputSide[i] = tag.getBoolean("isOutputSide"+i);
+			}
+			
+			setMaxEnergy(tag.getInteger("MaxEnergy"));
+//			MaxEnergy = tag.getInteger("MaxEnergy");
+			setMomEnergy(tag.getInteger("MomEnergy"));// = tag.getInteger("MomEnergy");
+			super.readFromNBT(tag);
+
+		}
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
 			for(int i = 0; i < sideConnected.length; i++){
 				tag.setBoolean("sideConnected"+i, sideConnected[i]);
 			}
@@ -60,30 +74,19 @@ public class TileEntityEnergy extends TileEntity{
 			
 			tag.setInteger("MomEnergy", MomEnergy);
 			tag.setInteger("MaxEnergy", MaxEnergy);
+			super.writeToNBT(tag);
 
 		}
 	
-	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		super.readFromNBT(tag);
-		for(int i = 0; i < sideConnected.length; i++){
-			sideConnected[i] = tag.getBoolean("sideConnected"+i);
-		}
-		for(int i = 0; i < isOutputSide.length; i++){
-			isOutputSide[i] = tag.getBoolean("isOutputSide"+i);
-		}
-		
-		MaxEnergy = tag.getInteger("MaxEnergy");
-		MomEnergy = tag.getInteger("MomEnergy");
 
-	}
 	
 	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		drainPower();
-	
+//		drainPower();
+	      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
 		this.markDirty();
 	}
 	

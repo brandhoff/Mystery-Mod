@@ -8,7 +8,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.Blocks.BlockBase;
+import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -64,10 +67,84 @@ public class BlockSmallCable extends BlockBase{
 		super.onBlockAdded(world, x, y, z);
 	}
 	@Override
-	public TileEntity createNewTileEntity(World world, int i) {
-		TileEntityCable tl = new TileEntityCable();
-		tl.ini(1, 1);
-		return tl;
+	public TileEntity createNewTileEntity(World world, int intager) {
+		TileEntityCable thiscable = new TileEntityCable();
+//		boolean[] connections = TecHelper.checkConnections(world, thiscable.xCoord, thiscable.yCoord, thiscable.zCoord);
+//		for(int i = 0; i < connections.length; i++){
+//			if(connections[i]){
+//				switch(i){
+//				case TecHelper.SIDE_DOWN :{
+//				TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(thiscable.xCoord, thiscable.yCoord -1 , thiscable.zCoord);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//				if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_UP]) return true;
+//				
+//					}
+//				}
+//				case TecHelper.SIDE_UP : {
+//					TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(thiscable.xCoord, thiscable.yCoord+1, thiscable.zCoord);
+//					
+//					if(tl != null){
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//
+//					if(tl != null ){ 
+//						if(tl instanceof TileEntityStorage){ 
+//
+//							if(output[TecHelper.SIDE_DOWN]){
+//
+//						return true;
+//					
+//					}
+//					}}
+//				}}
+//				case TecHelper.SIDE_X : {
+//					TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(thiscable.xCoord+1, thiscable.yCoord, thiscable.zCoord);
+//					
+//					if(tl != null){
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//
+//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MX]) return true;
+//					}
+//				}
+//				case TecHelper.SIDE_MX : {
+//					TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(thiscable.xCoord-1, thiscable.yCoord, thiscable.zCoord);
+//					if(tl != null){
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//
+//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_X]) return true;
+//					}
+//				}
+//				case TecHelper.SIDE_Z : {
+//					TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(xCoord, yCoord, zCoord+1);
+//					if(tl != null){
+//
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//
+//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MZ]) return true;
+//					}
+//				}
+//				case TecHelper.SIDE_MZ : {
+//					TileEntityEnergy tl = (TileEntityEnergy) world.getTileEntity(xCoord, yCoord, zCoord-1);
+//					
+//					if(tl != null){
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//
+//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_Z]) return true;
+//					}
+//				}
+//			
+//			}
+//		}
+//}
+		
+		return thiscable;
 	}
 }
 
