@@ -13,7 +13,7 @@ import com.CiD.MysteryMod.Items.BaseItem;
 public class ItemBundeledUranium extends BaseItem{
 
 	public ItemBundeledUranium(String tooltip, String name) {
-		super("Warning this is highly radiaktive", name);
+		super("Warning this is highly radioaktive", name);
 
 		this.setMaxStackSize(1);
 	}
@@ -26,7 +26,7 @@ public class ItemBundeledUranium extends BaseItem{
 		if(entity instanceof EntityPlayer){
 			if(!world.isRemote){
 				EntityPlayer player = (EntityPlayer) entity;
-				player.addPotionEffect(new PotionEffect(Potion.poison.id, 1, 1));
+				player.addPotionEffect(new PotionEffect(Potion.wither.id, 100, 2));
 			}
 		}
 	}

@@ -10,8 +10,11 @@ import net.minecraft.world.World;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
+import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -88,10 +91,99 @@ public class BlockCablePanel extends BlockBase{
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world, int i) {
-		TileEntityCablePanel tl = new TileEntityCablePanel();
-		CableNetwork nt = new CableNetwork(tl);
-		tl.setNetwork(nt);
-		return tl;
+	public TileEntity createNewTileEntity(World world, int xi) {
+		TileEntityCablePanel tile = new TileEntityCablePanel();
+		CableNetwork nt = new CableNetwork(tile);
+		tile.setNetwork(nt);
+		boolean[] connections = TecHelper.checkConnections(world, tile.xCoord, tile.yCoord, tile.zCoord);
+		World worldObj = tile.getWorldObj();
+		int xCoord = tile.xCoord;
+		int yCoord = tile.yCoord;
+		int zCoord = tile.zCoord;
+		for(int i = 0; i < connections.length; i++){
+			if(connections[i]){
+				switch(i){
+				case TecHelper.SIDE_DOWN :{
+				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+						}
+					}
+				
+				}
+				case TecHelper.SIDE_UP : {
+					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+						}
+					}
+
+				}
+				case TecHelper.SIDE_X : {
+					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+						}
+					}
+
+				}
+				case TecHelper.SIDE_MX : {
+					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+						}
+					}
+
+				}
+				case TecHelper.SIDE_Z : {
+					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+						}
+					}
+
+				}
+				case TecHelper.SIDE_MZ : {
+					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+					if(tl != null && tl instanceof TileEntityCable){
+						TileEntityCable cable = (TileEntityCable)tl;
+						if(cable.getNetwork() == null && nt != null){
+							cable.setNetwork(nt);
+							nt.addCable(cable);
+							world.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+						}
+					}
+
+				}
+			
+			}
+		}
+}
+		return tile;
 	}
 }
