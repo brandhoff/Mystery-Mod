@@ -2,7 +2,11 @@ package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
 public class TileEntityMachine extends TileEntityStorage{
 
-	
+	@Override
+	public void ini(int MaxE, int drPerTick) {
+		setMaxEnergy(100000);
+		setDrainPerTickConnection(1000);
+	}
 	public TileEntityMachine() {
 
 	}

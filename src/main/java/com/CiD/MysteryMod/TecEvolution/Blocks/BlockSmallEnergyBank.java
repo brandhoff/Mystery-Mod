@@ -10,8 +10,12 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
+import com.CiD.MysteryMod.Network.PacketDispatcher;
+import com.CiD.MysteryMod.Network.packet.PacketPipeline;
+import com.CiD.MysteryMod.Network.packet.server.OpenGuiMessage;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
@@ -40,6 +44,9 @@ public static IIcon Connector;
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int side, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
+		 
+ 
+
 		TileEntityEnergy tl = (TileEntityStorage) world.getTileEntity(x, y, z);
 		if(!world.isRemote){
 		if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.tec_wrench){
@@ -60,7 +67,14 @@ public static IIcon Connector;
 		
 		world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
 		world.markBlockForUpdate(x, y, z);
-		return true;
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (tileEntity == null || player.isSneaking()) {
+                return false;
+        }
+		world.markBlockForUpdate(x, y, z);
+
+        	player.openGui(MysteryMain.instance, GUIHandler.ENERGY_TILE_GUI_ID, world, x, y, z);
+        return true;
 	}
 	
 	@Override
