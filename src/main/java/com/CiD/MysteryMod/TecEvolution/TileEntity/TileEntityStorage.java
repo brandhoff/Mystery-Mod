@@ -24,4 +24,13 @@ public class TileEntityStorage extends TileEntityEnergy{
 
 	}
 	
+	public boolean drainAmount(int amount){
+		if(this.getMomEnergy() - amount > 0){
+			setMomEnergy(getMomEnergy() - amount);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

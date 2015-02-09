@@ -44,7 +44,6 @@ public class BlockWindGenerator extends BlockBase{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
 		
-		OtherSides = reg.registerIcon(MysteryMain.MODID + ":animatedsolarpanel");
 		blockIcon = reg.registerIcon(MysteryMain.MODID + ":white");
 	}
 	
@@ -52,11 +51,8 @@ public class BlockWindGenerator extends BlockBase{
 	@Override
 		@SideOnly(Side.CLIENT)
 		public IIcon getIcon(int side, int meta) {
-			if(side > 1){
 				return this.blockIcon;
-				}else{
-					return this.OtherSides;
-				}
+			
 		}
 	
 	
