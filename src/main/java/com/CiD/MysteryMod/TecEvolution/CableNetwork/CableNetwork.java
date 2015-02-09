@@ -1,10 +1,12 @@
 package com.CiD.MysteryMod.TecEvolution.CableNetwork;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.CiD.MysteryMod.Helper.Location;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
@@ -12,19 +14,42 @@ public class CableNetwork {
 private int MAX_ENERGY = 100;
 private int momEnergy;
 private List<Location> allConnections;
-private List<TileEntityStorage> allStorages;
-private List<TileEnergyProducer> allProducer;
-private List<TileEntityCable> allCableTiles;
+private List<TileEntityStorage> allStorages= new ArrayList<TileEntityStorage>();
+private List<TileEnergyProducer> allProducer= new ArrayList<TileEnergyProducer>();
+private List<TileEntityCable> allCableTiles = new ArrayList<TileEntityCable>();
 private int drainPerTick = 100;
-	public CableNetwork() {
-
+private TileEntityCablePanel panel;
+private boolean dead;
+	public CableNetwork(TileEntityCablePanel createrPanel) {
+		panel = createrPanel;
 	}
-	
+	public void removeNetwork(){
+//		if(getAllCableTiles() != null){
+//			for(int i = 0; i < getAllCableTiles().size(); i++){
+//					removeCable(getAllCableTiles().get(i));
+//					getAllCableTiles().get(i).setNetwork(null);
+//				}
+//			}
+//			
+	}
 	
 	public void onNetworkUpdate(){
+		if(!isDead()){
+	if(getAllCableTiles() != null){
+		for(int i = 0; i < getAllCableTiles().size(); i++){
+			if(getAllCableTiles().get(i) != panel.getWorldObj().getTileEntity(getAllCableTiles().get(i).xCoord, getAllCableTiles().get(i).yCoord, getAllCableTiles().get(i).zCoord)){
+				removeCable(getAllCableTiles().get(i));
+			}
+		}
+		}
 	}
-	
-	
+	}
+	public List<TileEntityCable> getAllCableTiles() {
+		return allCableTiles;
+	}
+	public List<TileEnergyProducer> getAllProducer() {
+		return allProducer;
+	}
 	
 	
 	
@@ -114,5 +139,11 @@ private int drainPerTick = 100;
 	}
 	public int getDrainPerTick() {
 		return drainPerTick;
+	}
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+	public boolean isDead() {
+		return dead;
 	}
 }

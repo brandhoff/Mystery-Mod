@@ -1,5 +1,8 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import java.util.List;
+
+import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
 
@@ -9,11 +12,29 @@ public class TileEntityCablePanel extends TileEntityEnergy{
 private CableNetwork nt;
 	
 	
+		public void onRemove(){
+					
+			CableNetwork network = getNetwork();
+			network.setDead(true);
+			List<TileEntityCable> lcabel = network.getAllCableTiles();
+			int cx = lcabel.size();
+			for(int i = cx-1; i > -1; i--){
+				TileEntityCable cable = lcabel.get(i);
+
+				cable.setSleeping(true);
+				cable.setNetwork(null);
+				
+
+			}
+		}
+
+
+
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-	if(nt != null){
-		nt.onNetworkUpdate();
+	if(getNetwork() != null){
+		getNetwork().onNetworkUpdate();
 		if(hasCable()){
 			boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
 			for(int i = 0; i < connections.length; i++){
@@ -25,6 +46,7 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
 							}
 						}
 					
@@ -35,6 +57,8 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
+
 							}
 						}
 
@@ -45,6 +69,8 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
+
 							}
 						}
 
@@ -55,6 +81,8 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
+
 							}
 						}
 
@@ -65,6 +93,8 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
+
 							}
 						}
 
@@ -75,6 +105,8 @@ private CableNetwork nt;
 							TileEntityCable cable = (TileEntityCable)tl;
 							if(cable.getNetwork() == null && this.getNetwork() != null){
 								cable.setNetwork(getNetwork());
+								getNetwork().addCable(cable);
+
 							}
 						}
 
@@ -85,7 +117,7 @@ private CableNetwork nt;
 	}
 		}
 	}else{
-		this.setNetwork(new CableNetwork());
+		this.setNetwork(new CableNetwork(this));
 	}
 }	
 	

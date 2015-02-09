@@ -11,6 +11,7 @@ public class TileEntityCable extends TileEntityEnergy{
 	private boolean sleeping;
 	private boolean hasNetwork;
 	private CableNetwork network;
+	private int sleepTimer = 20;
 	public TileEntityCable() {
 
 	}
@@ -27,6 +28,7 @@ public class TileEntityCable extends TileEntityEnergy{
 	}
 	public void setNetwork(CableNetwork network) {
 		this.network = network;
+		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 	@Override
@@ -39,9 +41,7 @@ public class TileEntityCable extends TileEntityEnergy{
 		if(!worldObj.isRemote);
 //		onCableUpdate();
 
-		}else{
-			setSleeping(false);
-		}
+		
 		if(this.network != null){
 
 			if(hasProducer()){
@@ -53,6 +53,7 @@ public class TileEntityCable extends TileEntityEnergy{
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
 							if(tl != null && tl instanceof TileEnergyProducer){
 								getNetwork().drainFromProducer(tl);
+								
 							}
 						
 						}
@@ -310,6 +311,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+									
 								}
 							}
 						
@@ -320,6 +323,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+
 								}
 							}
 
@@ -330,6 +335,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+
 								}
 							}
 
@@ -340,6 +347,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+
 								}
 							}
 
@@ -350,6 +359,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+
 								}
 							}
 
@@ -360,6 +371,8 @@ public class TileEntityCable extends TileEntityEnergy{
 								TileEntityCable cable = (TileEntityCable)tl;
 								if(cable.getNetwork() != null && this.getNetwork() == null){
 									setNetwork(cable.getNetwork());
+									cable.getNetwork().addCable(this);
+
 								}
 							}
 
@@ -369,6 +382,15 @@ public class TileEntityCable extends TileEntityEnergy{
 				}
 		}
 			}
+		}
+	}else{
+		if(sleepTimer <= 0){
+			setSleeping(false);
+		sleepTimer = 20;	
+		}else{
+			sleepTimer--;
+		}
+		
 		}
 		
 		

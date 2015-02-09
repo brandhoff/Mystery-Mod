@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBase extends BlockContainer{
 private Class<?extends TileEntity> tile;
+public static IIcon GUI_TEC_SLOT;
 	public BlockBase(Material material, Float hardness, Class BlockTile, String BlockName) {
 		super(material);
 		
@@ -65,7 +66,7 @@ private Class<?extends TileEntity> tile;
 	{
 	
 	blockIcon = reg.registerIcon(MysteryMain.MODID + ":" + this.getUnlocalizedName().substring(5));
-	
+	GUI_TEC_SLOT = reg.registerIcon(MysteryMain.MODID+":textures/gui/GUItecSlot.png");
 	
 	}
 	

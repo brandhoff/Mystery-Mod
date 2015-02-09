@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution.Blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +28,19 @@ public class BlockSmallCable extends BlockBase{
 		setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
 	
 	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y,
+			int z, Block p_149749_5_, int p_149749_6_) {
+		
+		TileEntityCable cable = (TileEntityCable) world.getTileEntity(x, y, z);
+		if(cable.getNetwork() != null)
+		cable.getNetwork().removeCable(cable);
+		super.breakBlock(world, x, y, z, p_149749_5_, p_149749_6_);
+
+		
+	}
+	
 //0 == down
 //1 == up
 //2 == MZ

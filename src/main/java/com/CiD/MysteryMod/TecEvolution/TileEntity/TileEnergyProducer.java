@@ -30,10 +30,11 @@ public class TileEnergyProducer extends TileEntityEnergy{
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		
+		if(generateParam()){
 		if(this.getMomEnergy()+getEnergyPerTick() <= getMaxEnergy()){
 			setMomEnergy(getMomEnergy() + getEnergyPerTick());
 		}
+	 }
 		
 	}
 	
@@ -43,6 +44,11 @@ public class TileEnergyProducer extends TileEntityEnergy{
 	public int getEnergyPerTick() {
 		return EnergyPerTick;
 	}
+	
+	public boolean generateParam(){
+		return true;
+	}
+	
 	
 	@Override
 	public void drainPower() {

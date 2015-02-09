@@ -1,10 +1,14 @@
 package com.CiD.MysteryMod.TecEvolution.Blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.CiD.MysteryMod.GUIHandler;
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
@@ -29,7 +33,16 @@ public class BlockCablePanel extends BlockBase{
 //3 == Z
 //4 == MX
 //5 == X	
-
+	@Override
+    public boolean onBlockActivated(World world, int x, int y, int z,
+                    EntityPlayer player, int metadata, float what, float these, float are) {
+            TileEntity tileEntity = world.getTileEntity(x, y, z);
+            if (tileEntity == null || player.isSneaking()) {
+                    return false;
+            }
+    player.openGui(MysteryMain.instance, GUIHandler.CABLE_PANEL_GUI_ID, world, x, y, z);
+            return true;
+    }
 	@Override
 	public boolean isOpaqueCube() {
 		// TODO Auto-generated method stub
@@ -62,10 +75,22 @@ public class BlockCablePanel extends BlockBase{
 
 		super.onBlockAdded(world, x, y, z);
 	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y,
+			int z, Block p_149749_5_, int p_149749_6_) {
+
+		TileEntityCablePanel tl = (TileEntityCablePanel) world.getTileEntity(x, y, z);
+		tl.onRemove();
+//		tl.getNetwork().removeNetwork();
+		super.breakBlock(world, x, y, z,
+				p_149749_5_, p_149749_6_);
+	}
+	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
 		TileEntityCablePanel tl = new TileEntityCablePanel();
-		CableNetwork nt = new CableNetwork();
+		CableNetwork nt = new CableNetwork(tl);
 		tl.setNetwork(nt);
 		return tl;
 	}
