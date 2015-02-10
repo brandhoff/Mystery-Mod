@@ -31,8 +31,13 @@ public class GUIbaseMachine extends GuiContainer {
 
                 fontRendererObj.drawString("Machine", 8, 6, 4210752);
                 fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-                fontRendererObj.drawString("Energy: "+energy+"/"+MAXenergy, 8, 20, 4210752);
+                fontRendererObj.drawString("Energy: "+energy+"/"+MAXenergy, 8, ySize-120, 4210752);
+                if(tile.energyPerTick() >= tile.getMomEnergy()){
+                fontRendererObj.drawString("EnergyNeeded per Tick: "+tile.energyPerTick(), 8, ySize-140, 0xFF0000);
+                }else{
+                    fontRendererObj.drawString("EnergyNeeded per Tick: "+tile.energyPerTick(), 8, ySize-140, 0x00FF00);
 
+                }
         }
         @Override
         protected void drawGuiContainerBackgroundLayer(float par1, int par2,
