@@ -18,6 +18,8 @@ public class TileEntityMachine extends TileEntityStorage{
 		
 		if(Working()){
 			produce();
+			setMomEnergy(getMomEnergy() - energyPerTick());
+
 		}
 		
 		

@@ -4,12 +4,15 @@ import com.CiD.MysteryMod.GUI.GUIexPlayer;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
 import com.CiD.MysteryMod.Render.RenderGreenCrystal;
+import com.CiD.MysteryMod.Render.TileModelRender;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCable;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCablePanel;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
+import com.CiD.MysteryMod.TecEvolution.Render.RenderWindTurbine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
 import net.minecraft.client.Minecraft;
@@ -25,6 +28,7 @@ public static ResourceLocation TEXTUREmodel_white = new ResourceLocation(Mystery
 
 public static ResourceLocation MODELgreencrystal = new ResourceLocation(MysteryMain.MODID+":textures/model/greenCrystal.obj");
 public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.MODID+":textures/model/Chi_Guard.obj");
+public static ResourceLocation MODELwindturbin = new ResourceLocation(MysteryMain.MODID+":textures/model/windgenerator.obj");
 
 	@SideOnly(Side.CLIENT)
 		public void registerRenderThings(){
@@ -36,6 +40,7 @@ public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStorage.class, new RenderConnections());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCablePanel.class, new RenderCablePanel());
+		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderWindTurbine(TEXTUREmodel_white, MODELwindturbin));
 
 		  
 		  

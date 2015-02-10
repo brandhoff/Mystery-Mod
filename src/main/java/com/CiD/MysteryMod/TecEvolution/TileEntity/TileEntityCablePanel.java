@@ -2,16 +2,36 @@ package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
 import java.util.List;
 
+import com.CiD.MysteryMod.Helper.Methods;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCablePanel extends TileEntityEnergy{
 private CableNetwork nt;
 private int renderTick;
 	
+		@Override
+			public void writeToNBT(NBTTagCompound tag) {
+				super.writeToNBT(tag);
+				tag.setInteger("networkPower", nt.getMomEnergy());
+			}
+		
+		@Override
+			public void readFromNBT(NBTTagCompound tag) {
+				super.readFromNBT(tag);
+				if(nt != null){
+					nt.setMomEnergy(tag.getInteger("networkPower"));
+
+				}else{
+					nt = new CableNetwork(this);
+					nt.setMomEnergy(tag.getInteger("networkPower"));
+				}
+			}
+
 		public void onRemove(){
 					
 			CableNetwork network = getNetwork();
@@ -51,9 +71,22 @@ private int renderTick;
 		if(renderTick >= 360){
 			renderTick = 0;
 		}
+//		if(!isConnected()){
+//			System.out.println("REMOVED NETWORK");
+//			onRemove();
+//		}
+//		
+		List<TileEntityCable> lcabel = getNetwork().getAllCableTiles();
+		if(lcabel.size() > 0){
+			if(!isConnected()){
+				//Methods.BreakBlock(worldObj, xCoord, yCoord, zCoord, true);
+				onRemove();
+			}
+		}
 		
 		
-	if(getNetwork() != null){
+		if(getNetwork() != null){
+		
 		if(hasCable()){
 			boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
 			for(int i = 0; i < connections.length; i++){

@@ -60,6 +60,7 @@ public class TileEntityEnergy extends TileEntity{
 			setMaxEnergy(tag.getInteger("MaxEnergy"));
 //			MaxEnergy = tag.getInteger("MaxEnergy");
 			setMomEnergy(tag.getInteger("MomEnergy"));// = tag.getInteger("MomEnergy");
+			setDrainPerTickConnection(tag.getInteger("PerTick"));
 			super.readFromNBT(tag);
 
 		}
@@ -74,6 +75,8 @@ public class TileEntityEnergy extends TileEntity{
 			
 			tag.setInteger("MomEnergy", MomEnergy);
 			tag.setInteger("MaxEnergy", MaxEnergy);
+			tag.setInteger("PerTick", getDrainPerTickConnection());
+
 			super.writeToNBT(tag);
 
 		}

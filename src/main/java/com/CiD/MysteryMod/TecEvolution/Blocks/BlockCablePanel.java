@@ -27,7 +27,7 @@ public class BlockCablePanel extends BlockBase{
 		setLightOpacity(0);
 
 		setLightLevel(0.1F);
-		setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.718F, 0.7F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 0.718F, 1F);
 	
 	}
 //0 == down

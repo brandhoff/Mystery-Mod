@@ -1,10 +1,9 @@
 package com.CiD.MysteryMod.TecEvolution;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
 
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCablePanel;
-import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMachineBase;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallCable;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallEnergyBank;
@@ -17,9 +16,10 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
-import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -31,8 +31,10 @@ public class TecEvolutionMain {
 	public static BlockCablePanel cable_panel; 
 	public static BlockWindGenerator wind_generator;
 	public static BlockNuclearReactor nuclear_reactor;
+	public static BlockMiner block_miner;
 
-	public static BlockMachineBase base_machine;
+	
+//	public static BlockMachineBase base_machine;
 	
 	public static ItemWrench tec_wrench;
 	public static ItemBundeledUranium bundled_uranium;
@@ -44,7 +46,9 @@ public class TecEvolutionMain {
 		cable_panel = new BlockCablePanel(Material.cloth, 0.2F, "cable_panel");
 		wind_generator = new BlockWindGenerator(Material.iron, 1.0F, "wind_generator");
 		nuclear_reactor = new BlockNuclearReactor(Material.rock, 4.0F, null, "nuclear_reactor");
-		base_machine = new BlockMachineBase(Material.iron, 4.0F, TileEntityMachine.class, "base_machine");
+//		base_machine = new BlockMachineBase(Material.iron, 4.0F, TileEntityMachine.class, "base_machine");
+		block_miner = new BlockMiner("block_miner");
+		
 		
 		tec_wrench = (ItemWrench) new ItemWrench("Set outputs", "tec_wrench").setUnlocalizedName("tec_wrench");
 		bundled_uranium = (ItemBundeledUranium) new ItemBundeledUranium("", "bundled_uranium").setUnlocalizedName("bundled_uranium");
@@ -57,6 +61,8 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityCablePanel.class, "MysteryMod_TileEntityCablePanel");
 		GameRegistry.registerTileEntity(TileEntityNuclearReactor.class, "MysteryMod_TileEntityNuclearReactor");
 		GameRegistry.registerTileEntity(TileEntityMachine.class, "MysteryMod_TileEntityMachine");
+		GameRegistry.registerTileEntity(TileEntityWindTurbine.class, "MysteryMod_TileEntityWindTurbine");
+		GameRegistry.registerTileEntity(TileEntityMiner.class, "MysteryMod_TileEntityMiner");
 
 	}
 	
