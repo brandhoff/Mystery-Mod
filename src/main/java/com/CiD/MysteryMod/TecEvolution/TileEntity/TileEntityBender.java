@@ -1,26 +1,71 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class TileBaseInventoryMachine extends TileEntityMachine implements IInventory{
+import com.CiD.MysteryMod.TecEvolution.TecDATA;
+import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
+
+public class TileEntityBender extends TileBaseInventoryMachine implements IInventory{
 	private ItemStack[] inventoryStacks;
-	protected int burningTime;
-	
-	public int getBurningTime() {
-		return burningTime;
+	public TileEntityBender() {
+		inventoryStacks = new ItemStack[6];
+		burningTime = TecDATA.BENDER_BURNINGTIME;
+
 	}
-	
+	@Override
 	public int getMaxBurningTime(){
-		return 0;
+		return TecDATA.BENDER_BURNINGTIME;
 	}
-	public TileBaseInventoryMachine() {
-		inventoryStacks = new ItemStack[3];
+	@Override
+	public void updateEntity() {
+		
+		
+		setMomEnergy(getMomEnergy() - energyPerTick());
+		
+		super.updateEntity();
 	}
-	
+	@Override
+	public boolean Working(){
+		if(inventoryStacks[1]!= null && drainAmount(energyPerTick()) && inventoryStacks[1].getItem() == Items.iron_ingot){
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public int energyPerTick() {
+
+		return TecDATA.BENDER_PER_TICK;
+	}
+	//TODO FIX ALL THE BURNING STUFF
+	@Override
+	public void produce() {
+		burningTime--;
+		if(burningTime == 0){
+			inventoryStacks[1].stackSize--;
+
+			burningTime = TecDATA.BENDER_BURNINGTIME;
+			if(inventoryStacks[2] != null && inventoryStacks[2].getItem() != TecEvolutionMain.iron_plate &&inventoryStacks[2].getItem() != null){
+				if(!worldObj.isRemote)
+				worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord, zCoord, new ItemStack(TecEvolutionMain.iron_plate,1)));
+			}else if(inventoryStacks[2] != null && inventoryStacks[2].getItem() == TecEvolutionMain.iron_plate){
+				if(inventoryStacks[2].stackSize < 64){
+					inventoryStacks[2].stackSize++;
+				}else{
+					if(!worldObj.isRemote)
+					worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord, zCoord, new ItemStack(TecEvolutionMain.iron_plate,1)));
+				}
+			}else{
+				inventoryStacks[2] = new ItemStack(TecEvolutionMain.iron_plate,1);
+			}
+		}
+	}
+
 	public int getSlotCount(){
 		return this.inventoryStacks.length;
 	}
@@ -134,6 +179,4 @@ public class TileBaseInventoryMachine extends TileEntityMachine implements IInve
 					ItemStack stack) {
 				return true;
 			}
-	
-	
 }

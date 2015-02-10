@@ -3,11 +3,14 @@ package com.CiD.MysteryMod;
 import com.CiD.MysteryMod.GUI.Book.GUImystBook;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerEnergy;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachine;
+import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachineBase;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIMachineInventory;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
@@ -27,6 +30,8 @@ public static final int NUCLEAR_REACTOR_GUI_ID = 1;
 public static final int CABLE_PANEL_GUI_ID = 2;
 public static final int MACHINE_BASE_GUI_ID = 3;
 public static final int ENERGY_TILE_GUI_ID = 4;
+public static final int MACHINE_INVENTORY_GUI_ID = 5;
+
 
 public GUIHandler() {
 NetworkRegistry.INSTANCE.registerGuiHandler(MysteryMain.instance, this);
@@ -42,6 +47,7 @@ case NUCLEAR_REACTOR_GUI_ID: return new ContainerNuclearReactor(player.inventory
 case CABLE_PANEL_GUI_ID: return null;
 case MACHINE_BASE_GUI_ID: return new ContainerMachine(player.inventory, (TileEntityMachine) tile);
 case ENERGY_TILE_GUI_ID: return new ContainerEnergy(player.inventory, (TileEntityEnergy) tile);
+case MACHINE_INVENTORY_GUI_ID: return new ContainerMachineBase(player.inventory, (TileBaseInventoryMachine) tile);
 
 default:
 return null;
@@ -70,6 +76,7 @@ case NUCLEAR_REACTOR_GUI_ID: return new GUInuclearReactor(player.inventory, (Til
 case CABLE_PANEL_GUI_ID: return new GUIcablePanel(tile);
 case MACHINE_BASE_GUI_ID: return new GUIbaseMachine(player.inventory, (TileEntityMachine) tile);
 case ENERGY_TILE_GUI_ID: return new GUIbaseEnergyTile(player.inventory, (TileEntityEnergy) tile);
+case MACHINE_INVENTORY_GUI_ID: return new GUIMachineInventory(player.inventory, (TileBaseInventoryMachine) tile);
 
 default:
 return null;

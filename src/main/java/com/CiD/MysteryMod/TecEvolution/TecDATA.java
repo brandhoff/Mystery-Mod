@@ -13,10 +13,15 @@ public class TecDATA {
 	
 	/** MACHINES**/
 	public static final int MINER_PER_BLOCK = 1000;
+	public static final int BENDER_PER_TICK = 200;
 
 	
 	
 	
 	/** OTHER VALUES**/
 	public static final int MINER_DIG_Y = 30;
+	
+	/** BUrningTIMES**/
+	public static final int BENDER_BURNINGTIME = 30*20;
+
 }
