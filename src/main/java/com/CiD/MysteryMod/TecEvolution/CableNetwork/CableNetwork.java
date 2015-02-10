@@ -11,7 +11,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
 public class CableNetwork {
-private int MAX_ENERGY = 100;
+private int MAX_ENERGY = 100000;
 private int momEnergy;
 private List<Location> allConnections;
 private List<TileEntityStorage> allStorages= new ArrayList<TileEntityStorage>();
@@ -20,6 +20,8 @@ private List<TileEntityCable> allCableTiles = new ArrayList<TileEntityCable>();
 private int drainPerTick = 100;
 private TileEntityCablePanel panel;
 private boolean dead;
+private int allProducerDrain;
+
 	public CableNetwork(TileEntityCablePanel createrPanel) {
 		panel = createrPanel;
 	}
@@ -42,6 +44,9 @@ private boolean dead;
 			}
 		}
 		}
+	this.setAllProducerDrain(0);
+	
+	
 	}
 	}
 	public List<TileEntityCable> getAllCableTiles() {
@@ -77,6 +82,7 @@ private boolean dead;
 				tile.setMomEnergy(tile.getMomEnergy() + tile.getDrainPerTickConnection());
 				this.setMomEnergy(this.getMomEnergy() - tile.getDrainPerTickConnection());
 				tl.getWorldObj().markBlockForUpdate(tl.xCoord, tl.yCoord, tl.zCoord);
+				
 				return true;
 
 			}
@@ -120,6 +126,7 @@ private boolean dead;
 			if(this.getMAX_ENERGY() >= this.getMomEnergy() + this.getDrainPerTick()){
 				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTick());
 				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTick());
+				
 				return true;
 
 			}
@@ -127,12 +134,21 @@ private boolean dead;
 			if(this.getMAX_ENERGY() >= this.getMomEnergy() + tile.getMomEnergy()){
 				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
 				tile.setMomEnergy(0);
+				
 				return true;
 			}
 		}
 		return false;
 
 	}
+	
+	public void setAllProducerDrain(int allProducerDrain) {
+		this.allProducerDrain = allProducerDrain;
+	}
+	public int getAllProducerDrain(){
+		return getMomEnergy();
+	}
+	
 	
 	public int getMAX_ENERGY() {
 		return MAX_ENERGY;

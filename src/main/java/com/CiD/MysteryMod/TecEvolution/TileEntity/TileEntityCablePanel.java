@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCablePanel extends TileEntityEnergy{
 private CableNetwork nt;
-	
+private int renderTick;
 	
 		public void onRemove(){
 					
@@ -29,12 +29,31 @@ private CableNetwork nt;
 		}
 
 
+		public int getRenderTick() {
+			return renderTick;
+		}
+		
+		public boolean isConnected(){
+			boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+			for(int i = 0 ; i < connections.length; i++){
+				if (connections[i]) {
+					return true;
+				}
+			}
+			return false;
 
+		}
+		
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		renderTick++;
+		if(renderTick >= 360){
+			renderTick = 0;
+		}
+		
+		
 	if(getNetwork() != null){
-		getNetwork().onNetworkUpdate();
 		if(hasCable()){
 			boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
 			for(int i = 0; i < connections.length; i++){
@@ -116,6 +135,8 @@ private CableNetwork nt;
 			}
 	}
 		}
+		getNetwork().onNetworkUpdate();
+
 	}else{
 		this.setNetwork(new CableNetwork(this));
 	}

@@ -24,7 +24,6 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-//TODO CLIENT AND SEVER OUT OF SYN ON WORLD RELOAD WITH LEFT CLICK
 public class BlockSmallEnergyBank extends BlockBase{
 private IIcon OtherSides;
 public static IIcon Connector;

@@ -53,7 +53,6 @@ public class TileEntityCable extends TileEntityEnergy{
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
 							if(tl != null && tl instanceof TileEnergyProducer){
 								getNetwork().drainFromProducer(tl);
-								
 							}
 						
 						}

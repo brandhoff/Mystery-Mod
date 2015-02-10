@@ -27,7 +27,7 @@ public class BlockCablePanel extends BlockBase{
 		setLightOpacity(0);
 
 		setLightLevel(0.1F);
-		setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
+		setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.718F, 0.7F);
 	
 	}
 //0 == down
@@ -59,8 +59,11 @@ public class BlockCablePanel extends BlockBase{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_,
-			int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		// TODO Auto-generated method stub
+			int p_149646_2_, int p_149646_3_, int p_149646_4_, int side) {
+		if(side == 1){
+			return true;
+		}
+		
 		return false;
 	}
 	

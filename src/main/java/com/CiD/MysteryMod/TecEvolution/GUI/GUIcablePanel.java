@@ -18,9 +18,9 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 
 public class GUIcablePanel extends GuiScreen {
 	 /** The X size of the inventory window in pixels. */
-    protected int xSize = 176;
+    protected int xSize = 255;
     /** The Y size of the inventory window in pixels. */
-    protected int ySize = 166;
+    protected int ySize = 240;
     private TileEntityCablePanel tile;
 		public GUIcablePanel(TileEntity tile) {
 			this.tile = (TileEntityCablePanel) tile;
@@ -33,13 +33,28 @@ public class GUIcablePanel extends GuiScreen {
         	
         	GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.renderEngine.bindTexture(new ResourceLocation(MysteryMain.MODID+":textures/gui/CablePanelGUI.png"));
-            int x = (width - xSize) / 2;
-            int y = (height - ySize) / 2;
+            int x = (width - xSize) /2;
+            int y = (height - ySize)/2;
             this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         	
         	if(tile != null && tile.getNetwork() != null && tile.getNetwork().getAllCableTiles() != null){
-        	this.fontRendererObj.drawString("Cables:"+tile.getNetwork().getAllCableTiles().size(), 250, 100, 9000, false);
+        	int energyPerTick = tile.getNetwork().getAllProducerDrain();
+        	boolean canAddMore;
         	
+        	if(energyPerTick > 3000){
+        		canAddMore = true;
+        	}else{
+        		canAddMore = false;
+        	}
+        	
+        	this.fontRendererObj.drawString("Cables: "+tile.getNetwork().getAllCableTiles().size(), x + 80, y + 100, 0x990000, false);
+        	this.fontRendererObj.drawString("Energy in Network: "+ energyPerTick,x+80, y+110, 0x990000, false);
+        	if(canAddMore){
+            	this.fontRendererObj.drawString("May be Able to add more: "+ canAddMore,x + 80, y+120, 0x00FF00, false);
+        		}else{
+                	this.fontRendererObj.drawString("May be Able to add more: "+ canAddMore,x+80,y+ 120, 0x990000, false);
+
+        		}
         	}
       
         }
