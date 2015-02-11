@@ -86,26 +86,44 @@ if(world.getBlock(x, y, z-1) == Type && world.getBlock(x, y+1, z-1) == Type && w
 		boolean[] connections = new boolean[6];
 		if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityEnergy){
 			connections[SIDE_X] = true;
+		}else{
+			connections[SIDE_X] = false;
+
 		}
 		
 		if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityEnergy){
 			connections[SIDE_MX] = true;
+		}else{
+			connections[SIDE_MX] = false;
+
 		}
 		
 		if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
 			connections[SIDE_Z] = true;
+		}else{
+			connections[SIDE_Z] = false;
+
 		}
 		
 		if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
 			connections[SIDE_MZ] = true;
+		}else{
+			connections[SIDE_MZ] = false;
+
 		}
 		
 		if(world.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof TileEntityEnergy){
 			connections[SIDE_UP] = true;
+		}else{
+			connections[SIDE_UP] = false;
+
 		}
 		
 		if(world.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityEnergy){
 			connections[SIDE_DOWN] = true;
+		}else{
+			connections[SIDE_DOWN] = false;
+
 		}
 		
 		

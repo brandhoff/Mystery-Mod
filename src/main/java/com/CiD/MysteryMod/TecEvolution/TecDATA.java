@@ -22,6 +22,6 @@ public class TecDATA {
 	public static final int MINER_DIG_Y = 30;
 	
 	/** BUrningTIMES**/
-	public static final int BENDER_BURNINGTIME = 30*20;
+	public static final int BENDER_BURNINGTIME = 5*20;
 
 }
