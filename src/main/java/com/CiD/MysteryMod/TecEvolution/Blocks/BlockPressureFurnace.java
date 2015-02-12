@@ -14,13 +14,14 @@ import net.minecraft.world.World;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockBender extends BlockMachineInventoryBase{
+public class BlockPressureFurnace extends BlockMachineInventoryBase{
 
-	public BlockBender(String BlockName) {
+	public BlockPressureFurnace(String BlockName) {
 		super(BlockName);
 	}
 	
@@ -57,14 +58,14 @@ public class BlockBender extends BlockMachineInventoryBase{
             if (tileEntity == null || player.isSneaking()) {
                     return false;
             }
-    player.openGui(MysteryMain.instance, GUIHandler.BENDER_GUI_ID, world, x, y, z);
+    player.openGui(MysteryMain.instance, GUIHandler.PRESSURE_FURNACE_GUI_ID, world, x, y, z);
             return true;
     }
 
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
-		TileEntityBender tl = new TileEntityBender();
+		TileEntityPressureFurnace tl = new TileEntityPressureFurnace();
 		tl.ini(1, 1);
 		
 		return tl;

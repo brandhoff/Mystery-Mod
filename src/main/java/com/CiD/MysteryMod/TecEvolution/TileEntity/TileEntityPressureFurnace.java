@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,10 +21,10 @@ import net.minecraft.util.AxisAlignedBB;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 
-public class TileEntityBender extends TileEntityMachine implements ISidedInventory{
+public class TileEntityPressureFurnace extends TileEntityMachine implements ISidedInventory{
     private ItemStack[] camoStacks = new ItemStack[6];
     private boolean startedProduce;
-    private int burningTime = TecDATA.BENDER_BURNINGTIME;
+    private int burningTime = TecDATA.PRESSURE_SMELTER_BURNINGTIME;
 
     
    
@@ -34,7 +35,7 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
     }
   
     public int getMAxBurningTime(){
-    	return TecDATA.BENDER_BURNINGTIME;
+    	return TecDATA.PRESSURE_SMELTER_BURNINGTIME;
     }
     
     public int getBurningTime() {
@@ -87,8 +88,8 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
 		if(startedProduce){
 			burningTime--;
 			if(burningTime == 0){
-				burningTime = TecDATA.BENDER_BURNINGTIME;
-				if(getStackInSlot(1) != null && getStackInSlot(1).getItem() == TecEvolutionMain.iron_plate){
+				burningTime = TecDATA.PRESSURE_SMELTER_BURNINGTIME;
+				if(getStackInSlot(1) != null && getStackInSlot(1).getItem() == TecEvolutionMain.tungsten_ingot){
 						ItemStack stack = getStackInSlot(1);
 						ItemStack newStack = new ItemStack(stack.getItem(), stack.stackSize +1); 
 					setInventorySlotContents(1, newStack);
@@ -97,13 +98,13 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
 				
 					}else if(getStackInSlot(1) != null){
 						decrStackSize(1, getStackInSlot(1).stackSize);
-						ItemStack newStack = new ItemStack(TecEvolutionMain.iron_plate, 1); 
+						ItemStack newStack = new ItemStack(TecEvolutionMain.tungsten_ingot, 1); 
 						setInventorySlotContents(1, newStack);
 						startedProduce = false;
 
 					}
 					else{
-						ItemStack newStack = new ItemStack(TecEvolutionMain.iron_plate, 1); 
+						ItemStack newStack = new ItemStack(TecEvolutionMain.tungsten_ingot, 1); 
 						setInventorySlotContents(1, newStack);
 						startedProduce = false;
 
@@ -119,7 +120,7 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
 		if(drainAmount(energyPerTick()) ){
 			if(startedProduce){
 				
-			}else if(getStackInSlot(0) != null && getStackInSlot(0).getItem() == Items.iron_ingot){
+			}else if(getStackInSlot(0) != null && getStackInSlot(0).getItem() == Item.getItemFromBlock(TecEvolutionMain.tungsten_ore)){
 				startedProduce = true;
 				decrStackSize(0, 1);
 
@@ -127,7 +128,7 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
 			whileWorking = true;
 			return true;
 		}
-		burningTime = TecDATA.BENDER_BURNINGTIME;
+		burningTime = TecDATA.PRESSURE_SMELTER_BURNINGTIME;
 		startedProduce = false;
 
 		whileWorking = false;
@@ -137,7 +138,7 @@ public class TileEntityBender extends TileEntityMachine implements ISidedInvento
     
     @Override
     public int energyPerTick() {
-    	return TecDATA.BENDER_PER_TICK;
+    	return TecDATA.PRESSURE_SMELTER_PER_TICK;
     }
     
     

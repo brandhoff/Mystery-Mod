@@ -9,18 +9,18 @@ import org.lwjgl.opengl.GL11;
 
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
-import com.CiD.MysteryMod.TecEvolution.Container.ContainerBender;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
+import com.CiD.MysteryMod.TecEvolution.Container.ContainerPressureFurnace;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
 
 
 
-public class GUIbender extends GuiContainer {
+public class GUIpressureFurnace extends GuiContainer {
 
 	private ResourceLocation slotGui = new ResourceLocation(MysteryMain.MODID+":textures/gui/GUItecSlot.png");
-    private TileEntityBender tile;   
-	public GUIbender (InventoryPlayer inventoryPlayer,
-			TileEntityBender tileEntity) {
-                super(new ContainerBender(inventoryPlayer, tileEntity));
+    private TileEntityPressureFurnace tile;   
+	public GUIpressureFurnace (InventoryPlayer inventoryPlayer,
+			TileEntityPressureFurnace tileEntity) {
+                super(new ContainerPressureFurnace(inventoryPlayer, tileEntity));
                 tile = tileEntity;
         }
 

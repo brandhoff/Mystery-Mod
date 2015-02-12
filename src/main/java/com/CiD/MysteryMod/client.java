@@ -1,5 +1,9 @@
 package com.CiD.MysteryMod;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+
 import com.CiD.MysteryMod.GUI.GUIexPlayer;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
@@ -9,15 +13,13 @@ import com.CiD.MysteryMod.TecEvolution.Render.RenderCable;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCablePanel;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderWindTurbine;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -29,6 +31,7 @@ public static ResourceLocation TEXTUREmodel_white = new ResourceLocation(Mystery
 public static ResourceLocation MODELgreencrystal = new ResourceLocation(MysteryMain.MODID+":textures/model/greenCrystal.obj");
 public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.MODID+":textures/model/Chi_Guard.obj");
 public static ResourceLocation MODELwindturbin = new ResourceLocation(MysteryMain.MODID+":textures/model/windgenerator.obj");
+public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MODID+":textures/model/bender.obj");
 
 	@SideOnly(Side.CLIENT)
 		public void registerRenderThings(){
@@ -41,6 +44,7 @@ public static ResourceLocation MODELwindturbin = new ResourceLocation(MysteryMai
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCablePanel.class, new RenderCablePanel());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderWindTurbine(TEXTUREmodel_white, MODELwindturbin));
+		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBender.class, new TileModelRender(TEXTUREmodel_white, MODELbender));
 
 		  
 		  

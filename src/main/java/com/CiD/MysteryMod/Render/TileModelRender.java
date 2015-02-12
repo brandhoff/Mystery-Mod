@@ -33,7 +33,7 @@ public class TileModelRender extends TileEntitySpecialRenderer{
 
 	public void doSimpleRender(double x, double y , double z){
 		GL11.glPushMatrix();
-        GL11.glTranslated(x+0.5, y+0.5, z+0.5);
+        GL11.glTranslated(x+0.5, y, z+0.5);
 
         bindTexture(ModelTexture);
         ((IModelCustom) Model).renderAll();

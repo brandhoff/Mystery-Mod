@@ -2,7 +2,8 @@ package com.CiD.MysteryMod.TecEvolution.Container;
 
 import java.util.Random;
 
-import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
+
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -11,11 +12,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 
-public class ContainerBender extends Container {
+public class ContainerPressureFurnace extends Container {
 
-        protected TileEntityBender tileEntity;
+        protected TileEntityPressureFurnace tileEntity;
 
-        public ContainerBender (InventoryPlayer inventoryPlayer, TileEntityBender te){
+        public ContainerPressureFurnace (InventoryPlayer inventoryPlayer, TileEntityPressureFurnace te){
                 tileEntity = te;
                 Random ran = new Random();
             

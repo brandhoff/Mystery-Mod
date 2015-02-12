@@ -14,6 +14,7 @@ public class TecDATA {
 	/** MACHINES**/
 	public static final int MINER_PER_BLOCK = 1000;
 	public static final int BENDER_PER_TICK = 200;
+	public static final int PRESSURE_SMELTER_PER_TICK = 1000;
 
 	
 	
@@ -23,5 +24,6 @@ public class TecDATA {
 	
 	/** BUrningTIMES**/
 	public static final int BENDER_BURNINGTIME = 5*20;
+	public static final int PRESSURE_SMELTER_BURNINGTIME = 60*20;
 
 }
