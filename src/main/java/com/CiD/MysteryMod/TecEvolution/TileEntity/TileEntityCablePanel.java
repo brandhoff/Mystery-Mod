@@ -1,11 +1,13 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
 import java.util.List;
+import java.util.Random;
 
 import com.CiD.MysteryMod.Helper.Methods;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
+import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +15,8 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityCablePanel extends TileEntityEnergy{
 private CableNetwork nt;
 private int renderTick;
-	
+private int particlesTick;
+
 		@Override
 			public void writeToNBT(NBTTagCompound tag) {
 				super.writeToNBT(tag);
@@ -66,11 +69,25 @@ private int renderTick;
 		
 	@Override
 	public void updateEntity() {
+		
+	
 		super.updateEntity();
 		renderTick++;
 		if(renderTick >= 360){
 			renderTick = 0;
 		}
+		
+		particlesTick++;
+		if(particlesTick >= 10){
+			particlesTick = 0;
+			if(worldObj.isRemote){
+				Random ran = new Random();
+				EnumTecParticles.Circle.spawnParticle(worldObj, this.xCoord+0.5, yCoord+0.8, zCoord+0.15, 0, 0, 0, ran.nextFloat(), ran.nextFloat(), ran.nextFloat(), 0.4D);
+
+			}
+			
+		}
+		
 //		if(!isConnected()){
 //			System.out.println("REMOVED NETWORK");
 //			onRemove();

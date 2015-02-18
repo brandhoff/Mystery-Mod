@@ -2,6 +2,7 @@ package com.CiD.MysteryMod.TecEvolution.Blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -14,6 +15,7 @@ import net.minecraft.world.World;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityThoriumPipe;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -127,7 +129,24 @@ public class BlockBender extends BlockMachineInventoryBase{
 	{
 		return true;
 	}
+	@Override
+	public void breakBlock(World world, int x, int y,
+			int z, Block p_149749_5_, int p_149749_6_) {
 
+	
+		TileEntityBender pipe = (TileEntityBender) world.getTileEntity(x, y, z);
+		ItemStack stack = pipe.getStackInSlot(0);
+		ItemStack stack2 = pipe.getStackInSlot(1);
+
+		if(!world.isRemote && stack != null){
+			world.spawnEntityInWorld(new EntityItem(world, x, y, z,stack));
+		}if(!world.isRemote && stack2 != null){
+			world.spawnEntityInWorld(new EntityItem(world, x, y, z,stack2));
+		}
+		super.breakBlock(world, x, y, z,
+				p_149749_5_, p_149749_6_);
+	}
+	
 	/**
 	 * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
 	 * strength when this block inputs to a comparator.

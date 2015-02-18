@@ -2,9 +2,7 @@ package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
-import com.CiD.MysteryMod.TileEntity.TileSwiftStone;
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
 
 public class TileEntityCable extends TileEntityEnergy{
 	private int renderTick;
@@ -15,6 +13,8 @@ public class TileEntityCable extends TileEntityEnergy{
 	public TileEntityCable() {
 
 	}
+	
+	
 	
 	@Override
 	public void ini(int MaxE, int drPerTick) {
@@ -33,6 +33,7 @@ public class TileEntityCable extends TileEntityEnergy{
 	
 	@Override
 	public void updateEntity() {
+
 		renderTick++;
 		if(renderTick >= 360){
 			renderTick = 0;

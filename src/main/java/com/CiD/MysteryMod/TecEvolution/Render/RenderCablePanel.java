@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.CiD.MysteryMod.client;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
+import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 
 public class RenderCablePanel extends TileEntitySpecialRenderer{
@@ -27,8 +28,7 @@ public class RenderCablePanel extends TileEntitySpecialRenderer{
 		 bindTexture(client.TEXTUREmodel_white);
 	     model.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
-		
-		
+	
 		boolean connections[] = tl.getConnections();
  		for(int i = 0; i < connections.length; i++){
  			if(connections[i]){

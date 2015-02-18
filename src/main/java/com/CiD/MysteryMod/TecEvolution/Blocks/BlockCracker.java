@@ -15,15 +15,14 @@ import net.minecraft.world.World;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPressureFurnace extends BlockMachineInventoryBase{
+public class BlockCracker extends BlockMachineInventoryBase{
 
-	public BlockPressureFurnace(String BlockName) {
+	public BlockCracker(String BlockName) {
 		super(BlockName);
 	}
 	
@@ -60,14 +59,14 @@ public class BlockPressureFurnace extends BlockMachineInventoryBase{
             if (tileEntity == null || player.isSneaking()) {
                     return false;
             }
-    player.openGui(MysteryMain.instance, GUIHandler.PRESSURE_FURNACE_GUI_ID, world, x, y, z);
+    player.openGui(MysteryMain.instance, GUIHandler.CRACKER_GUI_ID, world, x, y, z);
             return true;
     }
 
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
-		TileEntityPressureFurnace tl = new TileEntityPressureFurnace();
+		TileEntityCracker tl = new TileEntityCracker();
 		tl.ini(1, 1);
 		
 		return tl;
@@ -121,12 +120,21 @@ public class BlockPressureFurnace extends BlockMachineInventoryBase{
 		
 		return false;
 	}
+
+	/**
+	 * If this returns true, then comparators facing away from this block will use the value from
+	 * getComparatorInputOverride instead of the actual redstone signal strength.
+	 */
+	public boolean hasComparatorInputOverride()
+	{
+		return true;
+	}
 	@Override
 	public void breakBlock(World world, int x, int y,
 			int z, Block p_149749_5_, int p_149749_6_) {
 
 	
-		TileEntityPressureFurnace pipe = (TileEntityPressureFurnace) world.getTileEntity(x, y, z);
+		TileEntityCracker pipe = (TileEntityCracker) world.getTileEntity(x, y, z);
 		ItemStack stack = pipe.getStackInSlot(0);
 		ItemStack stack2 = pipe.getStackInSlot(1);
 
@@ -138,15 +146,6 @@ public class BlockPressureFurnace extends BlockMachineInventoryBase{
 		super.breakBlock(world, x, y, z,
 				p_149749_5_, p_149749_6_);
 	}
-	/**
-	 * If this returns true, then comparators facing away from this block will use the value from
-	 * getComparatorInputOverride instead of the actual redstone signal strength.
-	 */
-	public boolean hasComparatorInputOverride()
-	{
-		return true;
-	}
-
 	/**
 	 * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
 	 * strength when this block inputs to a comparator.

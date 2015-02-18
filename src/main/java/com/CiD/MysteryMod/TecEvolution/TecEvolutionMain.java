@@ -1,33 +1,42 @@
 package com.CiD.MysteryMod.TecEvolution;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.tileentity.TileEntity;
 
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.Items.BaseItem;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockBender;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCablePanel;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCracker;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallCable;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallEnergyBank;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSolarGenerator;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockWindGenerator;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemBattery;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemBatteryBundle;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBundeledUranium;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemDroid;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemGenerator;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemHull;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemWrench;
+import com.CiD.MysteryMod.TecEvolution.Recipes.RecipRegister;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -43,7 +52,11 @@ public class TecEvolutionMain {
 	public static BlockMiner block_miner;
 	public static BlockBender iron_bender;
 	public static BlockPressureFurnace pressure_furnace;
+	public static BlockCracker stone_cracker;
 
+	
+	public static BlockThoriumPipe thorium_pipe;
+	
 	public static BlockBase tungsten_ore;
 //	public static BlockMachineBase base_machine;
 	
@@ -51,6 +64,12 @@ public class TecEvolutionMain {
 	public static ItemBundeledUranium bundled_uranium;
 	public static BaseItem iron_plate;
 	public static BaseItem tungsten_ingot;
+	public static ItemDroid security_droid;
+	public static ItemBattery battery;
+	public static ItemBatteryBundle battery_bundle;
+	public static ItemGenerator generator;
+	public static ItemHull hull;
+	
 	
 	public static void preIni(){
 		solar_generator = new BlockSolarGenerator(Material.iron, 2.0F, "solar_generator");
@@ -63,16 +82,22 @@ public class TecEvolutionMain {
 		block_miner = new BlockMiner("block_miner");
 		iron_bender = new BlockBender("iron_bender");
 		pressure_furnace = new BlockPressureFurnace("pressure_furnace");
-
+		stone_cracker = new BlockCracker("stone_cracker");
+		
+		thorium_pipe = new BlockThoriumPipe("thorium_pipe");
+		
 		tungsten_ore = (BlockBase) new BlockBase(Material.rock, 50.0F, TileEntity.class, "tungsten_ore");
 		
 		tec_wrench = (ItemWrench) new ItemWrench("Set outputs", "tec_wrench").setUnlocalizedName("tec_wrench");
 		bundled_uranium = (ItemBundeledUranium) new ItemBundeledUranium("", "bundled_uranium").setUnlocalizedName("bundled_uranium");
 		iron_plate = (BaseItem) new BaseItem("A usefull plate", "iron_plate").setUnlocalizedName("iron_plate");
 		tungsten_ingot = (BaseItem) new BaseItem("Took a while smelting this bad boy", "tungsten_ingot").setUnlocalizedName("tungsten_ingot");
-		
-		
-		
+		security_droid = (ItemDroid) new ItemDroid("", "security_droid").setUnlocalizedName("security_droid");
+		battery = (ItemBattery) new ItemBattery("battery").setUnlocalizedName("battery");
+		battery_bundle = (ItemBatteryBundle) new ItemBatteryBundle("battery_bundle").setUnlocalizedName("battery_bundle");
+		generator = (ItemGenerator) new ItemGenerator("generator").setUnlocalizedName("generator");
+		hull = (ItemHull) new ItemHull("hull").setUnlocalizedName("hull");
+
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
 		GameRegistry.registerTileEntity(TileEntityCable.class, "MysteryMod_TileEntityCable");
@@ -85,11 +110,13 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileBaseInventoryMachine.class, "MysteryMod_TileBaseInventoryMachine");
 		GameRegistry.registerTileEntity(TileEntityBender.class, "MysteryMod_TileEntityBender");
 		GameRegistry.registerTileEntity(TileEntityPressureFurnace.class, "MysteryMod_TileEntityPressureFurnace");
+		GameRegistry.registerTileEntity(TileEntityCracker.class, "MysteryMod_TileEntityCracker");
+		GameRegistry.registerTileEntity(TileEntityThoriumPipe.class, "MysteryMod_TileEntityThoriumPipe");
 
 	}
 	
 	public static void Ini(){
-		
+		RecipRegister.registerAllCraftingRecipies();
 	}
 	
 	public static void PostIni(){

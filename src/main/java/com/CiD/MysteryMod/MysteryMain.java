@@ -23,6 +23,7 @@ import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.Network.packet.PacketPipeline;
 import com.CiD.MysteryMod.Pages.EnumBookType;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
+import com.CiD.MysteryMod.TecEvolution.Entity.EntitySecurityDroid;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 import com.CiD.MysteryMod.TileEntity.TileEntityLift;
 import com.CiD.MysteryMod.TileEntity.TileSwiftStone;
@@ -136,6 +137,13 @@ public void preInit(FMLPreInitializationEvent event){
 
 	EntityRegistry.registerGlobalEntityID(EntityChiGuard.class, "EntityChiGuard", ChiGuardentityID);
 	EntityRegistry.registerModEntity(EntityChiGuard.class, "EntityChiGuard", ChiGuardentityID, instance, 64, 1, true);
+	
+	int DroidID = EntityRegistry.findGlobalUniqueEntityId();
+
+	EntityRegistry.registerGlobalEntityID(EntitySecurityDroid.class, "EntitySecurityDroid", DroidID);
+	EntityRegistry.registerModEntity(EntitySecurityDroid.class, "EntitySecurityDroid", DroidID, instance, 64, 1, true);
+	
+	
 	FMLCommonHandler.instance().bus().register(new TickHandler());
 	MinecraftForge.EVENT_BUS.register(new SecondaryBusTickHandler());
 	GameRegistry.registerTileEntity(TileEntityGreenCrystal.class, "MysteryMod_TileEntityGreenCrystal");

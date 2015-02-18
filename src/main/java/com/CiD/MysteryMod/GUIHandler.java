@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.GUI.Book.GUImystBook;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerBender;
+import com.CiD.MysteryMod.TecEvolution.Container.ContainerCracker;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerEnergy;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachine;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachineBase;
@@ -17,10 +18,12 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbender;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIpressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
@@ -39,6 +42,7 @@ public static final int ENERGY_TILE_GUI_ID = 4;
 public static final int MACHINE_INVENTORY_GUI_ID = 5;
 public static final int BENDER_GUI_ID = 6;
 public static final int PRESSURE_FURNACE_GUI_ID = 7;
+public static final int CRACKER_GUI_ID = 8;
 
 
 public GUIHandler() {
@@ -58,6 +62,7 @@ case ENERGY_TILE_GUI_ID: return new ContainerEnergy(player.inventory, (TileEntit
 case MACHINE_INVENTORY_GUI_ID: return new ContainerMachineBase(player.inventory, (TileBaseInventoryMachine) tile);
 case BENDER_GUI_ID: return new ContainerBender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new ContainerPressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
+case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCracker) tile);
 
 default:
 return null;
@@ -89,6 +94,7 @@ case ENERGY_TILE_GUI_ID: return new GUIbaseEnergyTile(player.inventory, (TileEnt
 case MACHINE_INVENTORY_GUI_ID: return new GUIMachineInventory(player.inventory, (TileBaseInventoryMachine) tile);
 case BENDER_GUI_ID: return new GUIbender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new GUIpressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
+case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker) tile);
 
 default:
 return null;

@@ -25,5 +25,18 @@ public class TecDATA {
 	/** BUrningTIMES**/
 	public static final int BENDER_BURNINGTIME = 5*20;
 	public static final int PRESSURE_SMELTER_BURNINGTIME = 60*20;
+	
+	
+	//CRACKER STUFF
+	public static final int CRACKER_TO_SAND = 0;
+	public static final int CRACKER_TO_CUBBLE = 1;
+	public static final int CRACKER_TO_DIRT = 2;
+	
+	public static final int[] CRACKER_BURNING_TIME = {
+		2*20,
+		3*20,
+		2*20
+	};
+
 
 }
