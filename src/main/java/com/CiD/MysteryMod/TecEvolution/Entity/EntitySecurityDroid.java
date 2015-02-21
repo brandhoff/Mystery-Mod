@@ -64,7 +64,7 @@ private int CoolDown = TecDATA.DROID_COOLDWON;
 				if(entities.get(i) != owner && !(entities.get(i) instanceof EntitySecurityDroid)){
 					if(!whiteList.contains(entities.get(i)) && entities.get(i) instanceof EntityLivingBase){
 						if(!worldObj.isRemote){
-							worldObj.spawnEntityInWorld(new DroidBullet(worldObj, posX, posY, posZ, entities.get(i)));
+							worldObj.spawnEntityInWorld(new DroidBullet(worldObj, posX, posY + 5, posZ, entities.get(i), this));
 							inCoolDown = true;
 						}
 					}

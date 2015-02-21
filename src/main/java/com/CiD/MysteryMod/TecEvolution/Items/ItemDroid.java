@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.Items.BaseItem;
 import com.CiD.MysteryMod.TecEvolution.Entity.EntitySecurityDroid;
+import com.CiD.MysteryMod.TecEvolution.Entity.Projectile.DroidBullet;
 
 public class ItemDroid extends BaseItem{
 
@@ -19,6 +20,8 @@ public class ItemDroid extends BaseItem{
 		if(player != null && !world.isRemote){
 			EntitySecurityDroid droid = new EntitySecurityDroid(world, player);
 			droid.setPosition(player.posX, player.posY, player.posZ);
+			
+			
 			world.spawnEntityInWorld(droid);
 			return new ItemStack(stack.getItem(), stack.stackSize--);
 

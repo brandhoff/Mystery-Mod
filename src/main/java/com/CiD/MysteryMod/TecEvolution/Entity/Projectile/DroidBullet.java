@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution.Entity.Projectile;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,11 +9,13 @@ import net.minecraft.world.World;
 
 public class DroidBullet extends EntityThrowable{
 EntityLivingBase target;
-	public DroidBullet(World world, double x, double y, double z, EntityLivingBase target) {
-		super(world, x, y, z);
-
+boolean onCooldown = false;
+int cooldown = 20;
+	public DroidBullet(World world, double x, double y, double z, EntityLivingBase target, EntityLiving user) {
+		super(world, user);
+//		super(world);
 		this.target = target;
-		System.out.println(this + " TARGET: "+target);
+//		this.motionY = 0.2;
 	}
 
 	public DroidBullet(World world) {
@@ -37,7 +40,15 @@ EntityLivingBase target;
 
 				super.onEntityUpdate();
 				if(target != null){
+					if(!onCooldown){
 					setThrowableHeading(target.posX, target.posY, target.posZ, 1, 1);
+					}else{
+						cooldown--;
+						if(cooldown == 0){
+							onCooldown = false;
+							cooldown = 20;
+						}
+					}
 				}
 				
 				

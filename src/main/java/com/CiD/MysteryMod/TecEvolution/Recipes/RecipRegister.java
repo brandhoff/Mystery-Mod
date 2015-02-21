@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution.Recipes;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 
 import net.minecraft.init.Blocks;
@@ -30,6 +31,8 @@ public class RecipRegister {
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.iron_bender, 1), new Object[] {"###", "#X#", "###", '#', Blocks.iron_bars, 'X', Items.diamond_pickaxe, 'A', Blocks.diamond_block});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.pressure_furnace, 1), new Object[] {"###", "#X#", "###", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.tec_wrench, 1), new Object[] {"#0#", "0#0", "0#0", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
+	CraftingManager.getInstance().addRecipe(new ItemStack(MysteryMain.block_lift, 1), new Object[] {"###", "0#0", "###", '#', Blocks.piston, 'X', TecEvolutionMain.iron_plate, 'A', Blocks.diamond_block});
+	CraftingManager.getInstance().addRecipe(new ItemStack(MysteryMain.swift_stone, 32), new Object[] {"###", "#0#", "###", '#', Blocks.stone, '0', TecEvolutionMain.hull, 'A', Blocks.diamond_block});
 
 	
 	

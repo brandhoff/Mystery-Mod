@@ -33,21 +33,6 @@ public class BlockThoriumPipe extends BlockBase{
 		super.breakBlock(world, x, y, z,
 				p_149749_5_, p_149749_6_);
 	}
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-	@Override
-	public boolean isNormalCube() {
-		return false;
-	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_,
-			int p_149646_2_, int p_149646_3_, int p_149646_4_, int side) {
-		
-		
-		return false;
-	}
+
 	
 }
