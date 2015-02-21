@@ -28,10 +28,10 @@ public class TileEntityCracker extends TileEntityMachine implements ISidedInvent
 	private int furnaceCookTime;
    
     
-//    @Override
-//    public void updateEntity() {
-//    	super.updateEntity();
-//    }
+    @Override
+    public void updateEntity() {
+    	super.updateEntity();
+    }
   
     public int getMAxBurningTime(){
     	if(producingItem != null){
@@ -103,178 +103,68 @@ public class TileEntityCracker extends TileEntityMachine implements ISidedInvent
         return this.burningTime > 0;
     }
 
-    public void updateEntity()
-    {
-        boolean flag = this.burningTime > 0;
-        boolean flag1 = false;
-
-        if (this.burningTime > 0)
-        {
-            --this.burningTime;
-        }
-
-        if (!this.worldObj.isRemote)
-        {
-            if (this.burningTime != 0 || this.invStacks[1] != null && this.invStacks[0] != null)
-            {
-                if (this.burningTime == 0 && this.canSmelt())
-                {
-                    this.currentItemBurnTime = this.burningTime = 1;
-
-                    if (this.burningTime > 0)
-                    {
-                        flag1 = true;
-
-                        if (this.invStacks[1] != null)
-                        {
-                            --this.invStacks[1].stackSize;
-
-                            if (this.invStacks[1].stackSize == 0)
-                            {
-                                this.invStacks[1] = invStacks[1].getItem().getContainerItem(invStacks[1]);
-                            }
-                        }
-                    }
-                }
-
-                if (this.isBurning() && this.canSmelt())
-                {
-                    ++this.furnaceCookTime;
-
-                    if (this.furnaceCookTime == 200)
-                    {
-                        this.furnaceCookTime = 0;
-                        this.smeltItem();
-                        flag1 = true;
-                    }
-                }
-                else
-                {
-                    this.furnaceCookTime = 0;
-                }
-            }
-
-            if (flag != this.burningTime > 0)
-            {
-                flag1 = true;
-                BlockFurnace.updateFurnaceBlockState(this.burningTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-            }
-        }
-
-        if (flag1)
-        {
-            this.markDirty();
-        }
-    }
-
-    /**
-     * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
-     */
-    private boolean canSmelt()
-    {
-        if (this.invStacks[0] == null)
-        {
-            return false;
-        }
-        else
-        {
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.invStacks[0]);
-            if (itemstack == null) return false;
-            if (this.invStacks[2] == null) return true;
-            if (!this.invStacks[2].isItemEqual(itemstack)) return false;
-            int result = invStacks[2].stackSize + itemstack.stackSize;
-            return result <= getInventoryStackLimit() && result <= this.invStacks[2].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
-        }
-    }
-
-    /**
-     * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
-     */
-    public void smeltItem()
-    {
-        if (this.canSmelt())
-        {
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.invStacks[0]);
-
-            if (this.invStacks[2] == null)
-            {
-                this.invStacks[2] = itemstack.copy();
-            }
-            else if (this.invStacks[2].getItem() == itemstack.getItem())
-            {
-                this.invStacks[2].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
-            }
-
-            --this.invStacks[0].stackSize;
-
-            if (this.invStacks[0].stackSize <= 0)
-            {
-                this.invStacks[0] = null;
-            }
-        }
-    }
     
-//    @Override
-//    public void OnProduceTick() {
-//		if(startedProduce){
-//			burningTime--;
-//			if(burningTime == 0){
-//				if(producingItem != null &&producingItem.getItem() != null){
-//				burningTime = crackerRecipe.getBurningTime(producingItem.getItem());
-//					}
-//					else{
-//					burningTime = -1;
-//				}
-//				if( producingItem != null && getStackInSlot(1) != null && getStackInSlot(1).getItem() == crackerRecipe.getResult(producingItem.getItem())){
-//						ItemStack stack = getStackInSlot(1);
-//						ItemStack newStack = new ItemStack(stack.getItem(), stack.stackSize +1); 
-//					setInventorySlotContents(1, newStack);
-//					
-//					startedProduce = false;
-//				
-//					}else if(getStackInSlot(1) != null){
-//						decrStackSize(1, getStackInSlot(1).stackSize);
-//						ItemStack newStack = new ItemStack(crackerRecipe.getResult(producingItem.getItem()).get(0).getItem(), 1); 
-//						setInventorySlotContents(1, newStack);
-//						startedProduce = false;
-//
-//					}
-//					else{
-//						if(producingItem != null){
-//						ItemStack newStack = new ItemStack(crackerRecipe.getResult(producingItem.getItem()).get(0).getItem(), 1); 
-//						setInventorySlotContents(1, newStack);
-//						startedProduce = false;
-//						}
-//					}
-//				}
-//		
-//		}
-//      }
-//    
-//    
-//    @Override
-//	public boolean Working(){
-//		if(drainAmount(energyPerTick()) ){
-//			if(startedProduce){
-//				
-//			}else if(getStackInSlot(0) != null && crackerRecipe.isUseable(getStackInSlot(0).getItem())){
-//				producingItem = getStackInSlot(0);
-//				startedProduce = true;
-//				decrStackSize(0, 1);
-//
-//			}
-//
-//			whileWorking = true;
-//			return true;
-//		}
-//		if(producingItem != null)
-//		burningTime = crackerRecipe.getBurningTime(producingItem.getItem());
-//		startedProduce = false;
-//
-//		whileWorking = false;
-//
-//		return false;
-//	}
+    @Override
+    public void OnProduceTick() {
+		if(startedProduce){
+			burningTime--;
+			if(burningTime == 0){
+				if(producingItem != null &&producingItem.getItem() != null){
+				burningTime = crackerRecipe.getBurningTime(producingItem.getItem());
+					}
+					else{
+					burningTime = -1;
+				}
+				if( producingItem != null && getStackInSlot(1) != null && getStackInSlot(1).getItem() == crackerRecipe.getResult(producingItem.getItem())){
+						ItemStack stack = getStackInSlot(1);
+						ItemStack newStack = new ItemStack(stack.getItem(), stack.stackSize +1); 
+					setInventorySlotContents(1, newStack);
+					
+					startedProduce = false;
+				
+					}else if(getStackInSlot(1) != null){
+						decrStackSize(1, getStackInSlot(1).stackSize);
+						ItemStack newStack = new ItemStack(crackerRecipe.getResult(producingItem.getItem()).get(0).getItem(), 1); 
+						setInventorySlotContents(1, newStack);
+						startedProduce = false;
+
+					}
+					else{
+						if(producingItem != null){
+						ItemStack newStack = new ItemStack(crackerRecipe.getResult(producingItem.getItem()).get(0).getItem(), 1); 
+						setInventorySlotContents(1, newStack);
+						startedProduce = false;
+						}
+					}
+				}
+		
+		}
+      }
+    
+    
+    @Override
+	public boolean Working(){
+		if(drainAmount(energyPerTick()) ){
+			if(startedProduce){
+				
+			}else if(getStackInSlot(0) != null && crackerRecipe.isUseable(getStackInSlot(0).getItem())){
+				producingItem = getStackInSlot(0);
+				startedProduce = true;
+				decrStackSize(0, 1);
+
+			}
+
+			whileWorking = true;
+			return true;
+		}
+		if(producingItem != null)
+		burningTime = crackerRecipe.getBurningTime(producingItem.getItem());
+		startedProduce = false;
+
+		whileWorking = false;
+
+		return false;
+	}
     
     @Override
     public int energyPerTick() {

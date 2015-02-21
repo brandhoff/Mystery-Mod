@@ -38,5 +38,8 @@ public class TecDATA {
 		2*20
 	};
 
+	
+	//DROID STUFF
+	public static final int DROID_COOLDWON = 20*5;
 
 }

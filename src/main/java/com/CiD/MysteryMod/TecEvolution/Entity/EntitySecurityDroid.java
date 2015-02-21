@@ -6,6 +6,9 @@ import java.util.Random;
 
 import javax.vecmath.Vector3d;
 
+import com.CiD.MysteryMod.TecEvolution.TecDATA;
+import com.CiD.MysteryMod.TecEvolution.Entity.Projectile.DroidBullet;
+
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -26,8 +29,8 @@ private double movePosY;
 private double movePosX;
 private double movePosZ;
 private static Vec3 staticVector = Vec3.createVectorHelper(0.0D, 0.0D, 0.0D);
-
-
+private boolean inCoolDown = true;
+private int CoolDown = TecDATA.DROID_COOLDWON;
 	public EntitySecurityDroid(World world, EntityPlayer owner) {
 		super(world);
 		this.owner = owner;
@@ -53,39 +56,29 @@ private static Vec3 staticVector = Vec3.createVectorHelper(0.0D, 0.0D, 0.0D);
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		
+	if(!inCoolDown){
 		List<EntityLivingBase> entities = worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(30.0D, 30.0D, 30.0D));		
 		Random ran = new Random();
 		if(entities != null && !entities.isEmpty()){
 			for(int i = 0; i < entities.size(); i++){
 				if(entities.get(i) != owner && !(entities.get(i) instanceof EntitySecurityDroid)){
-					if(!whiteList.contains(entities.get(i))){
-						Vec3 vec3 = staticVector.addVector(entities.get(i).posX - this.posX, entities.get(i).posY - this.posY, entities.get(i).posZ - this.posZ);
-				            if (vec3 == null)
-				            {
-				            }
-				            else
-				            {
-//				                this.movePosX = 1/(entities.get(i).posX - this.posX);
-//				                this.movePosY = 1/(entities.get(i).posY - this.posY);
-//				                this.movePosZ = 1/(entities.get(i).posZ - this.posZ);
-//				                this.motionX = movePosX;
-//				                this.motionY = movePosY;
-//				                this.motionZ = movePosZ;
-
-				                
-//				                getNavigator().tryMoveToXYZ(entities.get(i).posX, entities.get(i).posY, entities.get(i).posZ, 1.5);
-				           
-				            
-				            
-				            
-				            }
+					if(!whiteList.contains(entities.get(i)) && entities.get(i) instanceof EntityLivingBase){
+						if(!worldObj.isRemote){
+							worldObj.spawnEntityInWorld(new DroidBullet(worldObj, posX, posY, posZ, entities.get(i)));
+							inCoolDown = true;
+						}
 					}
 				}
 			}
 		}
+	}else{
+		CoolDown--;
+		if(CoolDown == 0){
+			inCoolDown = false;
+			CoolDown = TecDATA.DROID_COOLDWON;
+		}
 	}
-	
+}	
 	@Override
 		protected boolean isAIEnabled() {
 			return false;
