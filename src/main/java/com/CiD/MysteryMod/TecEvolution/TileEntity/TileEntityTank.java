@@ -23,7 +23,7 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 	public boolean hasUpdate = false;
 	private int prevLightValue = 0;
 
-	/* UPDATING */
+	
 	@Override
 	public void updateEntity() {
 		if (worldObj.isRemote) {
@@ -35,13 +35,12 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 			return;
 		}
 
-		// Have liquid flow down into tanks below if any.
 		if (tank.getFluid() != null) {
 			moveFluidBelow();
 		}
 
 	}
-
+// TODO CLIENT AND SERVER ARE OUT OF SYNC
 	
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
@@ -55,10 +54,6 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 		tankManager.writeToNBT(data);
 	}
 
-	/* HELPER FUNCTIONS */
-	/**
-	 * @return Last tank block below this one or this one if it is the last.
-	 */
 	public TileEntityTank getBottomTank() {
 
 		TileEntityTank lastTank = this;
@@ -191,7 +186,7 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 
 			FluidStack liquid = tile.tank.getFluid();
 			if (liquid == null || liquid.amount == 0) {
-				// NOOP
+
 			} else if (!compositeTank.getFluid().isFluidEqual(liquid)) {
 				break;
 			} else {
