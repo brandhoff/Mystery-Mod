@@ -100,7 +100,7 @@ private int particlesTick;
 				onRemove();
 			}
 		}
-		
+		//Fixed
 		
 		if(getNetwork() != null){
 		
@@ -110,6 +110,7 @@ private int particlesTick;
 				if(connections[i]){
 					switch(i){
 					case TecHelper.SIDE_DOWN :{
+						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord) instanceof TileEntityEnergy){
 					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -118,9 +119,11 @@ private int particlesTick;
 								getNetwork().addCable(cable);
 							}
 						}
-					
+						}
 					}
 					case TecHelper.SIDE_UP : {
+						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -129,10 +132,12 @@ private int particlesTick;
 								getNetwork().addCable(cable);
 
 							}
-						}
+						}}
 
 					}
 					case TecHelper.SIDE_X : {
+						if(worldObj.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -143,8 +148,10 @@ private int particlesTick;
 							}
 						}
 
-					}
+					}}
 					case TecHelper.SIDE_MX : {
+						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -154,9 +161,11 @@ private int particlesTick;
 
 							}
 						}
-
+						}
 					}
 					case TecHelper.SIDE_Z : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord+1) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -166,9 +175,11 @@ private int particlesTick;
 
 							}
 						}
-
+						}
 					}
 					case TecHelper.SIDE_MZ : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord -1) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
 						if(tl != null && tl instanceof TileEntityCable){
 							TileEntityCable cable = (TileEntityCable)tl;
@@ -181,7 +192,7 @@ private int particlesTick;
 
 					}
 				
-				}
+				}}
 			}
 	}
 		}
@@ -198,34 +209,46 @@ private int particlesTick;
 				if(connections[i]){
 					switch(i){
 					case TecHelper.SIDE_DOWN :{
+						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord) instanceof TileEntityEnergy){
+
 					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
 						if(tl != null && tl instanceof TileEntityCable) return true;
 					
-					}
+					}}
 					case TecHelper.SIDE_UP : {
+						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
 						if(tl != null && tl instanceof TileEntityCable) return true;
-
+						}
 					}
 					case TecHelper.SIDE_X : {
+						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
 						if(tl != null && tl instanceof TileEntityCable) return true;
 
-					}
+					}}
 					case TecHelper.SIDE_MX : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
 						if(tl != null && tl instanceof TileEntityCable) return true;
-
+						}
 					}
 					case TecHelper.SIDE_Z : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord+1) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
 						if(tl != null && tl instanceof TileEntityCable) return true;
 
-					}
+					}}
 					case TecHelper.SIDE_MZ : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord-1) instanceof TileEntityEnergy){
+
 						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
 						if(tl != null && tl instanceof TileEntityCable) return true;
-
+						}
 					}
 				
 				}

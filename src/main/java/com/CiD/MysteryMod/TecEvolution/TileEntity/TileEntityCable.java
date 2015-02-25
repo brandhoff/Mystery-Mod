@@ -18,8 +18,9 @@ public class TileEntityCable extends TileEntityEnergy{
 	
 	@Override
 	public void ini(int MaxE, int drPerTick) {
-		setDrainPerTickConnection(100);
-		setMaxEnergy(1000);
+		//NOT USED IN THE CABLE ENTITY
+		setDrainPerTickConnection(0);
+		setMaxEnergy(0);
 		setMomEnergy(0);
 	
 	}
@@ -767,736 +768,444 @@ public class TileEntityCable extends TileEntityEnergy{
 	return false;
 }
 
-	
-	public void onCableUpdate(){
-		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
-		boolean skip = false;
-		
-		if(hasStoreSpace()){
-			for(int i = 0; i < connections.length; i++){
-				if(connections[i]){
-					switch(i){
-					case TecHelper.SIDE_DOWN :{
-						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord) instanceof TileEntityEnergy){
-
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
-					
-					if(tl != null){
-
-					boolean[] output = tl.getAllOutputSides();	
-					if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_UP]){
-						addToStorage(tl);
-					}
-					
-						}
-					}}
-					case TecHelper.SIDE_UP : {
-						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null ){ 
-							if(tl instanceof TileEntityStorage){ 
-
-								if(!output[TecHelper.SIDE_DOWN]){
-
-							addToStorage(tl);
-
-						
-						}}
-						}}
-					}}
-					case TecHelper.SIDE_X : {
-						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_MX]){
-							addToStorage(tl);
-
-						}
-						}
-					}}
-					case TecHelper.SIDE_MX : {
-						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_X]) {
-							addToStorage(tl);
-
-						}
-						}
-					}}
-					case TecHelper.SIDE_Z : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-						if(tl != null){
-
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_MZ]){
-							addToStorage(tl);
-
-						}
-						}
-					}}
-					case TecHelper.SIDE_MZ : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_Z]){
-							addToStorage(tl);
-
-						}
-						}
-					}
-					}
-				}
-			}
-	}
-		}
-		
-		
-		if(hasProducer() && !skip){
-			for(int i = 0; i < connections.length; i++){
-				if(connections[i]){
-					switch(i){
-					case TecHelper.SIDE_DOWN :{
-						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
-
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-					
-					}}
-					case TecHelper.SIDE_UP : {
-						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_X : {
-						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_MX : {
-						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_Z : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_MZ : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-						if(tl != null && tl instanceof TileEnergyProducer){
-							drainFromProducer(tl);
-
-						}
-						}
-					}
-				
-				}
-			}
-	}
-		}
-		if(hasStorage()&& !skip){
-			for(int i = 0; i < connections.length; i++){
-				if(connections[i]){
-					switch(i){
-					case TecHelper.SIDE_DOWN :{
-						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
-
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
-					
-					if(tl != null){
-
-					boolean[] output = tl.getAllOutputSides();	
-					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_UP]){
-						drainFromStorage(tl);
-
-					}
-					
-						}}
-					}
-					case TecHelper.SIDE_UP : {
-						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null ){ 
-							if(tl instanceof TileEntityStorage){ 
-
-								if(output[TecHelper.SIDE_DOWN]){
-
-									drainFromStorage(tl);
-
-						
-						}
-						}}
-					}}}
-					case TecHelper.SIDE_X : {
-						if(worldObj.getTileEntity(xCoord + 1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MX]){
-							drainFromStorage(tl);
-
-							}
-						}
-					}}
-					case TecHelper.SIDE_MX : {
-						if(worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_X]){
-							drainFromStorage(tl);
-
-							}
-						}
-					}}
-					case TecHelper.SIDE_Z : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-						if(tl != null){
-
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MZ]){
-							drainFromStorage(tl);
-
-							}
-						}
-					}}
-					case TecHelper.SIDE_MZ : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-						
-						if(tl != null){
-
-						boolean[] output = tl.getAllOutputSides();	
-
-						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_Z]){
-							drainFromStorage(tl);
-
-							}
-						}
-					}
-					}
-				}
-			}
-	}
-		}
-		if(hasCable()&& !skip){
-			for(int i = 0; i < connections.length; i++){
-				if(connections[i]){
-					switch(i){
-					case TecHelper.SIDE_DOWN :{
-						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
-
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-						}
-						}
-					}
-					case TecHelper.SIDE_UP : {
-						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-
-						}}
-
-					}
-					case TecHelper.SIDE_X : {
-						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_MX : {
-						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord ) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_Z : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-
-						}
-						}
-					}
-					case TecHelper.SIDE_MZ : {
-						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
-
-						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-						if(tl != null && tl instanceof TileEntityCable){
-							drainFromCable(tl);
-						}
-						}
-
-					}
-				
-				}
-			}
-				}
-		}
-	}
-	
-	public boolean drainFromCable(TileEntityEnergy tl){
-
-		TileEntityCable tile = (TileEntityCable) tl;
-		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
-			if(this.getMaxEnergy() >= this.getMomEnergy() + this.getDrainPerTickConnection()){
-				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
-				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
-//				tile.setSleeping(true);
-				return true;
-
-			}
-		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
-			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
-				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
-				tile.setMomEnergy(0);
-//				tile.setSleeping(true);
-
-				return true;
-			}
-		}
-		return false;
-
-	}
-	
-	public boolean drainFromStorage(TileEntityEnergy tl){
-
-		TileEntityStorage tile = (TileEntityStorage) tl;
-		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
-			if(this.getMaxEnergy() <= this.getMomEnergy() + this.getDrainPerTickConnection()){
-				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
-				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
-				return true;
-
-			}
-		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
-			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
-				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
-				tile.setMomEnergy(0);
-				return true;
-			}
-		}
-		return false;
-
-	}
-	
-	public boolean drainFromProducer(TileEntityEnergy tl){
-
-		TileEntityEnergy tile = (TileEntityEnergy) tl;
-		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
-			if(this.getMaxEnergy() >= this.getMomEnergy() + this.getDrainPerTickConnection()){
-				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
-				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
-				return true;
-
-			}
-		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
-			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
-				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
-				tile.setMomEnergy(0);
-				return true;
-			}
-		}
-		return false;
-
-	}
-	
-	public boolean addToStorage(TileEntityEnergy tl){
-
-		TileEntityStorage tile = (TileEntityStorage) tl;
-		if(this.getMomEnergy() >= tile.getDrainPerTickConnection()){
-			if(tile.getMaxEnergy() >= tile.getMomEnergy() + tile.getDrainPerTickConnection()){
-				tile.setMomEnergy(tile.getMomEnergy() + tile.getDrainPerTickConnection());
-				this.setMomEnergy(this.getMomEnergy() - tile.getDrainPerTickConnection());
-				return true;
-
-			}
-		}else if(this.getMomEnergy() < tile.getDrainPerTickConnection() && this.getMomEnergy() > 0){
-			if(tile.getMaxEnergy() >= tile.getMomEnergy() + this.getMomEnergy()){
-				tile.setMomEnergy(tile.getMomEnergy() + this.getMomEnergy());
-				this.setMomEnergy(0);
-				return true;
-			}
-		}
-		return false;
-
-	}
-	//OLD STUFF
-//	public void tradeFromProducer(){
+//	
+//	public void onCableUpdate(){
 //		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+//		boolean skip = false;
 //		
-//		for(int i = 0; i<connections.length; i++){
-//			switch(i){
-//			case TecHelper.SIDE_DOWN : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//		if(hasStoreSpace()){
+//			for(int i = 0; i < connections.length; i++){
+//				if(connections[i]){
+//					switch(i){
+//					case TecHelper.SIDE_DOWN :{
+//						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord) instanceof TileEntityEnergy){
+//
+//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+//					
+//					if(tl != null){
+//
+//					boolean[] output = tl.getAllOutputSides();	
+//					if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_UP]){
+//						addToStorage(tl);
+//					}
+//					
+//						}
+//					}}
+//					case TecHelper.SIDE_UP : {
+//						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
 //						
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null ){ 
+//							if(tl instanceof TileEntityStorage){ 
+//
+//								if(!output[TecHelper.SIDE_DOWN]){
+//
+//							addToStorage(tl);
+//
+//						
+//						}}
+//						}}
+//					}}
+//					case TecHelper.SIDE_X : {
+//						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//						
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_MX]){
+//							addToStorage(tl);
+//
+//						}
+//						}
+//					}}
+//					case TecHelper.SIDE_MX : {
+//						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_X]) {
+//							addToStorage(tl);
+//
+//						}
+//						}
+//					}}
+//					case TecHelper.SIDE_Z : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//						if(tl != null){
+//
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_MZ]){
+//							addToStorage(tl);
+//
+//						}
+//						}
+//					}}
+//					case TecHelper.SIDE_MZ : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//						
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && !output[TecHelper.SIDE_Z]){
+//							addToStorage(tl);
+//
+//						}
 //						}
 //					}
-//				
+//					}
 //				}
 //			}
-//			case TecHelper.SIDE_MX : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//						}
-//					}
-//								}	
-//						}
-//			case TecHelper.SIDE_X : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//						}
-//					}
-//				}
-//			}
-//			case TecHelper.SIDE_MZ : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//						}
-//					}
-//				}
-//			}
-//			case TecHelper.SIDE_Z : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//						}
-//					}
-//				}
-//			}
-//			case TecHelper.SIDE_UP : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-//					if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//						}
-//					}
-//				}
-//			}
-//			}
+//	}
 //		}
 //		
 //		
-//	}
-//	
-//	public void tradeFromStorage(){
-//		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
-//		if(this.isSleeping()){
-//			setSleeping(false);
-//		}else{
-//		for(int i = 0; i<connections.length; i++){
-//			switch(i){
-//			case TecHelper.SIDE_DOWN : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
-//					
-//					if(tl != null){
+//		if(hasProducer() && !skip){
+//			for(int i = 0; i < connections.length; i++){
+//				if(connections[i]){
+//					switch(i){
+//					case TecHelper.SIDE_DOWN :{
+//						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
 //
-//					boolean[] output = tl.getAllOutputSides();	
-//
-//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_UP]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
+//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
 //
 //						}
+//					
 //					}}
+//					case TecHelper.SIDE_UP : {
+//						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_X : {
+//						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_MX : {
+//						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_Z : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_MZ : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//						if(tl != null && tl instanceof TileEnergyProducer){
+//							drainFromProducer(tl);
+//
+//						}
+//						}
+//					}
 //				
 //				}
 //			}
-//			case TecHelper.SIDE_MX : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-//					
-//					if(tl != null){
-//
-//					boolean[] output = tl.getAllOutputSides();	
-//
-//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_X]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
-//						}
-//					}}
-//								}	
-//						}
-//			case TecHelper.SIDE_X : {
+//	}
+//		}
+//		if(hasStorage()&& !skip){
+//			for(int i = 0; i < connections.length; i++){
 //				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//					switch(i){
+//					case TecHelper.SIDE_DOWN :{
+//						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
+//
+//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
 //					
 //					if(tl != null){
 //
 //					boolean[] output = tl.getAllOutputSides();	
+//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_UP]){
+//						drainFromStorage(tl);
 //
-//					if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MX]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
+//					}
+//					
 //						}}
 //					}
-//				}
-//			}
-//			case TecHelper.SIDE_MZ : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-//					
-//					if(tl != null){
+//					case TecHelper.SIDE_UP : {
+//						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof TileEntityEnergy){
 //
-//					boolean[] output = tl.getAllOutputSides();	
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//						
+//						if(tl != null){
 //
-//					if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_Z] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
+//						boolean[] output = tl.getAllOutputSides();	
 //
+//						if(tl != null ){ 
+//							if(tl instanceof TileEntityStorage){ 
+//
+//								if(output[TecHelper.SIDE_DOWN]){
+//
+//									drainFromStorage(tl);
+//
+//						
+//						}
+//						}}
+//					}}}
+//					case TecHelper.SIDE_X : {
+//						if(worldObj.getTileEntity(xCoord + 1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//						
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MX]){
+//							drainFromStorage(tl);
+//
+//							}
 //						}
 //					}}
-//				}
-//			}
-//			case TecHelper.SIDE_Z : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-//					
-//					if(tl != null){
+//					case TecHelper.SIDE_MX : {
+//						if(worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityEnergy){
 //
-//					boolean[] output = tl.getAllOutputSides();	
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+//						if(tl != null){
 //
-//					if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_MZ] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
+//						boolean[] output = tl.getAllOutputSides();	
 //
+//						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_X]){
+//							drainFromStorage(tl);
+//
+//							}
 //						}
 //					}}
-//				}
-//			}
-//			case TecHelper.SIDE_UP : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-//					
-//					if(tl != null){
-//					boolean[] output = tl.getAllOutputSides();	
+//					case TecHelper.SIDE_Z : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
 //
-//					if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_DOWN] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//						if(tl != null){
 //
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MZ]){
+//							drainFromStorage(tl);
+//
+//							}
+//						}
+//					}}
+//					case TecHelper.SIDE_MZ : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//						
+//						if(tl != null){
+//
+//						boolean[] output = tl.getAllOutputSides();	
+//
+//						if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_Z]){
+//							drainFromStorage(tl);
+//
+//							}
 //						}
 //					}
-//				}}
+//					}
+//				}
 //			}
-//			}
-//		}
-//		
-//		
 //	}
-//}
-//	
-//	
-//	public void tradeFromCable(){
-//		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
-//		if(this.isSleeping()){
-//			setSleeping(false);
-//		}else{
-//		for(int i = 0; i<connections.length; i++){
-//			switch(i){
-//			case TecHelper.SIDE_DOWN : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
+//		}
+//		if(hasCable()&& !skip){
+//			for(int i = 0; i < connections.length; i++){
+//				if(connections[i]){
+//					switch(i){
+//					case TecHelper.SIDE_DOWN :{
+//						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof TileEntityEnergy){
+//
+//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_UP : {
+//						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
+//
+//						}}
+//
+//					}
+//					case TecHelper.SIDE_X : {
+//						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
 //
 //						}
+//						}
+//					}
+//					case TecHelper.SIDE_MX : {
+//						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord ) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_Z : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
+//
+//						}
+//						}
+//					}
+//					case TecHelper.SIDE_MZ : {
+//						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
+//
+//						TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//						if(tl != null && tl instanceof TileEntityCable){
+//							drainFromCable(tl);
+//						}
+//						}
+//
 //					}
 //				
 //				}
 //			}
-//			case TecHelper.SIDE_MX : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
-//						}
-//					}
-//								}	
-//						}
-//			case TecHelper.SIDE_X : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
-//						}
-//					}
 //				}
-//			}
-//			case TecHelper.SIDE_MZ : {
-//				if(connections[i] ){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
-//						}
-//					}
-//				}
-//			}
-//			case TecHelper.SIDE_Z : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//
-//						}
-//					}
-//				}
-//			}
-//			case TecHelper.SIDE_UP : {
-//				if(connections[i]){
-//					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-//					if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-//						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-//							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-//							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-//							setSleeping(true);
-//						}
-//					}
-//				}
-//			}
-//			}
-//		}
-//		
 //		}
 //	}
+//	
+//	public boolean drainFromCable(TileEntityEnergy tl){
+//
+//		TileEntityCable tile = (TileEntityCable) tl;
+//		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
+//			if(this.getMaxEnergy() >= this.getMomEnergy() + this.getDrainPerTickConnection()){
+//				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
+//				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
+////				tile.setSleeping(true);
+//				return true;
+//
+//			}
+//		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
+//			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
+//				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
+//				tile.setMomEnergy(0);
+////				tile.setSleeping(true);
+//
+//				return true;
+//			}
+//		}
+//		return false;
+//
+//	}
+//	
+//	public boolean drainFromStorage(TileEntityEnergy tl){
+//
+//		TileEntityStorage tile = (TileEntityStorage) tl;
+//		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
+//			if(this.getMaxEnergy() <= this.getMomEnergy() + this.getDrainPerTickConnection()){
+//				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
+//				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
+//				return true;
+//
+//			}
+//		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
+//			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
+//				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
+//				tile.setMomEnergy(0);
+//				return true;
+//			}
+//		}
+//		return false;
+//
+//	}
+//	
+//	public boolean drainFromProducer(TileEntityEnergy tl){
+//
+//		TileEntityEnergy tile = (TileEntityEnergy) tl;
+//		if(tile.getMomEnergy() >= this.getDrainPerTickConnection()){
+//			if(this.getMaxEnergy() >= this.getMomEnergy() + this.getDrainPerTickConnection()){
+//				this.setMomEnergy(this.getMomEnergy() + this.getDrainPerTickConnection());
+//				tile.setMomEnergy(tile.getMomEnergy() - this.getDrainPerTickConnection());
+//				return true;
+//
+//			}
+//		}else if(tile.getMomEnergy() < this.getDrainPerTickConnection() && tile.getMomEnergy() > 0){
+//			if(this.getMaxEnergy() >= this.getMomEnergy() + tile.getMomEnergy()){
+//				this.setMomEnergy(this.getMomEnergy() + tile.getMomEnergy());
+//				tile.setMomEnergy(0);
+//				return true;
+//			}
+//		}
+//		return false;
+//
+//	}
+//	
+//	public boolean addToStorage(TileEntityEnergy tl){
+//
+//		TileEntityStorage tile = (TileEntityStorage) tl;
+//		if(this.getMomEnergy() >= tile.getDrainPerTickConnection()){
+//			if(tile.getMaxEnergy() >= tile.getMomEnergy() + tile.getDrainPerTickConnection()){
+//				tile.setMomEnergy(tile.getMomEnergy() + tile.getDrainPerTickConnection());
+//				this.setMomEnergy(this.getMomEnergy() - tile.getDrainPerTickConnection());
+//				return true;
+//
+//			}
+//		}else if(this.getMomEnergy() < tile.getDrainPerTickConnection() && this.getMomEnergy() > 0){
+//			if(tile.getMaxEnergy() >= tile.getMomEnergy() + this.getMomEnergy()){
+//				tile.setMomEnergy(tile.getMomEnergy() + this.getMomEnergy());
+//				this.setMomEnergy(0);
+//				return true;
+//			}
+//		}
+//		return false;
+//
+//	}
+
 	public void setSleeping(boolean sleeping) {
 		this.sleeping = sleeping;
 	}
@@ -1509,3 +1218,296 @@ public class TileEntityCable extends TileEntityEnergy{
 	
 	
 }
+//OLD STUFF
+//public void tradeFromProducer(){
+//	boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+//	
+//	for(int i = 0; i<connections.length; i++){
+//		switch(i){
+//		case TecHelper.SIDE_DOWN : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//			
+//			}
+//		}
+//		case TecHelper.SIDE_MX : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//							}	
+//					}
+//		case TecHelper.SIDE_X : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_MZ : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_Z : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_UP : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//				if(tl != null && tl instanceof TileEnergyProducer &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//					}
+//				}
+//			}
+//		}
+//		}
+//	}
+//	
+//	
+//}
+//
+//public void tradeFromStorage(){
+//	boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+//	if(this.isSleeping()){
+//		setSleeping(false);
+//	}else{
+//	for(int i = 0; i<connections.length; i++){
+//		switch(i){
+//		case TecHelper.SIDE_DOWN : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_UP]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}}
+//			
+//			}
+//		}
+//		case TecHelper.SIDE_MX : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_X]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}}
+//							}	
+//					}
+//		case TecHelper.SIDE_X : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage && output[TecHelper.SIDE_MX]&&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_MZ : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_Z] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}}
+//			}
+//		}
+//		case TecHelper.SIDE_Z : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//				
+//				if(tl != null){
+//
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_MZ] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}}
+//			}
+//		}
+//		case TecHelper.SIDE_UP : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//				
+//				if(tl != null){
+//				boolean[] output = tl.getAllOutputSides();	
+//
+//				if(tl != null && tl instanceof TileEntityStorage&& output[TecHelper.SIDE_DOWN] &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//			}}
+//		}
+//		}
+//	}
+//	
+//	
+//}
+//}
+//
+//
+//public void tradeFromCable(){
+//	boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+//	if(this.isSleeping()){
+//		setSleeping(false);
+//	}else{
+//	for(int i = 0; i<connections.length; i++){
+//		switch(i){
+//		case TecHelper.SIDE_DOWN : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//			
+//			}
+//		}
+//		case TecHelper.SIDE_MX : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//							}	
+//					}
+//		case TecHelper.SIDE_X : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_MZ : {
+//			if(connections[i] ){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_Z : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//
+//					}
+//				}
+//			}
+//		}
+//		case TecHelper.SIDE_UP : {
+//			if(connections[i]){
+//				TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+//				if(tl != null && tl instanceof TileEntityCable &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
+//					if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
+//						tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
+//						this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
+//						setSleeping(true);
+//					}
+//				}
+//			}
+//		}
+//		}
+//	}
+//	
+//	}
+//}

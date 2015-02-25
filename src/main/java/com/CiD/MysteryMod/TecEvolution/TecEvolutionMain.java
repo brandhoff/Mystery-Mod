@@ -14,6 +14,7 @@ import com.CiD.MysteryMod.TecEvolution.Blocks.BlockPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallCable;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSmallEnergyBank;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSolarGenerator;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockTank;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockWindGenerator;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBattery;
@@ -36,6 +37,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityTank;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 
@@ -58,6 +60,9 @@ public class TecEvolutionMain {
 	public static BlockThoriumPipe thorium_pipe;
 	
 	public static BlockBase tungsten_ore;
+	
+	public static BlockTank iron_tank;
+	
 //	public static BlockMachineBase base_machine;
 	
 	public static ItemWrench tec_wrench;
@@ -88,6 +93,8 @@ public class TecEvolutionMain {
 		
 		tungsten_ore = (BlockBase) new BlockBase(Material.rock, 50.0F, TileEntity.class, "tungsten_ore");
 		
+		iron_tank = (BlockTank) new BlockTank(Material.glass, 1.0F, TileEntityTank.class, "iron_tank");
+		
 		tec_wrench = (ItemWrench) new ItemWrench("Set outputs", "tec_wrench").setUnlocalizedName("tec_wrench");
 		bundled_uranium = (ItemBundeledUranium) new ItemBundeledUranium("", "bundled_uranium").setUnlocalizedName("bundled_uranium");
 		iron_plate = (BaseItem) new BaseItem("A usefull plate", "iron_plate").setUnlocalizedName("iron_plate");
@@ -98,6 +105,7 @@ public class TecEvolutionMain {
 		generator = (ItemGenerator) new ItemGenerator("generator").setUnlocalizedName("generator");
 		hull = (ItemHull) new ItemHull("hull").setUnlocalizedName("hull");
 
+		
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
 		GameRegistry.registerTileEntity(TileEntityCable.class, "MysteryMod_TileEntityCable");
@@ -112,6 +120,7 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityPressureFurnace.class, "MysteryMod_TileEntityPressureFurnace");
 		GameRegistry.registerTileEntity(TileEntityCracker.class, "MysteryMod_TileEntityCracker");
 		GameRegistry.registerTileEntity(TileEntityThoriumPipe.class, "MysteryMod_TileEntityThoriumPipe");
+		GameRegistry.registerTileEntity(TileEntityTank.class, "MysteryMod_TileEntityTank");
 
 	}
 	

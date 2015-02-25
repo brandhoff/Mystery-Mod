@@ -12,11 +12,13 @@ import com.CiD.MysteryMod.Render.TileModelRender;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCable;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCablePanel;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
+import com.CiD.MysteryMod.TecEvolution.Render.RenderTank;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderWindTurbine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityTank;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
@@ -45,6 +47,7 @@ public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MO
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCablePanel.class, new RenderCablePanel());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderWindTurbine(TEXTUREmodel_white, MODELwindturbin));
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBender.class, new TileModelRender(TEXTUREmodel_white, MODELbender));
+		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RenderTank());
 
 		  
 		  

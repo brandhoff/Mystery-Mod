@@ -52,7 +52,7 @@ public class BlockSolarGenerator extends BlockBase{
 	@Override
 		@SideOnly(Side.CLIENT)
 		public IIcon getIcon(int side, int meta) {
-			if(side > 1){
+			if(side != 1){
 				return this.blockIcon;
 				}else{
 					return this.OtherSides;

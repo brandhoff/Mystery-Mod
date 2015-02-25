@@ -15,10 +15,10 @@ public class RecipRegister {
 	public static void registerAllCraftingRecipies(){
 
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.small_cable, 9), new Object[] {"###", "#X#", "###", '#', Blocks.wool, 'X', Items.iron_ingot});
-	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.generator, 1), new Object[] {"#X#", "XXX", "#X#", '#', Items.diamond, '#', TecEvolutionMain.iron_plate});
+	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.generator, 1), new Object[] {"#X#", "XXX", "#X#", 'X', Items.redstone, '#', TecEvolutionMain.iron_plate});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.battery, 1), new Object[] {"eXe", "e#e", "eXe", '#', TecEvolutionMain.hull, 'X', Items.redstone});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.hull, 1), new Object[] {"XXX", "XXX", "XXX", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.iron_plate});
-	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.solar_generator, 2), new Object[] {"###", "#X#", "###", '#', Blocks.iron_block, 'X', Items.redstone});
+	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.solar_generator, 2), new Object[] {"###", "AXA", "AAA", '#', Blocks.iron_bars, 'X', Items.redstone, 'A', Items.iron_ingot});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.solar_generator, 4), new Object[] {"###", "#X#", "###", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.generator});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.wind_generator, 1), new Object[] {"#X#", "XXX", "#X#", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.generator});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.battery_bundle, 1), new Object[] {"#X#", "#X#", "#X#", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.battery});
@@ -31,7 +31,7 @@ public class RecipRegister {
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.iron_bender, 1), new Object[] {"###", "#X#", "###", '#', Blocks.iron_bars, 'X', Items.diamond_pickaxe, 'A', Blocks.diamond_block});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.pressure_furnace, 1), new Object[] {"###", "#X#", "###", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
 	CraftingManager.getInstance().addRecipe(new ItemStack(TecEvolutionMain.tec_wrench, 1), new Object[] {"#0#", "0#0", "0#0", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
-	CraftingManager.getInstance().addRecipe(new ItemStack(MysteryMain.block_lift, 1), new Object[] {"###", "0#0", "###", '#', Blocks.piston, 'X', TecEvolutionMain.iron_plate, 'A', Blocks.diamond_block});
+	CraftingManager.getInstance().addRecipe(new ItemStack(MysteryMain.block_lift, 1), new Object[] {"###", "0#0", "###", '#', Blocks.piston, '0', TecEvolutionMain.iron_plate, 'A', Blocks.diamond_block});
 	CraftingManager.getInstance().addRecipe(new ItemStack(MysteryMain.swift_stone, 32), new Object[] {"###", "#0#", "###", '#', Blocks.stone, '0', TecEvolutionMain.hull, 'A', Blocks.diamond_block});
 
 	

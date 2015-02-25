@@ -17,7 +17,7 @@ private List<Location> allConnections;
 private List<TileEntityStorage> allStorages= new ArrayList<TileEntityStorage>();
 private List<TileEnergyProducer> allProducer= new ArrayList<TileEnergyProducer>();
 private List<TileEntityCable> allCableTiles = new ArrayList<TileEntityCable>();
-private int drainPerTick = 100;
+private int drainPerTick = 100000;
 private TileEntityCablePanel panel;
 private boolean dead;
 private int allProducerDrain;
