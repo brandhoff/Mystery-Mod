@@ -1,5 +1,7 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import com.CiD.MysteryMod.MysteryMain;
+import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.TecEvolution.Tank;
 import com.CiD.MysteryMod.TecEvolution.TankManager;
 import com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader;
@@ -38,10 +40,28 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 		if (tank.getFluid() != null) {
 			moveFluidBelow();
 		}
-
+		
+		if (hasUpdate) {
+			sendNetworkUpdate();
+			hasUpdate = false;
+		}	
 	}
-// TODO CLIENT AND SERVER ARE OUT OF SYNC
 	
+	public void sendNetworkUpdate() {
+		if (worldObj != null && !worldObj.isRemote) {
+
+		
+		}
+	}
+	public void writeData(ByteBuf data) {
+				tankManager.writeData(data);
+			}
+
+	
+	public void readData(ByteBuf stream) {
+		tankManager.readData(stream);
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
 		super.readFromNBT(data);

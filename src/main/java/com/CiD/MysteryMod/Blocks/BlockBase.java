@@ -10,6 +10,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.MysteryMain;
+import com.CiD.MysteryMod.client;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -29,6 +31,16 @@ public static IIcon IconParticleSimple;
 		setCreativeTab(MysteryMain.block_tab);
 		setBlockName(BlockName);
 		tile = BlockTile;
+		
+		if(BlockTile != null){
+			if(BlockTile.getInterfaces() != null){
+				for(int i = 0; i < BlockTile.getInterfaces().length; i++){
+					if(BlockTile.getInterfaces()[i] == IRGBcoloredTile.class){
+						client.addToIcolorTileList(BlockTile);
+					}
+				}
+			}
+		}
 		
 		GameRegistry.registerBlock(this, this.getUnlocalizedName().substring(5));
 	}

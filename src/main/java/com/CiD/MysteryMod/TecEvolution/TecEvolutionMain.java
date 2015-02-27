@@ -5,9 +5,12 @@ import net.minecraft.tileentity.TileEntity;
 
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.Items.BaseItem;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockAtomicMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockBender;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCablePanel;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockColorAble;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCracker;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockDeepBrick;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockPressureFurnace;
@@ -23,14 +26,18 @@ import com.CiD.MysteryMod.TecEvolution.Items.ItemBundeledUranium;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemDroid;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemGenerator;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemHull;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemInkScanner;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemWrench;
 import com.CiD.MysteryMod.TecEvolution.Recipes.RecipRegister;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColored;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityDeepBrick;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
@@ -55,11 +62,12 @@ public class TecEvolutionMain {
 	public static BlockBender iron_bender;
 	public static BlockPressureFurnace pressure_furnace;
 	public static BlockCracker stone_cracker;
-
+	public static BlockAtomicMiner atomic_miner;
 	
 	public static BlockThoriumPipe thorium_pipe;
-	
+	public static BlockColorAble paint_model;
 	public static BlockBase tungsten_ore;
+	public static BlockDeepBrick deep_brick;
 	
 	public static BlockTank iron_tank;
 	
@@ -74,8 +82,12 @@ public class TecEvolutionMain {
 	public static ItemBatteryBundle battery_bundle;
 	public static ItemGenerator generator;
 	public static ItemHull hull;
+	public static ItemInkScanner ink_scanner;
 	
-	
+	public static BaseItem red_ink;
+	public static BaseItem green_ink;
+	public static BaseItem blue_ink;
+
 	public static void preIni(){
 		solar_generator = new BlockSolarGenerator(Material.iron, 2.0F, "solar_generator");
 		small_energy_bank = new BlockSmallEnergyBank(Material.iron, 2.0F, "small_energy_bank");
@@ -88,10 +100,12 @@ public class TecEvolutionMain {
 		iron_bender = new BlockBender("iron_bender");
 		pressure_furnace = new BlockPressureFurnace("pressure_furnace");
 		stone_cracker = new BlockCracker("stone_cracker");
+		atomic_miner = new BlockAtomicMiner("atomic_miner");
 		
 		thorium_pipe = new BlockThoriumPipe("thorium_pipe");
-		
+		paint_model = new BlockColorAble(Material.rock, 1.0F, TileEntityColored.class, "paint_model");
 		tungsten_ore = (BlockBase) new BlockBase(Material.rock, 50.0F, TileEntity.class, "tungsten_ore");
+		deep_brick = new BlockDeepBrick(Material.rock, 1.0F, TileEntityDeepBrick.class, "deep_brick");
 		
 		iron_tank = (BlockTank) new BlockTank(Material.glass, 1.0F, TileEntityTank.class, "iron_tank");
 		
@@ -104,8 +118,12 @@ public class TecEvolutionMain {
 		battery_bundle = (ItemBatteryBundle) new ItemBatteryBundle("battery_bundle").setUnlocalizedName("battery_bundle");
 		generator = (ItemGenerator) new ItemGenerator("generator").setUnlocalizedName("generator");
 		hull = (ItemHull) new ItemHull("hull").setUnlocalizedName("hull");
-
+		ink_scanner = (ItemInkScanner) new ItemInkScanner("ink_scanner").setUnlocalizedName("ink_scanner");
 		
+		red_ink = (BaseItem) new BaseItem("typical red ink", "red_ink").setUnlocalizedName("red_ink");
+		green_ink = (BaseItem) new BaseItem("typical green ink", "green_ink").setUnlocalizedName("green_ink");
+		blue_ink = (BaseItem) new BaseItem("typical blue ink", "blue_ink").setUnlocalizedName("blue_ink");
+
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
 		GameRegistry.registerTileEntity(TileEntityCable.class, "MysteryMod_TileEntityCable");
@@ -121,6 +139,9 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityCracker.class, "MysteryMod_TileEntityCracker");
 		GameRegistry.registerTileEntity(TileEntityThoriumPipe.class, "MysteryMod_TileEntityThoriumPipe");
 		GameRegistry.registerTileEntity(TileEntityTank.class, "MysteryMod_TileEntityTank");
+		GameRegistry.registerTileEntity(TileEntityAtomicMiner.class, "MysteryMod_TileEntityAtomicMiner");
+		GameRegistry.registerTileEntity(TileEntityColored.class, "MysteryMod_TileEntityColored");
+		GameRegistry.registerTileEntity(TileEntityDeepBrick.class, "MysteryMod_TileEntityDeepBrick");
 
 	}
 	

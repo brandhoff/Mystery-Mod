@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Helper.Location;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
 public class TileEntityGreenCrystal extends TileEntity{
 	private boolean active;
@@ -111,5 +112,6 @@ public class TileEntityGreenCrystal extends TileEntity{
 			}
 		}
 	}
+	
 	
 }
