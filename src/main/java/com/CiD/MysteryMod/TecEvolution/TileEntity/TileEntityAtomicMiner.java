@@ -2,9 +2,6 @@ package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -12,8 +9,11 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
 import com.CiD.MysteryMod.Helper.Methods;
+import com.CiD.MysteryMod.Network.PacketDispatcher;
+import com.CiD.MysteryMod.Network.packet.client.RenderMinerBoxPacket;
 import com.CiD.MysteryMod.TecEvolution.TecDATA;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderMinerBox;
+import com.CiD.MysteryMod.TecEvolution.Render.RenderMinerBoxALT;
 import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
 
 public class TileEntityAtomicMiner extends TileEntityMachine implements ISidedInventory{
@@ -22,6 +22,8 @@ private int renderTick;
 private ItemStack[] invStacks = new ItemStack[6];
 private boolean shouldRenderBox;
 private RenderMinerBox BoxRenderer;
+private final RenderMinerBoxALT rangeLineRenderer = new RenderMinerBoxALT(0x33FF0000);
+
 	public TileEntityAtomicMiner() {
 
 	}
@@ -35,12 +37,22 @@ private RenderMinerBox BoxRenderer;
 	@Override
 		public void updateEntity() {
 			super.updateEntity();
-			if(worldObj.isRemote){
-				if(shouldRenderBox){
-					
-				}
+			if(shouldRenderBox && worldObj.isRemote){
+				rangeLineRenderer.update();
+
 			}
 		}
+	
+	public void RenderMinerBox(){
+		if(shouldRenderBox){
+			 if(worldObj.isRemote) {
+		            rangeLineRenderer.resetRendering(30);
+		        } else {
+					PacketDispatcher.sendToAllAround(new RenderMinerBoxPacket(this, xCoord, yCoord, zCoord), worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 60);
+
+		        }
+		}
+	}
 	
 	public void shouldRenderBox(boolean b){
 		this.shouldRenderBox = b;

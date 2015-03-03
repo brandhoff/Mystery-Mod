@@ -13,12 +13,15 @@ import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachine;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachineBase;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerPressureFurnace;
+import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerCraftingStation;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIMachineInventory;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbender;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIpressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
@@ -43,6 +46,7 @@ public static final int MACHINE_INVENTORY_GUI_ID = 5;
 public static final int BENDER_GUI_ID = 6;
 public static final int PRESSURE_FURNACE_GUI_ID = 7;
 public static final int CRACKER_GUI_ID = 8;
+public static final int CRAFTING_STATION_GUI_ID = 9;
 
 
 public GUIHandler() {
@@ -63,6 +67,7 @@ case MACHINE_INVENTORY_GUI_ID: return new ContainerMachineBase(player.inventory,
 case BENDER_GUI_ID: return new ContainerBender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new ContainerPressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
 case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCracker) tile);
+case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);//OLD SCHOOL BUT WORKS
 
 default:
 return null;
@@ -95,6 +100,7 @@ case MACHINE_INVENTORY_GUI_ID: return new GUIMachineInventory(player.inventory, 
 case BENDER_GUI_ID: return new GUIbender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new GUIpressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
 case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker) tile);
+case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 
 default:
 return null;

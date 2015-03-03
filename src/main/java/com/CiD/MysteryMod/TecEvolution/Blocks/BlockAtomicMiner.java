@@ -9,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.CiD.MysteryMod.Blocks.BlockBase;
+import com.CiD.MysteryMod.Network.PacketDispatcher;
+import com.CiD.MysteryMod.Network.packet.client.RenderMinerBoxPacket;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
 
 
@@ -26,6 +28,7 @@ public class BlockAtomicMiner extends BlockMachineBase{
 			if(miner.shouldRenderBox()){
 				miner.shouldRenderBox(false);
 			}else{
+				
 				miner.shouldRenderBox(true);
 			}
 		}

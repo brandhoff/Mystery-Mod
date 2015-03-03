@@ -20,16 +20,16 @@ import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 public class TickHandler
 {
 
-
-@SubscribeEvent
-public void onPlayerTick(PlayerTickEvent ev){
-	if(!ev.player.worldObj.isRemote){
-		ExtendedPlayer exPlayer = ExtendedPlayer.get(ev.player);
-		exPlayer.addChiPerTick();
-		
-		}
-
-
-	}
+//
+//@SubscribeEvent
+//public void onPlayerTick(PlayerTickEvent ev){
+//	if(!ev.player.worldObj.isRemote){
+//		ExtendedPlayer exPlayer = ExtendedPlayer.get(ev.player);
+//		exPlayer.addChiPerTick();
+//		
+//		}
+//
+//
+//	}
 
 }

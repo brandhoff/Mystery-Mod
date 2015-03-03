@@ -37,7 +37,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class client extends common {
-@SideOnly(Side.CLIENT)
+
 private static List<Class> tileColorClasslist = new ArrayList<Class>();
 
 public static ResourceLocation TEXTUREmodel_white = new ResourceLocation(MysteryMain.MODID+":textures/model/model_white.png");
@@ -60,7 +60,6 @@ public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MO
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindTurbine.class, new RenderWindTurbine(TEXTUREmodel_white, MODELwindturbin));
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBender.class, new TileModelRender(TEXTUREmodel_white, MODELbender));
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RenderTank());
-		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAtomicMiner.class, new RenderMinerBox());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityColored.class, new RenderColoredTile());
 
 		  for(int i = 0; i<tileColorClasslist.size(); i++){
@@ -69,10 +68,11 @@ public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MO
 		  
 		  RenderingRegistry.registerEntityRenderingHandler(EntityChiGuard.class, new RenderChiGuard(TEXTUREmodel_white, MODELchiguard));
 		  
-			MinecraftForge.EVENT_BUS.register(new GUIexPlayer(Minecraft.getMinecraft()));
+//			MinecraftForge.EVENT_BUS.register(new GUIexPlayer(Minecraft.getMinecraft()));
+		  
 
 		}
-		@SideOnly(Side.CLIENT)
+
 		public static void addToIcolorTileList(Class<? extends TileEntity> tileClass){
 			tileColorClasslist.add(tileClass);
 		}

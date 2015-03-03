@@ -8,6 +8,9 @@ import com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -42,6 +45,8 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 		}
 		
 		if (hasUpdate) {
+		      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
 			sendNetworkUpdate();
 			hasUpdate = false;
 		}	
@@ -73,7 +78,22 @@ public class TileEntityTank extends TileEntity implements IFluidHandler {
 		super.writeToNBT(data);
 		tankManager.writeToNBT(data);
 	}
+	@Override
+    public Packet getDescriptionPacket()
+    {
+     
+      NBTTagCompound tag = new NBTTagCompound();
+      this.writeToNBT(tag);
+      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, tag);
+    }
+   
 
+   @Override
+   public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+	      this.readFromNBT(pkt.func_148857_g());
+	      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+}
 	public TileEntityTank getBottomTank() {
 
 		TileEntityTank lastTank = this;

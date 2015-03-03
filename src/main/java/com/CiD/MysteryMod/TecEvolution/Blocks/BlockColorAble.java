@@ -49,17 +49,23 @@ public class BlockColorAble extends BlockBase{
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityColored){
 					TileEntityColored tile = (TileEntityColored) world.getTileEntity(x, y, z);
 					tile.addRed();
+					return true;
+
 				}
 			}
 			if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.green_ink){
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityColored){
 					TileEntityColored tile = (TileEntityColored) world.getTileEntity(x, y, z);
 					tile.addGreen();
+					return true;
+
 				}
 			}if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.blue_ink){
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityColored){
 					TileEntityColored tile = (TileEntityColored) world.getTileEntity(x, y, z);
 					tile.addBlue();
+					return true;
+
 				}
 			}
 		
@@ -72,6 +78,7 @@ public class BlockColorAble extends BlockBase{
 					tile.setRed(scannerStack.stackTagCompound.getFloat("red"));
 					tile.setBlue(scannerStack.stackTagCompound.getFloat("blue"));
 					tile.setGreen(scannerStack.stackTagCompound.getFloat("green"));
+					return true;
 
 				}else{
 					scannerStack.stackTagCompound = new NBTTagCompound();
@@ -79,13 +86,14 @@ public class BlockColorAble extends BlockBase{
 					scannerStack.stackTagCompound.setFloat("green", Itile.getGreen());
 					scannerStack.stackTagCompound.setFloat("blue", Itile.getBlue());
 				
+					return true;
 
 
 				}
 			}
 		
 		
-		return true;
+		return false;
 	}
 	
 }

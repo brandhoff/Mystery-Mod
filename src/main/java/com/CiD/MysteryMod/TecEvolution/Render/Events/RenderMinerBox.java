@@ -1,4 +1,4 @@
-package com.CiD.MysteryMod.TecEvolution.Render;
+package com.CiD.MysteryMod.TecEvolution.Render.Events;
 
 import java.util.Random;
 
@@ -10,15 +10,16 @@ import org.lwjgl.opengl.GL11;
 
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
 
-public class RenderMinerBox extends TileEntitySpecialRenderer{
+public class RenderMinerBox{
 	private double boundBox = 30;
     public RenderMinerBox(){}
 
-	@Override
-	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float p_147500_8_) {
+	
+	public void render(TileEntity tile, double x, double y, double z, float p_147500_8_) {
 		if(tile instanceof TileEntityAtomicMiner){
 			TileEntityAtomicMiner miner = (TileEntityAtomicMiner) tile;
 			if(((TileEntityAtomicMiner) tile).shouldRenderBox()){
+				Random ran = new Random();
 					for(int i = 0; i < 30; i++){
 					GL11.glTranslated(x +0.5, y -i, z+0.5);
 					  GL11.glDisable(GL11.GL_LIGHTING);
@@ -26,7 +27,7 @@ public class RenderMinerBox extends TileEntitySpecialRenderer{
 					  GL11.glBegin(GL11.GL_LINES);
 					    OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);  
 				        GL11.glColor4f(0.0f,0.0F,1.0f,1.0F);          
-				        System.out.println("rendering");
+				        
 				        GL11.glVertex3d( boundBox, boundBox,-boundBox);          // Top Right Of The Quad (Top)
 				        GL11.glVertex3d(-boundBox, boundBox,-boundBox);          // Top Left Of The Quad (Top)
 				        GL11.glVertex3d(-boundBox, boundBox, boundBox);          // Bottom Left Of The Quad (Top)

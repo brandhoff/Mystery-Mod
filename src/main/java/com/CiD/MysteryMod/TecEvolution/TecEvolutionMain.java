@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution;
 
+import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
@@ -9,6 +10,7 @@ import com.CiD.MysteryMod.TecEvolution.Blocks.BlockAtomicMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockBender;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCablePanel;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockColorAble;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockColorTexture;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCracker;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockDeepBrick;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMiner;
@@ -20,6 +22,8 @@ import com.CiD.MysteryMod.TecEvolution.Blocks.BlockSolarGenerator;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockTank;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockWindGenerator;
+import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockCraftingStationInterface;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBattery;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBatteryBundle;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBundeledUranium;
@@ -35,6 +39,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColorTexture;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColored;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityDeepBrick;
@@ -68,10 +73,12 @@ public class TecEvolutionMain {
 	public static BlockColorAble paint_model;
 	public static BlockBase tungsten_ore;
 	public static BlockDeepBrick deep_brick;
-	
+	public static BlockDeepBrick ripped_quartz;
+	public static BlockColorTexture stone_wall;
 	public static BlockTank iron_tank;
 	
-//	public static BlockMachineBase base_machine;
+	public static MultiBlockCraftingStationInterface crafting_station;
+	
 	
 	public static ItemWrench tec_wrench;
 	public static ItemBundeledUranium bundled_uranium;
@@ -105,9 +112,18 @@ public class TecEvolutionMain {
 		thorium_pipe = new BlockThoriumPipe("thorium_pipe");
 		paint_model = new BlockColorAble(Material.rock, 1.0F, TileEntityColored.class, "paint_model");
 		tungsten_ore = (BlockBase) new BlockBase(Material.rock, 50.0F, TileEntity.class, "tungsten_ore");
-		deep_brick = new BlockDeepBrick(Material.rock, 1.0F, TileEntityDeepBrick.class, "deep_brick");
-		
+		deep_brick = new BlockDeepBrick(Material.glass, 1.0F, TileEntityDeepBrick.class, "deep_brick");
+		ripped_quartz = new BlockDeepBrick(Material.glass, 1.0F, TileEntityDeepBrick.class, "ripped_quartz");
+
+		stone_wall = new BlockColorTexture(Material.rock, 58.0F, TileEntityColorTexture.class, "stone_wall");
 		iron_tank = (BlockTank) new BlockTank(Material.glass, 1.0F, TileEntityTank.class, "iron_tank");
+		
+		
+		
+		crafting_station = new MultiBlockCraftingStationInterface(Material.wood, 1.0F, TileEntityMultiBlockCraftingStation.class, "crafting_station");
+		
+		
+		
 		
 		tec_wrench = (ItemWrench) new ItemWrench("Set outputs", "tec_wrench").setUnlocalizedName("tec_wrench");
 		bundled_uranium = (ItemBundeledUranium) new ItemBundeledUranium("", "bundled_uranium").setUnlocalizedName("bundled_uranium");
@@ -142,6 +158,8 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityAtomicMiner.class, "MysteryMod_TileEntityAtomicMiner");
 		GameRegistry.registerTileEntity(TileEntityColored.class, "MysteryMod_TileEntityColored");
 		GameRegistry.registerTileEntity(TileEntityDeepBrick.class, "MysteryMod_TileEntityDeepBrick");
+		GameRegistry.registerTileEntity(TileEntityColorTexture.class, "MysteryMod_TileEntityColorTexture");
+		GameRegistry.registerTileEntity(TileEntityMultiBlockCraftingStation.class, "MysteryMod_TileEntityMultiBlockCraftingStation");
 
 	}
 	

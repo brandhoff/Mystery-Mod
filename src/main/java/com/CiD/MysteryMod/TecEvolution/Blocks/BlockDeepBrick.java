@@ -25,6 +25,13 @@ public class BlockDeepBrick extends BlockBase{
 		super(material, hardness, BlockTile, BlockName);
 
 	}
+	
+		@Override
+	   @SideOnly(Side.CLIENT)
+	    public int getRenderBlockPass()
+	    {
+	        return 1;
+	    }
 	@Override
 	public boolean isOpaqueCube() {
 		return false;
@@ -33,13 +40,7 @@ public class BlockDeepBrick extends BlockBase{
 	public boolean isNormalCube() {
 		return false;
 	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_,
-			int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		return false;
-	}
-	
+
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
@@ -49,17 +50,23 @@ public class BlockDeepBrick extends BlockBase{
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityDeepBrick){
 					TileEntityDeepBrick tile = (TileEntityDeepBrick) world.getTileEntity(x, y, z);
 					tile.addRed();
+					return true;
+
 				}
 			}
 			if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.green_ink){
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityDeepBrick){
 					TileEntityDeepBrick tile = (TileEntityDeepBrick) world.getTileEntity(x, y, z);
 					tile.addGreen();
+					return true;
+
 				}
 			}if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == TecEvolutionMain.blue_ink){
 				if(world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z)instanceof TileEntityDeepBrick){
 					TileEntityDeepBrick tile = (TileEntityDeepBrick) world.getTileEntity(x, y, z);
 					tile.addBlue();
+					return true;
+
 				}
 			}
 		
@@ -72,6 +79,7 @@ public class BlockDeepBrick extends BlockBase{
 					tile.setRed(scannerStack.stackTagCompound.getFloat("red"));
 					tile.setBlue(scannerStack.stackTagCompound.getFloat("blue"));
 					tile.setGreen(scannerStack.stackTagCompound.getFloat("green"));
+					return true;
 
 				}else{
 					scannerStack.stackTagCompound = new NBTTagCompound();
@@ -79,13 +87,14 @@ public class BlockDeepBrick extends BlockBase{
 					scannerStack.stackTagCompound.setFloat("green", Itile.getGreen());
 					scannerStack.stackTagCompound.setFloat("blue", Itile.getBlue());
 				
+					return true;
 
 
 				}
 			}
 		
 		
-		return true;
+		return false;
 	}
 	
 }
