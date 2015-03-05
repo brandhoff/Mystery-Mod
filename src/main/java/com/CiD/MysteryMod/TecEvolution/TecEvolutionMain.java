@@ -23,6 +23,11 @@ import com.CiD.MysteryMod.TecEvolution.Blocks.BlockTank;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockThoriumPipe;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockWindGenerator;
 import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockCraftingStationInterface;
+import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockEnergyAcceptor;
+import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockFusionReactor;
+import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockHull;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFactoryHull;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFusionReactor;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBattery;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBatteryBundle;
@@ -78,7 +83,10 @@ public class TecEvolutionMain {
 	public static BlockTank iron_tank;
 	
 	public static MultiBlockCraftingStationInterface crafting_station;
-	
+	public static MultiBlockHull diamond_hull;
+	public static MultiBlockHull iron_hull;
+	public static MultiBlockEnergyAcceptor great_energy_acceptor;
+	public static MultiBlockFusionReactor fusion_reactor;
 	
 	public static ItemWrench tec_wrench;
 	public static ItemBundeledUranium bundled_uranium;
@@ -121,9 +129,11 @@ public class TecEvolutionMain {
 		
 		
 		crafting_station = new MultiBlockCraftingStationInterface(Material.wood, 1.0F, TileEntityMultiBlockCraftingStation.class, "crafting_station");
-		
-		
-		
+		diamond_hull = new MultiBlockHull(Material.iron, 90.0F, TileEntityFactoryHull.class, "diamond_hull");
+		iron_hull = new MultiBlockHull(Material.iron, 90.0F, TileEntityFactoryHull.class, "iron_hull");
+		great_energy_acceptor = new MultiBlockEnergyAcceptor(Material.iron, 10.0F, TileEntity.class, "great_energy_acceptor");
+		fusion_reactor = new MultiBlockFusionReactor(Material.iron, 10.0F, TileEntityFusionReactor.class, "fusion_reactor");
+
 		
 		tec_wrench = (ItemWrench) new ItemWrench("Set outputs", "tec_wrench").setUnlocalizedName("tec_wrench");
 		bundled_uranium = (ItemBundeledUranium) new ItemBundeledUranium("", "bundled_uranium").setUnlocalizedName("bundled_uranium");
@@ -160,6 +170,8 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityDeepBrick.class, "MysteryMod_TileEntityDeepBrick");
 		GameRegistry.registerTileEntity(TileEntityColorTexture.class, "MysteryMod_TileEntityColorTexture");
 		GameRegistry.registerTileEntity(TileEntityMultiBlockCraftingStation.class, "MysteryMod_TileEntityMultiBlockCraftingStation");
+		GameRegistry.registerTileEntity(TileEntityFactoryHull.class, "MysteryMod_TileEntityFactoryHull");
+		GameRegistry.registerTileEntity(TileEntityFusionReactor.class, "MysteryMod_TileEntityFusionReactor");
 
 	}
 	

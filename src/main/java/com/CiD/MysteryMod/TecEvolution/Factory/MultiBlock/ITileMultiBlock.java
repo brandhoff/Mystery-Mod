@@ -7,5 +7,11 @@ public interface ITileMultiBlock {
 	
 	public void disableMultiBlock();
 	
+	public boolean isInterface();
 	
+	public int getGUIid();
+	
+	
+	public boolean isHull();
+
 }

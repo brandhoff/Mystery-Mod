@@ -37,6 +37,9 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class GUIHandler implements IGuiHandler {
 	  private Minecraft mc;
+	  
+	  public static final int NO_GUI_ID = 666;
+
 public static final int MYSTBOOK_GUI_ID = 0;
 public static final int NUCLEAR_REACTOR_GUI_ID = 1;
 public static final int CABLE_PANEL_GUI_ID = 2;

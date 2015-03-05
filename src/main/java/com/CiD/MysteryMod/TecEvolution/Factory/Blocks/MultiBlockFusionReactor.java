@@ -22,9 +22,9 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColored;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class MultiBlockCraftingStationInterface extends MultiBlockBase{
+public class MultiBlockFusionReactor extends MultiBlockBase{
 
-	public MultiBlockCraftingStationInterface(Material material, Float hardness, Class BlockTile,
+	public MultiBlockFusionReactor(Material material, Float hardness, Class BlockTile,
 			String BlockName) {
 		super(material, hardness, BlockTile, BlockName);
 

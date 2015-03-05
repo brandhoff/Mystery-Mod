@@ -35,12 +35,16 @@ public abstract class TileEntityFactoryBase extends TileEntityEnergy implements 
 			updateIdle = 20;
 		}
 		if(UpdateNeeded){
-			MultiBlockType.hasNeededBlock(getType(), worldObj, xCoord, yCoord, zCoord);
-			
+		
+			if(isInterface()){
+				MultiBlockType.hasNeededBlock(getType(), worldObj, xCoord, yCoord, zCoord);
+			}
 			
 			
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
+		
+		UpdateNeeded = false;
 		
 	}
 	
