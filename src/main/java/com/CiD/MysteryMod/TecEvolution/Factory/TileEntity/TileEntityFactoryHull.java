@@ -1,9 +1,15 @@
 package com.CiD.MysteryMod.TecEvolution.Factory.TileEntity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.nbt.NBTTagCompound;
+
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.TecEvolution.Factory.MultiBlock.MultiBlockType;
 
 public class TileEntityFactoryHull extends TileEntityFactoryBase {
+    private static Map classToNameMap = new HashMap();
 
 	@Override
 	public void setTileInMultiblockForm() {
@@ -31,10 +37,24 @@ public class TileEntityFactoryHull extends TileEntityFactoryBase {
 	@Override
 	public MultiBlockType getType() {
 
-		return MultiBlockType.FusionReactor;
+		return null;
 	}
-	
-	
+    public void readFromNBT(NBTTagCompound p_145839_1_)
+    {
+        this.xCoord = p_145839_1_.getInteger("x");
+        this.yCoord = p_145839_1_.getInteger("y");
+        this.zCoord = p_145839_1_.getInteger("z");
+    }
+
+    public void writeToNBT(NBTTagCompound p_145841_1_)
+    {
+       
+            p_145841_1_.setInteger("x", this.xCoord);
+            p_145841_1_.setInteger("y", this.yCoord);
+            p_145841_1_.setInteger("z", this.zCoord);
+       
+    }
+
 	@Override
 	public float getRed() {
 		return 0;

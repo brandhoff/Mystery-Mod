@@ -110,7 +110,6 @@ public class TecEvolutionMain {
 		cable_panel = new BlockCablePanel(Material.cloth, 0.2F, "cable_panel");
 		wind_generator = new BlockWindGenerator(Material.iron, 1.0F, "wind_generator");
 		nuclear_reactor = new BlockNuclearReactor(Material.rock, 4.0F, null, "nuclear_reactor");
-//		base_machine = new BlockMachineBase(Material.iron, 4.0F, TileEntityMachine.class, "base_machine");
 		block_miner = new BlockMiner("block_miner");
 		iron_bender = new BlockBender("iron_bender");
 		pressure_furnace = new BlockPressureFurnace("pressure_furnace");

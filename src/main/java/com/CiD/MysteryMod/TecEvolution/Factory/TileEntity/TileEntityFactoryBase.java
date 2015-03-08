@@ -29,6 +29,7 @@ public abstract class TileEntityFactoryBase extends TileEntityEnergy implements 
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+	if(!isHull()){
 		updateIdle--;
 		if(updateIdle == 0){
 			UpdateNeeded = true;
@@ -47,7 +48,7 @@ public abstract class TileEntityFactoryBase extends TileEntityEnergy implements 
 		UpdateNeeded = false;
 		
 	}
-	
+}
 	@Override
 	public float getRed() {
 		if(isMultiBlock){

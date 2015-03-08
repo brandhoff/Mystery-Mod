@@ -20,6 +20,7 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbender;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIcontainerInfo;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
@@ -50,6 +51,8 @@ public static final int BENDER_GUI_ID = 6;
 public static final int PRESSURE_FURNACE_GUI_ID = 7;
 public static final int CRACKER_GUI_ID = 8;
 public static final int CRAFTING_STATION_GUI_ID = 9;
+public static final int INFO_CONTAINER_GUI_ID = 10;
+public static final int GUI_RECIPES_ID = 11;
 
 
 public GUIHandler() {
@@ -103,8 +106,8 @@ case MACHINE_INVENTORY_GUI_ID: return new GUIMachineInventory(player.inventory, 
 case BENDER_GUI_ID: return new GUIbender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new GUIpressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
 case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker) tile);
-case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
-
+case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
+case INFO_CONTAINER_GUI_ID: return new GUIcontainerInfo();
 default:
 return null;
 
