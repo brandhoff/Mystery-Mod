@@ -61,7 +61,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TecEvolutionMain {
-
+//TODO IN DEN CRAFTING HOOK DIE NORMALEN REZP. EINFUEGEN
 	public static BlockSolarGenerator solar_generator;
 	public static BlockSmallEnergyBank small_energy_bank;
 	public static BlockSmallCable small_cable; 
@@ -145,9 +145,9 @@ public class TecEvolutionMain {
 		hull = (ItemHull) new ItemHull("hull").setUnlocalizedName("hull");
 		ink_scanner = (ItemInkScanner) new ItemInkScanner("ink_scanner").setUnlocalizedName("ink_scanner");
 		
-		red_ink = (BaseItem) new BaseItem("typical red ink", "red_ink").setUnlocalizedName("red_ink");
-		green_ink = (BaseItem) new BaseItem("typical green ink", "green_ink").setUnlocalizedName("green_ink");
-		blue_ink = (BaseItem) new BaseItem("typical blue ink", "blue_ink").setUnlocalizedName("blue_ink");
+		red_ink = (BaseItem) new BaseItem("typical red ink", "red_ink").setUnlocalizedName("red_ink").setFull3D();
+		green_ink = (BaseItem) new BaseItem("typical green ink", "green_ink").setUnlocalizedName("green_ink").setFull3D();
+		blue_ink = (BaseItem) new BaseItem("typical blue ink", "blue_ink").setUnlocalizedName("blue_ink").setFull3D();
 
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");

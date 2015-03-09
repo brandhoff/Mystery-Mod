@@ -19,6 +19,7 @@ public class ItemInkScanner extends BaseItem{
 	public ItemInkScanner(String name) {
 		super("used to copy all the colors ", name);
 		setMaxStackSize(1);
+//		setFull3D();
 	}
 
 	@Override

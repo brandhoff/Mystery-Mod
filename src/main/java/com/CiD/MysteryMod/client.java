@@ -3,25 +3,26 @@ package com.CiD.MysteryMod;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.CiD.MysteryMod.GUI.GUIexPlayer;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
 import com.CiD.MysteryMod.Render.RenderGreenCrystal;
+import com.CiD.MysteryMod.Render.RenderTileModelAsItem;
 import com.CiD.MysteryMod.Render.TileModelRender;
+import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCable;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderCablePanel;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderColoredTile;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderConnections;
-import com.CiD.MysteryMod.TecEvolution.Render.RenderMinerBox;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderTank;
 import com.CiD.MysteryMod.TecEvolution.Render.RenderWindTurbine;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
+import com.CiD.MysteryMod.TecEvolution.Render.Item.RenderItemPaintModel;
+import com.CiD.MysteryMod.TecEvolution.Render.Item.RenderScanner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCablePanel;
@@ -70,6 +71,13 @@ public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MO
 		  
 //			MinecraftForge.EVENT_BUS.register(new GUIexPlayer(Minecraft.getMinecraft()));
 		  
+		  
+		  
+		   MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(MysteryMain.green_crystal), new RenderTileModelAsItem(MODELgreencrystal, TEXTUREmodel_white, new TileEntityGreenCrystal()));
+		   MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TecEvolutionMain.iron_bender), new RenderTileModelAsItem(MODELbender, TEXTUREmodel_white, new TileEntityBender()));
+		   MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TecEvolutionMain.wind_generator), new RenderTileModelAsItem(MODELwindturbin, TEXTUREmodel_white, new TileEntityWindTurbine()));
+		   MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TecEvolutionMain.paint_model), new RenderItemPaintModel(TEXTUREmodel_white, null));
+		   MinecraftForgeClient.registerItemRenderer(TecEvolutionMain.ink_scanner, new RenderScanner());
 
 		}
 

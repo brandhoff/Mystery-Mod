@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ private BetterCraftingManager()
 	
 	
 recipes = new ArrayList();
-//func_92051_a(new ItemStack(Basis.PCSupgradecoreblock,1), 
+//addCraftingRe(new ItemStack(Blocks.stone,1), 
 //
 // 		  new Object[]{
 // 	   "ccccc",
@@ -41,7 +42,7 @@ recipes = new ArrayList();
 // 	   "ccfcc",
 // 	   "ccccc",
 // 	   "ccccc",
-// 	  'c',Basis.Blockhardcobble,'f',Basis.PCSupgradecoreempty
+// 	  'c',Blocks.diamond_block,'f',Blocks.diamond_block
 //    });
 //func_92051_a(new ItemStack(Basis.PCSupgradecorezombie,1), 
 //
@@ -126,7 +127,7 @@ Collections.sort(this.recipes, new BetterRecipeSorter(this));
          System.out.println(this.recipes.size() + " recipes");
 }
 
-public BetterShapedRecipes func_92051_a(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+public BetterShapedRecipes addCraftingRe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)
 {
          String var3 = "";
          int var4 = 0;
