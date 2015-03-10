@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 public class Methods {
 
 	
-	public static void BreakBlock(World world, int x, int y, int z, boolean drop){
+	public static void BreakBlock(final World world, final int x, final int y, final int z, final boolean drop){
 		world.func_147480_a(x,y,z,drop);
 	}
 	

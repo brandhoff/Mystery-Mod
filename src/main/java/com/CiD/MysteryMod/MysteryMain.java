@@ -82,7 +82,15 @@ public static CreativeTabs item_tab = new CreativeTabs(13,"MysteryMod Items") {
 		return Items.apple;
 	}
 };
+public static CreativeTabs fluid_tab = new CreativeTabs(12,"MysteryMod Fluids") {
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Item getTabIconItem() {
 
+		return Items.apple;
+	}
+};
 //Blocks
 public static BlockGreenCrystal green_crystal;
 public static BlockLift block_lift;

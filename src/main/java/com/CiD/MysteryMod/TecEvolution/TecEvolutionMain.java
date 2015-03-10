@@ -29,6 +29,7 @@ import com.CiD.MysteryMod.TecEvolution.Factory.Blocks.MultiBlockHull;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFactoryHull;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFusionReactor;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
+import com.CiD.MysteryMod.TecEvolution.Fluid.FluidRegister;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBattery;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBatteryBundle;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemBundeledUranium;
@@ -172,6 +173,8 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityFactoryHull.class, "MysteryMod_TileEntityFactoryHull");
 		GameRegistry.registerTileEntity(TileEntityFusionReactor.class, "MysteryMod_TileEntityFusionReactor");
 
+		
+		FluidRegister.registerFluids();
 	}
 	
 	public static void Ini(){

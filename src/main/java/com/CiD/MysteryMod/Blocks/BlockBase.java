@@ -24,6 +24,11 @@ public static IIcon GUI_TEC_SLOT;
 @SideOnly(Side.CLIENT)
 public static IIcon IconParticleSimple;
 
+@SideOnly(Side.CLIENT)
+public static IIcon flowingPlasma;
+
+@SideOnly(Side.CLIENT)
+public static IIcon stillPlasma;
 	public BlockBase(Material material, Float hardness, Class BlockTile, String BlockName) {
 		super(material);
 		
@@ -84,6 +89,11 @@ public static IIcon IconParticleSimple;
 	blockIcon = reg.registerIcon(MysteryMain.MODID + ":" + this.getUnlocalizedName().substring(5));
 	GUI_TEC_SLOT = reg.registerIcon(MysteryMain.MODID+":textures/gui/GUItecSlot");
 	IconParticleSimple = reg.registerIcon(MysteryMain.MODID+":textures/particles/simple");
+	stillPlasma = reg.registerIcon(MysteryMain.MODID+":/plasma_still");
+	flowingPlasma = reg.registerIcon(MysteryMain.MODID+":/plasma_flowing");
+
+	
+	
 	}
 	
 	@SideOnly(Side.CLIENT)
