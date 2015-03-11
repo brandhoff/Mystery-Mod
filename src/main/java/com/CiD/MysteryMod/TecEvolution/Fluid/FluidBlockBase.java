@@ -61,7 +61,7 @@ public class FluidBlockBase extends BlockFluidClassic{
 			
 			if(fluid instanceof FluidPlasma){
 				if(!world.isRemote)
-				world.createExplosion(entity, x, y, z, 10, true);
+				world.createExplosion(entity, x, y, z, 5, true);
 			}
 	}
 	

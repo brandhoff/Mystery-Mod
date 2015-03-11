@@ -29,8 +29,10 @@ public class MultiBlockFusionReactor extends MultiBlockBase{
 		super(material, hardness, BlockTile, BlockName);
 
 	}
+	
 
-		@Override
+	
+		   @Override
 		   @SideOnly(Side.CLIENT)
 		    public int getRenderBlockPass()
 		    {

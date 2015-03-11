@@ -50,12 +50,7 @@ public GUIcraftingStation(EntityPlayer player, InventoryPlayer inventoryplayer, 
 		}
 		@Override
 			public void drawScreen(int par1, int par2, float p_73863_3_) {
-			  for (int k = 0; k < this.buttonList.size(); ++k)
-		         {
-		             GuiButton guibutton = (GuiButton)this.buttonList.get(k);
-		             guibutton.drawButton(this.mc, par1, par2);
-
-		         }	
+			 
 			  super.drawScreen(par1, par2, p_73863_3_);
 
 			}
@@ -72,13 +67,12 @@ public GUIcraftingStation(EntityPlayer player, InventoryPlayer inventoryplayer, 
 		
 		}
 		@Override
-		protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
+		public void drawBackScreen(float f, int i, int j)
 			{
 		         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		         this.mc.renderEngine.bindTexture(new ResourceLocation(MysteryMain.MODID+":textures/gui/CraftingStationGUI.png"));
-		         int l = (width - xSize) / 2;
-		         int i1 = (height - ySize) / 2;
-		         drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
+		      
+		         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 			}
 
 		
@@ -90,5 +84,11 @@ public GUIcraftingStation(EntityPlayer player, InventoryPlayer inventoryplayer, 
 		
 				}
 			}
+
+		@Override
+		public String[] getInfo() {
+
+			return null;
+		}
 		
 }

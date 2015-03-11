@@ -14,6 +14,9 @@ import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachineBase;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerCraftingStation;
+import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerFusionReactor;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFactoryBase;
+import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFusionReactor;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIMachineInventory;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
@@ -23,6 +26,7 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcontainerInfo;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIfusionReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIpressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
@@ -53,6 +57,7 @@ public static final int CRACKER_GUI_ID = 8;
 public static final int CRAFTING_STATION_GUI_ID = 9;
 public static final int INFO_CONTAINER_GUI_ID = 10;
 public static final int GUI_RECIPES_ID = 11;
+public static final int FUISON_REACTOR_GUI_ID = 12;
 
 
 public GUIHandler() {
@@ -64,6 +69,7 @@ public Object getServerGuiElement(int id, EntityPlayer player, World world, int 
 TileEntity tile = world.getTileEntity(x, y, z);
 
 switch(id) {
+case FUISON_REACTOR_GUI_ID: return new ContainerFusionReactor(player.inventory, (TileEntityFusionReactor) tile);
 case MYSTBOOK_GUI_ID: return null;
 case NUCLEAR_REACTOR_GUI_ID: return new ContainerNuclearReactor(player.inventory, (TileEntityNuclearReactor) tile);
 case CABLE_PANEL_GUI_ID: return null;
@@ -73,7 +79,7 @@ case MACHINE_INVENTORY_GUI_ID: return new ContainerMachineBase(player.inventory,
 case BENDER_GUI_ID: return new ContainerBender(player.inventory, (TileEntityBender) tile);
 case PRESSURE_FURNACE_GUI_ID: return new ContainerPressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
 case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCracker) tile);
-case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);//OLD SCHOOL BUT WORKS
+case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
 
 default:
 return null;
@@ -95,8 +101,8 @@ return null;
 @Override
 public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 TileEntity tile = world.getTileEntity(x, y, z);
-
 switch(id) {
+case FUISON_REACTOR_GUI_ID: return new GUIfusionReactor(player.inventory, (TileEntityFusionReactor) tile);
 case MYSTBOOK_GUI_ID: return id == 0 ? new GUImystBook(player, player.getCurrentEquippedItem()) : null;
 case NUCLEAR_REACTOR_GUI_ID: return new GUInuclearReactor(player.inventory, (TileEntityNuclearReactor) tile);
 case CABLE_PANEL_GUI_ID: return new GUIcablePanel(tile);
@@ -108,6 +114,7 @@ case PRESSURE_FURNACE_GUI_ID: return new GUIpressureFurnace(player.inventory, (T
 case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker) tile);
 case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 case INFO_CONTAINER_GUI_ID: return new GUIcontainerInfo();
+
 default:
 return null;
 

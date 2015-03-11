@@ -1,16 +1,25 @@
 package com.CiD.MysteryMod.TecEvolution.Factory.TileEntity;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
+
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.TecEvolution.Factory.MultiBlock.MultiBlockType;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
-public class TileEntityFusionReactor extends TileEntityFactoryBase implements IRGBcoloredTile{
+public class TileEntityFusionReactor extends TileEntityFactoryBase implements ISidedInventory, IRGBcoloredTile{
 
 	@Override
 	public void setTileInMultiblockForm() {
 		isMultiBlock = true;
 	}
+	
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
 
+		return true;
+	}
+	
 	@Override
 	public void disableMultiBlock() {
 
@@ -31,7 +40,7 @@ public class TileEntityFusionReactor extends TileEntityFactoryBase implements IR
 	@Override
 	public int getGUIid() {
 
-		return GUIHandler.CRAFTING_STATION_GUI_ID;
+		return GUIHandler.FUISON_REACTOR_GUI_ID;
 	}
 
 	@Override
