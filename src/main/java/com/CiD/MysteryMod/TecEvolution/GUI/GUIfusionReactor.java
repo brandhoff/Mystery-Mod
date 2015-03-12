@@ -58,7 +58,7 @@ private InventoryPlayer inv;
 	public String[] getInfo() {
 		String[] text = {
 				"This is the ultimate machine for creating energy"," and matter noone ever has seen before!",
-				"Simply add two materials to the slots and give"," it 10.000.000 E/T (I know not much)",
+				"Simply add two materials to the slots and give"," it 10.000.000 E/T (not much - I know)",
 				"And the Reactor will start producing plasma."," Plasma can be used in the matter-converter or",
 				"in a generator directly, it's a highly unstable"," fluid and every creature will make it explode"
 				
