@@ -27,12 +27,18 @@ public class GUIcraftingStation extends BaseGUI
 
 	private EntityPlayer user;
 	private boolean showInfoContex = false;
+	private World world;
+	private int x,y,z; 
 	
 public GUIcraftingStation(EntityPlayer player, InventoryPlayer inventoryplayer, World world, int i, int j, int k)
 {		
          super(new ContainerCraftingStation(inventoryplayer, world, i, j, k));
          
          user = player;
+         this.x = i;
+         this.y = j;
+         this.z = k;
+         this.world = world;
 }
 
 		@Override
@@ -81,14 +87,20 @@ public GUIcraftingStation(EntityPlayer player, InventoryPlayer inventoryplayer, 
 				super.actionPerformed(button);
 				
 				switch(button.id){
-		
+				case 2:{
+					user.openGui(MysteryMain.instance, GUIHandler.GUI_RECIPES_ID, world, x, y, z);
+
+					}
 				}
 			}
 
 		@Override
 		public String[] getInfo() {
-
-			return null;
+			String[] text = {
+					"This a better version of the craftingtable.",
+					"Open the Crafting-Recipes window for all Recipes."
+					
+			};
+			return text;
 		}
-		
 }

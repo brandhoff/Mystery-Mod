@@ -15,9 +15,8 @@ import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerFusionReactor;
-import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFactoryBase;
+import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerRecipesDummy;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFusionReactor;
-import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityMultiBlockCraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIMachineInventory;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseEnergyTile;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
@@ -29,6 +28,7 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIfusionReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIpressureFurnace;
+import com.CiD.MysteryMod.TecEvolution.GUI.subGUIs.GUIcraftingRecipes;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
@@ -80,7 +80,7 @@ case BENDER_GUI_ID: return new ContainerBender(player.inventory, (TileEntityBend
 case PRESSURE_FURNACE_GUI_ID: return new ContainerPressureFurnace(player.inventory, (TileEntityPressureFurnace) tile);
 case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCracker) tile);
 case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
-
+case GUI_RECIPES_ID: return new ContainerRecipesDummy(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
 default:
 return null;
 }
@@ -114,6 +114,7 @@ case PRESSURE_FURNACE_GUI_ID: return new GUIpressureFurnace(player.inventory, (T
 case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker) tile);
 case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 case INFO_CONTAINER_GUI_ID: return new GUIcontainerInfo();
+case GUI_RECIPES_ID: return new GUIcraftingRecipes(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 
 default:
 return null;

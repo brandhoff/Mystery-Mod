@@ -16,9 +16,11 @@ import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFusionReacto
 public class GUIfusionReactor extends BaseGUI{
 private ResourceLocation slotGui = new ResourceLocation(MysteryMain.MODID+":textures/gui/GUItecSlot.png");
 private TileEntityFusionReactor tile;
+private InventoryPlayer inv;
 	public GUIfusionReactor(InventoryPlayer inventory, TileEntityFusionReactor tile) {
 		super(new ContainerFusionReactor(inventory, tile));
 		this.tile = tile;
+		this.inv = inventory;
 	}
 
 	  @Override

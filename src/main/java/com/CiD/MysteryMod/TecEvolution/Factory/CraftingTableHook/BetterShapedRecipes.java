@@ -139,7 +139,7 @@ public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting)
 /**
          * Returns the size of the recipe area
          */
-public int getRecipeSize()
+	public int getRecipeSize()
 {
          return this.recipeWidth * this.recipeHeight;
 }

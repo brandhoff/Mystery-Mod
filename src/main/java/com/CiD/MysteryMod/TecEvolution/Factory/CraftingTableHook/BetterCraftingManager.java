@@ -7,11 +7,15 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+
+import com.CiD.MysteryMod.MysteryMain;
+import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 
 public class BetterCraftingManager
 {
@@ -34,92 +38,46 @@ private BetterCraftingManager()
 	
 	
 recipes = new ArrayList();
-//addCraftingRe(new ItemStack(Blocks.stone,1), 
-//
-// 		  new Object[]{
-// 	   "ccccc",
-// 	   "ccccc",
-// 	   "ccfcc",
-// 	   "ccccc",
-// 	   "ccccc",
-// 	  'c',Blocks.diamond_block,'f',Blocks.diamond_block
-//    });
-//func_92051_a(new ItemStack(Basis.PCSupgradecorezombie,1), 
-//
-//		  new Object[]{
-//	   "ddddd",
-//	   "ddddd",
-//	   "ddfdd",
-//	   "ddddd",
-//	   "ddddd",
-//	  'd',Item.rottenFlesh,'f',Basis.PCSupgradecoreempty
-//  });
-////func_92051_a(new ItemStack(Basis.PCSupgradecorewonder,64), 
-////
-////		  new Object[]{
-////	   "ddddd",
-////	   "ddddd",
-////	   "ddfdd",
-////	   "ddddd",
-////	   "ddddd",
-////	  'c',Basis.Blockhardcobble,'f',Basis.PCSupgradecoreempty
-////  });
-//
-//func_92051_a(new ItemStack(Basis.PCSingot,1), 
-//
-//		  new Object[]{
-//	   "ggggg",
-//	   "dhhhd",
-//	   "ddfdd",
-//	   "dhhhd",
-//	   "ggggg",
-//	  'd',Item.blazePowder,'f',Item.diamond,'g',Item.glowstone,'h',Basis.Blockhardcobble
-//});
-//
-//func_92051_a(new ItemStack(Basis.PCSpick,1), 
-//
-//		  new Object[]{
-//	   "ggggg",
-//	   "ttitt",
-//	   "ttitt",
-//	   "ttitt",
-//	   "ttitt",
-//	  'd',Item.blazePowder,'i',Block.blockDiamond,'g',Basis.PCSingot,'h',Basis.Blockhardcobble
-//});
-//
-//func_92051_a(new ItemStack(Basis.PCSupgradecore,1), 
-//
-//		  new Object[]{
-//	   "eeeee",
-//	   "etrte",
-//	   "erdre",
-//	   "etrte",
-//	   "eeeee",
-//	  'd',Block.blockDiamond,'e',Item.emerald,'r',Item.redstone,'h',Basis.Blockhardcobble
-//});
-//
-//func_92051_a(new ItemStack(Basis.PCSupgradecoretransformer,1), 
-//
-//		  new Object[]{
-//	   "eeeee",
-//	   "etrte",
-//	   "erdre",
-//	   "etrte",
-//	   "eeeee",
-//	  'd',Item.eyeOfEnder,'e',Block.glowStone,'t',Item.redstone,'h',Basis.Blockhardcobble
-//});
-//
-//func_92051_a(new ItemStack(Basis.Objektcompressoraus,1), 
-//
-//		  new Object[]{
-//	   "iiiii",
-//	   "igggi",
-//	   "igbgi",
-//	   "igggi",
-//	   "iiiii",
-//	  'i',Item.ingotIron,'b',Basis.nucleusore,'g',Block.fenceIron,
-//});
+addCraftingRe(new ItemStack(TecEvolutionMain.fusion_reactor,1), 
 
+ 		  new Object[]{
+ 	   "gdtdg",
+ 	   "gdtdg",
+ 	   "gdadg",
+ 	   "gdtdg",
+ 	   "gdtdg",
+ 	  'a',TecEvolutionMain.nuclear_reactor,'g',TecEvolutionMain.atomic_miner,'d',TecEvolutionMain.diamond_hull,'t',TecEvolutionMain.bundled_uranium
+    });
+
+addCraftingRe(new ItemStack(TecEvolutionMain.diamond_hull,2), 
+
+		  new Object[]{
+	   "ccicc",
+	   "ccicc",
+	   "iifii",
+	   "ccicc",
+	   "ccicc",
+	  'c',TecEvolutionMain.tungsten_ingot, 'f',Blocks.diamond_block,'i',Items.iron_ingot
+  });
+addCraftingRe(new ItemStack(TecEvolutionMain.small_cable, 9), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', Blocks.wool, 'X', Items.iron_ingot});
+addCraftingRe(new ItemStack(TecEvolutionMain.generator, 1), new Object[] {"00000","0#X#0", "0XXX0", "0#X#0","00000", 'X', Items.redstone, '#', TecEvolutionMain.iron_plate});
+addCraftingRe(new ItemStack(TecEvolutionMain.battery, 1), new Object[] {"00000","0eXe0", "0e#e0", "0eXe0","00000", '#', TecEvolutionMain.hull, 'X', Items.redstone});
+addCraftingRe(new ItemStack(TecEvolutionMain.hull, 1), new Object[] {"00000","0XXX0", "0XXX0", "0XXX0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.iron_plate});
+addCraftingRe(new ItemStack(TecEvolutionMain.solar_generator, 2), new Object[] {"00000","0###0", "0AXA0", "0AAA0","00000", '#', Blocks.iron_bars, 'X', Items.redstone, 'A', Items.iron_ingot});
+addCraftingRe(new ItemStack(TecEvolutionMain.solar_generator, 4), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.generator});
+addCraftingRe(new ItemStack(TecEvolutionMain.wind_generator, 1), new Object[] {"00000","0#X#0", "0XXX0", "0#X#0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.generator});
+addCraftingRe(new ItemStack(TecEvolutionMain.battery_bundle, 1), new Object[] {"00000","0#X#0", "0#X#0", "0#X#0","00000", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.battery});
+addCraftingRe(new ItemStack(TecEvolutionMain.block_miner, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.bundled_uranium});
+addCraftingRe(new ItemStack(TecEvolutionMain.bundled_uranium, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', TecEvolutionMain.hull, 'X', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.cable_panel, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", 'o', TecEvolutionMain.hull, 'X', TecEvolutionMain.small_cable});
+addCraftingRe(new ItemStack(TecEvolutionMain.small_energy_bank, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.battery_bundle});
+addCraftingRe(new ItemStack(TecEvolutionMain.nuclear_reactor, 1), new Object[] {"00000","0X#X0", "0#A#0", "0X##0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.bundled_uranium, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.thorium_pipe, 1), new Object[] {"00000","0#X#0", "0X#X0", "0#X#0","00000", '#', TecEvolutionMain.small_cable, 'X', Blocks.hopper, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.iron_bender, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', Blocks.iron_bars, 'X', Items.diamond_pickaxe, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.pressure_furnace, 1), new Object[] {"00000","0###0", "0#X#0", "0###0","00000", '#', TecEvolutionMain.hull, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.tec_wrench, 1), new Object[] {"00000","0#0#0", "00#00", "00#00","00000", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(MysteryMain.block_lift, 1), new Object[] {"00000","0###0", "0Z#Z0", "0###0","00000", '#', Blocks.piston, 'Z', TecEvolutionMain.iron_plate, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(MysteryMain.swift_stone, 32), new Object[] {"00000","0###0", "0#Z#0", "0###0","00000", '#', Blocks.stone, 'Z', TecEvolutionMain.hull, 'A', Blocks.diamond_block});
 
 
 
