@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
@@ -27,6 +28,7 @@ public static final BetterCraftingManager getInstance()
 {
          return instance;
 }
+
 /*
  * Erstellt ein 5x5 crafting rezept 
  */
@@ -78,8 +80,70 @@ addCraftingRe(new ItemStack(TecEvolutionMain.pressure_furnace, 1), new Object[] 
 addCraftingRe(new ItemStack(TecEvolutionMain.tec_wrench, 1), new Object[] {"00000","0#0#0", "00#00", "00#00","00000", '#', TecEvolutionMain.iron_plate, 'X', TecEvolutionMain.iron_bender, 'A', Blocks.diamond_block});
 addCraftingRe(new ItemStack(MysteryMain.block_lift, 1), new Object[] {"00000","0###0", "0Z#Z0", "0###0","00000", '#', Blocks.piston, 'Z', TecEvolutionMain.iron_plate, 'A', Blocks.diamond_block});
 addCraftingRe(new ItemStack(MysteryMain.swift_stone, 32), new Object[] {"00000","0###0", "0#Z#0", "0###0","00000", '#', Blocks.stone, 'Z', TecEvolutionMain.hull, 'A', Blocks.diamond_block});
+addCraftingRe(new ItemStack(TecEvolutionMain.ripped_quartz,16), 
+		  new Object[]{
+	   "00000",
+	   "00q00",
+	   "0qdq0",
+	   "00q00",
+	   "00000",
+	  'd',Items.dye, 'q',Blocks.quartz_block,'i',Items.iron_ingot
+});
+addCraftingRe(new ItemStack(TecEvolutionMain.blue_ink,1), 
+		  new Object[]{
+	   "00i00",
+	   "00q00",
+	   "iqdqi",
+	   "00q00",
+	   "00i00",
+	  'd',Items.water_bucket, 'q',Items.dye,'i',Items.fish
+});
+addCraftingRe(new ItemStack(TecEvolutionMain.red_ink,1), 
+		  new Object[]{
+	   "00i00",
+	   "00q00",
+	   "iqdqi",
+	   "00q00",
+	   "00i00",
+	  'd',Items.water_bucket, 'q',Items.dye,'i',Items.carrot
+});
+addCraftingRe(new ItemStack(TecEvolutionMain.green_ink,1), 
+		  new Object[]{
+	   "00i00",
+	   "00q00",
+	   "iqdqi",
+	   "00q00",
+	   "00i00",
+	  'd',Items.water_bucket, 'q',Items.dye,'i',Blocks.cactus
+});
+addCraftingRe(new ItemStack(TecEvolutionMain.blue_ink,1), 
+		  new Object[]{
+	   "00i00",
+	   "00q00",
+	   "iqdqi",
+	   "00q00",
+	   "00i00",
+	  'd',Items.water_bucket, 'q',Items.dye,'i',Items.fish
+});
+addCraftingRe(new ItemStack(TecEvolutionMain.ink_scanner,1), 
+		  new Object[]{
+	   "00i00",
+	   "0ggg0",
+	   "igggi",
+	   "0ggg0",
+	   "00i00",
+	  'g',Blocks.glass, 'i',Items.iron_ingot,'l',Items.fish
+});
 
-
+addCraftingRe(new ItemStack(TecEvolutionMain.atomic_miner,1), 
+		  new Object[]{
+	   "00i00",
+	   "0g0g0",
+	   "i000i",
+	   "ddddd",
+	   "mmmmm",
+	  'g',Blocks.glass, 'i',Items.iron_ingot,'d',TecEvolutionMain.diamond_hull,'m',TecEvolutionMain.block_miner
+});
 
 Collections.sort(this.recipes, new BetterRecipeSorter(this));
          System.out.println(this.recipes.size() + " recipes");

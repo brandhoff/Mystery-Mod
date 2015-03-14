@@ -62,7 +62,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityWindTurbine;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TecEvolutionMain {
-//TODO IN DEN CRAFTING HOOK DIE NORMALEN REZP. EINFUEGEN
+
 	public static BlockSolarGenerator solar_generator;
 	public static BlockSmallEnergyBank small_energy_bank;
 	public static BlockSmallCable small_cable; 
@@ -103,7 +103,8 @@ public class TecEvolutionMain {
 	public static BaseItem red_ink;
 	public static BaseItem green_ink;
 	public static BaseItem blue_ink;
-
+	public static BaseItem speed_upgrade;
+	
 	public static void preIni(){
 		solar_generator = new BlockSolarGenerator(Material.iron, 2.0F, "solar_generator");
 		small_energy_bank = new BlockSmallEnergyBank(Material.iron, 2.0F, "small_energy_bank");
@@ -149,6 +150,7 @@ public class TecEvolutionMain {
 		red_ink = (BaseItem) new BaseItem("typical red ink", "red_ink").setUnlocalizedName("red_ink").setFull3D();
 		green_ink = (BaseItem) new BaseItem("typical green ink", "green_ink").setUnlocalizedName("green_ink").setFull3D();
 		blue_ink = (BaseItem) new BaseItem("typical blue ink", "blue_ink").setUnlocalizedName("blue_ink").setFull3D();
+		speed_upgrade = (BaseItem) new BaseItem("speed the miner up", "speed_upgrade").setUnlocalizedName("speed_upgrade");
 
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
@@ -182,6 +184,6 @@ public class TecEvolutionMain {
 	}
 	
 	public static void PostIni(){
-		
+		OreAndIngotRegister.applyOredic();
 	}
 }

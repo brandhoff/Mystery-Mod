@@ -14,6 +14,14 @@ public class RecipRegister {
 	
 	public static void registerAllCraftingRecipies(){
 
+		GameRegistry.addShapedRecipe(new ItemStack(TecEvolutionMain.crafting_station,1), 
+
+ 		  new Object[]{
+ 	   "aaa",
+ 	   "cic",
+ 	   "aaa",
+ 	   'i',Blocks.iron_block, 'c', Blocks.crafting_table
+		});
 
 
 	

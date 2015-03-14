@@ -9,12 +9,13 @@ import org.lwjgl.opengl.GL11;
 
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
+import com.CiD.MysteryMod.GUI.BaseGUI;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachine;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 
-public class GUIbaseMachine extends GuiContainer {
+public class GUIbaseMachine extends BaseGUI {
 
 	private ResourceLocation slotGui = new ResourceLocation(MysteryMain.MODID+":textures/gui/GUItecSlot.png");
     private TileEntityMachine tile;   
@@ -40,18 +41,16 @@ public class GUIbaseMachine extends GuiContainer {
                 }
         }
         @Override
-        protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-                        int par3) {
-                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                this.mc.renderEngine.bindTexture(new ResourceLocation(MysteryMain.MODID+":textures/gui/BaseTecGUI.png"));
-                int x = (width - xSize) / 2;
-                int y = (height - ySize) / 2;
-                this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-                drawSlots();
-           
-                
-                
+        public void drawBackScreen(float f, int i, int j) {
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            this.mc.renderEngine.bindTexture(new ResourceLocation(MysteryMain.MODID+":textures/gui/BaseTecGUI.png"));
+            int x = (width - xSize) / 2;
+            int y = (height - ySize) / 2;
+            this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+            drawSlots();
         }
+        
+   
         
         private void drawSlots(){
 //        	GL11.glPushMatrix();
@@ -68,4 +67,9 @@ public class GUIbaseMachine extends GuiContainer {
 //            }
 //        	GL11.glPopMatrix();
         }
+
+		@Override
+		public String[] getInfo() {
+			return new String[] {"Just a simple interface showing everything needed"};
+		}
 }

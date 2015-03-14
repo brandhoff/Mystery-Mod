@@ -12,6 +12,9 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.CiD.MysteryMod.Network.packet.client.UpdateMinerTOclient;
+import com.CiD.MysteryMod.Network.packet.server.UpdateMinerCoordsPacket;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -126,6 +129,8 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         public void registerPackets() {
         registerPacket(OpenGuiPacket.class);
         registerPacket(SyncPlayerPropsPacket.class);
+        registerPacket(UpdateMinerCoordsPacket.class);  
+
     }
 
     // Method to call from FMLPostInitializationEvent

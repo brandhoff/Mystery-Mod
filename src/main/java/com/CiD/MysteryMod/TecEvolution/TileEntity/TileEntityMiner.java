@@ -9,18 +9,53 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Helper.Methods;
+import com.CiD.MysteryMod.Network.packet.client.UpdateMinerTOclient;
 import com.CiD.MysteryMod.TecEvolution.TecDATA;
 import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
 
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+
 public class TileEntityMiner extends TileEntityMachine implements ISidedInventory{
-private int sleepTimer = 20*1;
+private int sleepTimer;
 private int renderTick;
 private ItemStack[] invStacks = new ItemStack[6];
-
+private int ydig = TecDATA.MINER_DIG_Y;
+private int upgradeTier = 1;
 	public TileEntityMiner() {
 
+	}
+	@Override
+		public void writeToNBT(NBTTagCompound tag) {
+			super.writeToNBT(tag);
+			tag.setInteger("ydig", ydig);
+			tag.setInteger("upgradeTier", upgradeTier);
+
+		}
+	@Override
+		public void readFromNBT(NBTTagCompound tag) {
+			super.readFromNBT(tag);
+			ydig = tag.getInteger("ydig");
+			upgradeTier = tag.getInteger("upgradeTier");
+
+		}
+	
+	public void setUpgradeTier(int upgradeTier) {
+		this.upgradeTier = upgradeTier;
+	}
+	public int getUpgradeTier() {
+		return upgradeTier;
+	}
+	
+	public int getYdig() {
+		return ydig;
+	}
+	
+	public void setYdig(int ydig) {
+		this.ydig = ydig;
 	}
 	
 	@Override
@@ -31,10 +66,10 @@ private ItemStack[] invStacks = new ItemStack[6];
 		@Override
 		public void produce() {
 			if(sleepTimer == 0){
-				sleepTimer = 20*1;
+				sleepTimer = (20*1)/upgradeTier;
 				
 					
-					for(int i = 1; i<TecDATA.MINER_DIG_Y;i++){
+					for(int i = 1; i<ydig;i++){
 						if(worldObj.getBlock(xCoord, yCoord-i, zCoord) != null && worldObj.getBlock(xCoord, yCoord-i, zCoord) != Blocks.bedrock&& worldObj.getBlock(xCoord, yCoord-i, zCoord) != Blocks.air){
 							if(worldObj.getBlock(xCoord, yCoord-i, zCoord).getBlockHardness(worldObj, xCoord, yCoord-i, zCoord)<5){
 
@@ -55,7 +90,7 @@ private ItemStack[] invStacks = new ItemStack[6];
 								Methods.BreakBlock(worldObj, xCoord, yCoord-i, zCoord, false);
 								}else{
 									for(int x = 0; x <20; x++)
-									EnumTecParticles.Simple.spawnParticle(worldObj, xCoord +0.5, yCoord - i, zCoord+0.5, 0, 0.4, 0, 0, 0, 0.6F,0);
+									EnumTecParticles.Simple.spawnParticle(worldObj, xCoord +0.5, yCoord - i, zCoord+0.5, 0, 0.4, 0, 0.25F, 0.25F, 0.25F,0);
 								}
 								break;
 							}

@@ -11,6 +11,7 @@ import com.CiD.MysteryMod.TecEvolution.Container.ContainerCracker;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerEnergy;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachine;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerMachineBase;
+import com.CiD.MysteryMod.TecEvolution.Container.ContainerMiner;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerPressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.Factory.Containers.ContainerCraftingStation;
@@ -26,6 +27,7 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIcontainerInfo;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIfusionReactor;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIminer;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUInuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIpressureFurnace;
 import com.CiD.MysteryMod.TecEvolution.GUI.subGUIs.GUIcraftingRecipes;
@@ -34,6 +36,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityBender;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityPressureFurnace;
 
@@ -58,6 +61,7 @@ public static final int CRAFTING_STATION_GUI_ID = 9;
 public static final int INFO_CONTAINER_GUI_ID = 10;
 public static final int GUI_RECIPES_ID = 11;
 public static final int FUISON_REACTOR_GUI_ID = 12;
+public static final int MINER_GUI_ID = 13;
 
 
 public GUIHandler() {
@@ -81,6 +85,8 @@ case PRESSURE_FURNACE_GUI_ID: return new ContainerPressureFurnace(player.invento
 case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCracker) tile);
 case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
 case GUI_RECIPES_ID: return new ContainerRecipesDummy(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
+case MINER_GUI_ID: return new ContainerMiner(player.inventory, (TileEntityMachine) tile);
+
 default:
 return null;
 }
@@ -115,6 +121,7 @@ case CRACKER_GUI_ID: return new GUIcracker(player.inventory, (TileEntityCracker)
 case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 case INFO_CONTAINER_GUI_ID: return new GUIcontainerInfo();
 case GUI_RECIPES_ID: return new GUIcraftingRecipes(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
+case MINER_GUI_ID: return new GUIminer(player, player.inventory, (TileEntityMiner) tile);
 
 default:
 return null;
