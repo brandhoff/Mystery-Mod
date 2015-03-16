@@ -7,6 +7,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 
+import cofh.api.energy.IEnergyHandler;
+
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 
 public class TileEntityEnergy extends TileEntity{
@@ -87,10 +89,12 @@ public class TileEntityEnergy extends TileEntity{
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-//		drainPower();
 	      worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 		this.markDirty();
+		if(this instanceof IEnergyHandler){
+			IEnergyHandler handler = (IEnergyHandler) this;
+		}
 	}
 	
 	

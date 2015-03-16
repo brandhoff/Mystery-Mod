@@ -34,8 +34,8 @@ private int ClientYdisplay;
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		super.drawGuiContainerForegroundLayer(param1, param2);
-		fontRendererObj.drawString("Dig level: "+ClientYdisplay, guiLeft, guiTop - 50, 0x338234,true);
-		fontRendererObj.drawString("Upgrade Tier: "+miner.getUpgradeTier(), guiLeft - 50, guiTop - 50, 0x338234,true);
+		fontRendererObj.drawString("Dig level: "+ClientYdisplay, guiLeft-30, guiTop-25, 0x222222,false);
+		fontRendererObj.drawString("Upgrade Tier: "+miner.getUpgradeTier(), guiLeft - 30, guiTop - 35, 0x222222,false);
 
 	}
 	

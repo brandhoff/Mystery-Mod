@@ -8,10 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.Network.PacketDispatcher;
 import com.CiD.MysteryMod.Network.packet.client.RenderMinerBoxPacket;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityAtomicMiner;
+
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 
 public class BlockAtomicMiner extends BlockMachineBase{
@@ -29,7 +32,7 @@ public class BlockAtomicMiner extends BlockMachineBase{
 				miner.shouldRenderBox(false);
 			}else{
 				
-				miner.shouldRenderBox(true);
+				MysteryMain.packetPipeline.sendToAllAround(new RenderMinerBoxPacket((TileEntityAtomicMiner) world.getTileEntity(x, y,z), x, y, z),new TargetPoint( world.provider.dimensionId, x, y, z, 60));
 			}
 		}
 		return super.onBlockActivated(world, x, y, z, player, metadata, what, these,

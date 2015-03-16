@@ -1,6 +1,5 @@
 package com.CiD.MysteryMod.TecEvolution;
 
-import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
@@ -38,6 +37,8 @@ import com.CiD.MysteryMod.TecEvolution.Items.ItemGenerator;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemHull;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemInkScanner;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemWrench;
+import com.CiD.MysteryMod.TecEvolution.RFbridge.BlockConverter;
+import com.CiD.MysteryMod.TecEvolution.RFbridge.TileEntityConverter;
 import com.CiD.MysteryMod.TecEvolution.Recipes.RecipRegister;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileBaseInventoryMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
@@ -82,6 +83,7 @@ public class TecEvolutionMain {
 	public static BlockDeepBrick ripped_quartz;
 	public static BlockColorTexture stone_wall;
 	public static BlockTank iron_tank;
+	public static BlockConverter rf_converter;
 	
 	public static MultiBlockCraftingStationInterface crafting_station;
 	public static MultiBlockHull diamond_hull;
@@ -117,6 +119,7 @@ public class TecEvolutionMain {
 		pressure_furnace = new BlockPressureFurnace("pressure_furnace");
 		stone_cracker = new BlockCracker("stone_cracker");
 		atomic_miner = new BlockAtomicMiner("atomic_miner");
+		rf_converter = new BlockConverter(Material.iron, "rf_converter");
 		
 		thorium_pipe = new BlockThoriumPipe("thorium_pipe");
 		paint_model = new BlockColorAble(Material.rock, 1.0F, TileEntityColored.class, "paint_model");
@@ -174,6 +177,7 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityMultiBlockCraftingStation.class, "MysteryMod_TileEntityMultiBlockCraftingStation");
 		GameRegistry.registerTileEntity(TileEntityFactoryHull.class, "MysteryMod_TileEntityFactoryHull");
 		GameRegistry.registerTileEntity(TileEntityFusionReactor.class, "MysteryMod_TileEntityFusionReactor");
+		GameRegistry.registerTileEntity(TileEntityConverter.class, "MysteryMod_TileEntityConverter");
 
 		
 		FluidRegister.registerFluids();

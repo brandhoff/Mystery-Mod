@@ -26,7 +26,7 @@ public class RenderMinerBox extends TileEntitySpecialRenderer{
 					  GL11.glBegin(GL11.GL_LINES);
 					    OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);  
 				        GL11.glColor4f(0.0f,0.0F,1.0f,1.0F);          
-				        System.out.println("rendering");
+
 				        GL11.glVertex3d( boundBox, boundBox,-boundBox);          // Top Right Of The Quad (Top)
 				        GL11.glVertex3d(-boundBox, boundBox,-boundBox);          // Top Left Of The Quad (Top)
 				        GL11.glVertex3d(-boundBox, boundBox, boundBox);          // Bottom Left Of The Quad (Top)

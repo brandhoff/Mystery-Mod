@@ -22,8 +22,8 @@ public class ExtendedPlayer implements IExtendedEntityProperties
 	
 private boolean knowPage_1;	
 	
-	
-	
+private boolean shouldRenderMinerbox;	
+private int renderMinerX, renderMinerY, renderMinerZ;	
 	
 	
 	
@@ -85,7 +85,7 @@ public void saveNBTData(NBTTagCompound compound)
 	properties.setInteger("CurrentChi", this.player.getDataWatcher().getWatchableObjectInt(CHI_WATCHER));
 	
 	properties.setBoolean("knowPage_1", this.knowPage_1);
-
+	
 	
 	compound.setTag(EXT_PROP_NAME, properties);
 }

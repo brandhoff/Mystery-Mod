@@ -1,8 +1,12 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyStorage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityStorage extends TileEntityEnergy{
 
@@ -32,4 +36,8 @@ public class TileEntityStorage extends TileEntityEnergy{
 			return false;
 		}
 	}
+
+	
+
+
 }
