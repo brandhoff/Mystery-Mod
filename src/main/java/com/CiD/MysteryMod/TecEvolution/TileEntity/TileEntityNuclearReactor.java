@@ -142,4 +142,6 @@ public class TileEntityNuclearReactor extends TileEnergyProducer implements IInv
 					ItemStack stack) {
 				return true;
 			}
+			
+		
 }

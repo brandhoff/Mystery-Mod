@@ -24,7 +24,7 @@ public class BlockConverter extends BlockBase{
 		if(player.isSneaking())
 			return false;
 		
-    	player.openGui(MysteryMain.instance, GUIHandler.ENERGY_TILE_GUI_ID, world, x, y, z);
+    	player.openGui(MysteryMain.instance, GUIHandler.CONVERTER_GUI_ID, world, x, y, z);
 
 		return true;
 	}

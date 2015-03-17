@@ -14,10 +14,44 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 public class TileEntityConverter extends TileEntityStorage implements IEnergyHandler{
 	private List<ForgeDirection> outputs = new ArrayList<ForgeDirection>();
 	private List<ForgeDirection> inputs = new ArrayList<ForgeDirection>();
-
-	//TODO DUPE GLITCH
+//TODO SOMEHOW ARE IN AND OUTPUTS NOT WORKING NOT GETTING ENERGY 2....
 		public TileEntityConverter() {
 
+		}
+		
+		public void addToOutput(ForgeDirection dir){
+		if(outputs.contains(dir))
+			return;
+		
+			if(inputs.contains(dir)){
+				inputs.remove(dir);
+			}
+			
+			outputs.add(dir);
+			
+		}
+		
+		public void addToInput(ForgeDirection dir){
+			if(inputs.contains(dir))
+				return;
+			
+				if(outputs.contains(dir)){
+					outputs.remove(dir);
+				}
+				
+				inputs.add(dir);
+				
+			}
+		public void resetSettings(){
+			outputs = new ArrayList<ForgeDirection>();
+			inputs = new ArrayList<ForgeDirection>();
+		}
+		public List<ForgeDirection> getOutputs(){
+			return outputs;
+		}
+		
+		public List<ForgeDirection> getInputs(){
+			return inputs;
 		}
 		
 		@Override
@@ -38,8 +72,7 @@ public class TileEntityConverter extends TileEntityStorage implements IEnergyHan
 				setDrainPerTickConnection(1000);
 
 			}
-			outputs.add(ForgeDirection.UP);
-			inputs.add(ForgeDirection.DOWN);
+			
 
 			super.updateEntity();
 			
@@ -83,20 +116,24 @@ public class TileEntityConverter extends TileEntityStorage implements IEnergyHan
 		public boolean canConnectEnergy(ForgeDirection from) {
 			if(outputs.contains(from))
 			return true;
-			
+			if(inputs.contains(from))
+				return true;
 			return false;
 		}
 
 		@Override
 		public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+			if(simulate)
+				return 0;
 			if(this.getMomEnergy() + maxReceive <= getMaxEnergy()){
 				setMomEnergy(getMomEnergy() + maxReceive);
+				return maxReceive;
 			}else{
 				setMomEnergy(getMaxEnergy());
+				return getMaxEnergy() - getMomEnergy();
 			}
 			
 			
-			return 0;
 		}
 
 		@Override

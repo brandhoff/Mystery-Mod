@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
 public abstract class BaseGUI extends GuiContainer implements IhasInfoGui{
-	private boolean showInfoContex = false;
+	protected boolean showInfoContex = false;
 
 	public BaseGUI(Container p_i1072_1_) {
 		super(p_i1072_1_);

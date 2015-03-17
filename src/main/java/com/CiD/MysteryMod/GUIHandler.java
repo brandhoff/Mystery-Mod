@@ -24,6 +24,7 @@ import com.CiD.MysteryMod.TecEvolution.GUI.GUIbaseMachine;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIbender;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcablePanel;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcontainerInfo;
+import com.CiD.MysteryMod.TecEvolution.GUI.GUIconverter;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcracker;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIcraftingStation;
 import com.CiD.MysteryMod.TecEvolution.GUI.GUIfusionReactor;
@@ -62,6 +63,7 @@ public static final int INFO_CONTAINER_GUI_ID = 10;
 public static final int GUI_RECIPES_ID = 11;
 public static final int FUISON_REACTOR_GUI_ID = 12;
 public static final int MINER_GUI_ID = 13;
+public static final int CONVERTER_GUI_ID = 14;
 
 
 public GUIHandler() {
@@ -86,6 +88,7 @@ case CRACKER_GUI_ID: return new ContainerCracker(player.inventory, (TileEntityCr
 case CRAFTING_STATION_GUI_ID: return new ContainerCraftingStation(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
 case GUI_RECIPES_ID: return new ContainerRecipesDummy(player.inventory,tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord); //OLD SCHOOL BUT WORKS
 case MINER_GUI_ID: return new ContainerMiner(player.inventory, (TileEntityMachine) tile);
+case CONVERTER_GUI_ID: return new ContainerEnergy(player.inventory, (TileEntityEnergy) tile);
 
 default:
 return null;
@@ -122,6 +125,7 @@ case CRAFTING_STATION_GUI_ID: return new GUIcraftingStation(player, player.inven
 case INFO_CONTAINER_GUI_ID: return new GUIcontainerInfo();
 case GUI_RECIPES_ID: return new GUIcraftingRecipes(player, player.inventory, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord);
 case MINER_GUI_ID: return new GUIminer(player, player.inventory, (TileEntityMiner) tile);
+case CONVERTER_GUI_ID: return new GUIconverter(player, (TileEntityEnergy) tile);
 
 default:
 return null;
