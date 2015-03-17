@@ -13,6 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.CiD.MysteryMod.Network.packet.client.UpdateMinerTOclient;
+import com.CiD.MysteryMod.Network.packet.server.ConverterInputPacket;
+import com.CiD.MysteryMod.Network.packet.server.ConverterOutputPacket;
+import com.CiD.MysteryMod.Network.packet.server.ConverterResetPacket;
 import com.CiD.MysteryMod.Network.packet.server.UpdateMinerCoordsPacket;
 
 import net.minecraft.client.Minecraft;
@@ -130,6 +133,10 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         registerPacket(OpenGuiPacket.class);
         registerPacket(SyncPlayerPropsPacket.class);
         registerPacket(UpdateMinerCoordsPacket.class);  
+
+        registerPacket(ConverterInputPacket.class);  
+        registerPacket(ConverterOutputPacket.class);  
+        registerPacket(ConverterResetPacket.class);  
 
     }
 

@@ -3,15 +3,18 @@ package com.CiD.MysteryMod.TecEvolution.GUI;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import org.lwjgl.opengl.GL11;
+
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.GUI.BaseGUI;
+import com.CiD.MysteryMod.Network.packet.server.ConverterInputPacket;
+import com.CiD.MysteryMod.Network.packet.server.ConverterOutputPacket;
+import com.CiD.MysteryMod.Network.packet.server.ConverterResetPacket;
 import com.CiD.MysteryMod.TecEvolution.Container.ContainerEnergy;
 import com.CiD.MysteryMod.TecEvolution.RFbridge.TileEntityConverter;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
@@ -111,15 +114,19 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					if(inputs.contains(ForgeDirection.UP)){
 						tile.addToOutput(ForgeDirection.UP);
 						this.UP = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.UP));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.UP)){
 						tile.addToInput(ForgeDirection.UP);
 						this.UP = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.UP));
 
 						break;
 					}
 					tile.addToOutput(ForgeDirection.UP);
 					this.UP = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.UP));
 
 					break;
 				}
@@ -127,71 +134,100 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					if(inputs.contains(ForgeDirection.WEST)){
 						tile.addToOutput(ForgeDirection.WEST);
 						this.LEFT = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.WEST));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.WEST)){
 						tile.addToInput(ForgeDirection.WEST);
 						this.LEFT = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.WEST));
+
 						break;
 					}
 					tile.addToOutput(ForgeDirection.WEST);
 					this.LEFT = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.WEST));
+
 					break;
 				}
 				case 4:{
 					if(inputs.contains(ForgeDirection.SOUTH)){
 						tile.addToOutput(ForgeDirection.SOUTH);
 						this.FRONT = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.SOUTH));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.SOUTH)){
 						tile.addToInput(ForgeDirection.SOUTH);
 						this.FRONT = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.SOUTH));
 
 						break;
 					}
 					tile.addToOutput(ForgeDirection.SOUTH);
 					this.FRONT = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.SOUTH));
+
 					break;
 				}
 				case 5:{
 					if(inputs.contains(ForgeDirection.EAST)){
 						tile.addToOutput(ForgeDirection.EAST);
 						this.RIGHT = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.EAST));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.EAST)){
 						tile.addToInput(ForgeDirection.EAST);
 						this.RIGHT = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.EAST));
+
 						break;
 					}
 					tile.addToOutput(ForgeDirection.EAST);
 					this.RIGHT = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.EAST));
+
 					break;
 				}
 				case 6:{
 					if(inputs.contains(ForgeDirection.DOWN)){
 						tile.addToOutput(ForgeDirection.DOWN);
 						this.DOWN = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.DOWN));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.DOWN)){
 						tile.addToInput(ForgeDirection.DOWN);
 						this.DOWN = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.DOWN));
+
 						break;
 					}
 					tile.addToOutput(ForgeDirection.DOWN);
 					this.DOWN = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.DOWN));
+
 					break;
 				}
 				case 7:{
 					if(inputs.contains(ForgeDirection.NORTH)){
 						tile.addToOutput(ForgeDirection.NORTH);
 						this.BACK = "O";
+						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.NORTH));
+
 						break;
 					}else if(outputs.contains(ForgeDirection.NORTH)){
 						tile.addToInput(ForgeDirection.NORTH);
 						this.BACK = "I";
+						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.NORTH));
+
 						break;
 					}
 					tile.addToOutput(ForgeDirection.NORTH);
 					this.BACK = "O";
+					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.NORTH));
+
 					break;
 				}
 				case 8:{
@@ -205,6 +241,8 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					BACK= "";
 					DOWN= "";
 					tile.resetSettings();
+					MysteryMain.packetPipeline.sendToServer(new ConverterResetPacket(tile));
+
 					break;
 				}
 			}

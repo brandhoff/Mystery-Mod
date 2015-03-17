@@ -14,8 +14,8 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 public class TileEntityConverter extends TileEntityStorage implements IEnergyHandler{
 	private List<ForgeDirection> outputs = new ArrayList<ForgeDirection>();
 	private List<ForgeDirection> inputs = new ArrayList<ForgeDirection>();
-//TODO SOMEHOW ARE IN AND OUTPUTS NOT WORKING NOT GETTING ENERGY 2....
-		public TileEntityConverter() {
+
+	public TileEntityConverter() {
 
 		}
 		
