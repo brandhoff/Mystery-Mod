@@ -47,6 +47,7 @@ public static ResourceLocation MODELgreencrystal = new ResourceLocation(MysteryM
 public static ResourceLocation MODELchiguard = new ResourceLocation(MysteryMain.MODID+":textures/model/Chi_Guard.obj");
 public static ResourceLocation MODELwindturbin = new ResourceLocation(MysteryMain.MODID+":textures/model/windgenerator.obj");
 public static ResourceLocation MODELbender = new ResourceLocation(MysteryMain.MODID+":textures/model/bender.obj");
+public static ResourceLocation MODELfusionhull = new ResourceLocation(MysteryMain.MODID+":textures/model/fusionhull.obj");
 
 		@SideOnly(Side.CLIENT)
 		public void registerRenderThings(){

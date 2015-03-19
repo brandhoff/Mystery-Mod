@@ -40,7 +40,7 @@ public class MultiBlockFusionReactor extends MultiBlockBase{
             }
             	if(tileEntity instanceof TileEntityFactoryBase){
             		TileEntityFactoryBase tile = (TileEntityFactoryBase) world.getTileEntity(x, y, z);
-            		if(tile.isMultiBlock() && ((ITileMultiBlock)tile).isInterface()){
+            		if(((ITileMultiBlock)tile).isInterface()){
             	player.openGui(MysteryMain.instance, ((ITileMultiBlock)tile).getGUIid(), world, x, y, z);
             	return true;
             		}

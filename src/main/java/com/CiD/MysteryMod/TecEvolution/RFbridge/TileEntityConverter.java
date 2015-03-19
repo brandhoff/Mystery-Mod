@@ -3,11 +3,14 @@ package com.CiD.MysteryMod.TecEvolution.RFbridge;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyHandler;
 
+import com.CiD.MysteryMod.Helper.Methods;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityStorage;
 
@@ -19,6 +22,8 @@ public class TileEntityConverter extends TileEntityStorage implements IEnergyHan
 
 		}
 		
+	
+	
 		public void addToOutput(ForgeDirection dir){
 		if(outputs.contains(dir))
 			return;
@@ -57,11 +62,31 @@ public class TileEntityConverter extends TileEntityStorage implements IEnergyHan
 		@Override
 		public void readFromNBT(NBTTagCompound nbt) {
 
+			int[] in = nbt.getIntArray("inputs");
+			int[] out = nbt.getIntArray("outputs");
+
+			for(int x = 0; x < in.length; x++){
+				inputs.add(Methods.IntergerToForgeDirection(in[x]));
+			}
+			for(int x = 0; x < out.length; x++){
+				outputs.add(Methods.IntergerToForgeDirection(out[x]));
+			}
 			super.readFromNBT(nbt);
 		}
 
 		@Override
 		public void writeToNBT(NBTTagCompound nbt) {
+			List<Integer> Iinputs = new ArrayList<Integer>();
+			List<Integer> Ioutputs = new ArrayList<Integer>();
+			for(ForgeDirection dir : inputs){
+				Iinputs.add(Methods.ForgeDirectionToInterger(dir));
+			}
+			for(ForgeDirection dir : outputs){
+				Ioutputs.add(Methods.ForgeDirectionToInterger(dir));
+		
+			}
+			nbt.setIntArray("inputs", ArrayUtils.toPrimitive(Iinputs.toArray(new Integer[Iinputs.size()])));
+			nbt.setIntArray("outputs", ArrayUtils.toPrimitive(Ioutputs.toArray(new Integer[Ioutputs.size()])));
 
 			super.writeToNBT(nbt);
 		}
