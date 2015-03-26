@@ -12,6 +12,7 @@ import com.CiD.MysteryMod.TecEvolution.Blocks.BlockColorAble;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockColorTexture;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockCracker;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockDeepBrick;
+import com.CiD.MysteryMod.TecEvolution.Blocks.BlockGravitomagnet;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockMiner;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockNuclearReactor;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockPressureFurnace;
@@ -36,7 +37,10 @@ import com.CiD.MysteryMod.TecEvolution.Items.ItemDroid;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemGenerator;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemHull;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemInkScanner;
+import com.CiD.MysteryMod.TecEvolution.Items.ItemLinkCard;
 import com.CiD.MysteryMod.TecEvolution.Items.ItemWrench;
+import com.CiD.MysteryMod.TecEvolution.KaonLinked.BlockKaonLinked;
+import com.CiD.MysteryMod.TecEvolution.KaonLinked.TileEntityKaonLinkedStorage;
 import com.CiD.MysteryMod.TecEvolution.RFbridge.BlockConverter;
 import com.CiD.MysteryMod.TecEvolution.RFbridge.TileEntityConverter;
 import com.CiD.MysteryMod.TecEvolution.Recipes.RecipRegister;
@@ -51,6 +55,7 @@ import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColored;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCracker;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityDeepBrick;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
+import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityGravitomagnet;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMachine;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityMiner;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityNuclearReactor;
@@ -84,6 +89,8 @@ public class TecEvolutionMain {
 	public static BlockColorTexture stone_wall;
 	public static BlockTank iron_tank;
 	public static BlockConverter rf_converter;
+	public static BlockGravitomagnet gravito_magnet;
+	public static BlockKaonLinked kaon_linked_storage;
 	
 	public static MultiBlockCraftingStationInterface crafting_station;
 	public static MultiBlockHull diamond_hull;
@@ -101,7 +108,8 @@ public class TecEvolutionMain {
 	public static ItemGenerator generator;
 	public static ItemHull hull;
 	public static ItemInkScanner ink_scanner;
-	
+	public static ItemLinkCard link_card;
+
 	public static BaseItem red_ink;
 	public static BaseItem green_ink;
 	public static BaseItem blue_ink;
@@ -120,6 +128,8 @@ public class TecEvolutionMain {
 		stone_cracker = new BlockCracker("stone_cracker");
 		atomic_miner = new BlockAtomicMiner("atomic_miner");
 		rf_converter = new BlockConverter(Material.iron, "rf_converter");
+		gravito_magnet = new BlockGravitomagnet("gravito_magnet");
+
 		
 		thorium_pipe = new BlockThoriumPipe("thorium_pipe");
 		paint_model = new BlockColorAble(Material.rock, 1.0F, TileEntityColored.class, "paint_model");
@@ -129,7 +139,7 @@ public class TecEvolutionMain {
 
 		stone_wall = new BlockColorTexture(Material.rock, 58.0F, TileEntityColorTexture.class, "stone_wall");
 		iron_tank = (BlockTank) new BlockTank(Material.glass, 1.0F, TileEntityTank.class, "iron_tank");
-		
+		kaon_linked_storage = new BlockKaonLinked(Material.sand, 10.0F, "kaon_linked_storage");
 		
 		
 		crafting_station = new MultiBlockCraftingStationInterface(Material.wood, 1.0F, TileEntityMultiBlockCraftingStation.class, "crafting_station");
@@ -154,7 +164,9 @@ public class TecEvolutionMain {
 		green_ink = (BaseItem) new BaseItem("typical green ink", "green_ink").setUnlocalizedName("green_ink").setFull3D();
 		blue_ink = (BaseItem) new BaseItem("typical blue ink", "blue_ink").setUnlocalizedName("blue_ink").setFull3D();
 		speed_upgrade = (BaseItem) new BaseItem("speed the miner up", "speed_upgrade").setUnlocalizedName("speed_upgrade");
+		link_card = (ItemLinkCard) new ItemLinkCard("link_card").setUnlocalizedName("link_card");
 
+		
 		GameRegistry.registerTileEntity(TileEntityEnergy.class, "MysteryMod_TileEntityEnergy");
 		GameRegistry.registerTileEntity(TileEnergyProducer.class, "MysteryMod_TileEnergyProducer");
 		GameRegistry.registerTileEntity(TileEntityCable.class, "MysteryMod_TileEntityCable");
@@ -178,6 +190,8 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityFactoryHull.class, "MysteryMod_TileEntityFactoryHull");
 		GameRegistry.registerTileEntity(TileEntityFusionReactor.class, "MysteryMod_TileEntityFusionReactor");
 		GameRegistry.registerTileEntity(TileEntityConverter.class, "MysteryMod_TileEntityConverter");
+		GameRegistry.registerTileEntity(TileEntityGravitomagnet.class, "MysteryMod_TileEntityGravitomagnet");
+		GameRegistry.registerTileEntity(TileEntityKaonLinkedStorage.class, "MysteryMod_TileEntityKaonLinkedStorage");
 
 		
 		FluidRegister.registerFluids();

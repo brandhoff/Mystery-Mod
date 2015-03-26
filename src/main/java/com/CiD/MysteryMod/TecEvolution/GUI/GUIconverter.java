@@ -64,6 +64,8 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 		@Override
 		public void initGui() {
 			buttonList = new ArrayList();
+			inputs  = new ArrayList<ForgeDirection>();
+			outputs  = new ArrayList<ForgeDirection>();
 			super.initGui();
 
 			int x = 20;
@@ -93,8 +95,7 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
       
 	  @Override
 		protected void actionPerformed(GuiButton button) {
-			inputs = this.tile.getInputs();
-			outputs = this.tile.getOutputs();
+		ForgeDirection dir;
 			switch(button.id){
 			default:
 				break;
@@ -111,13 +112,12 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 				}
 				
 				case 2:{
-					if(inputs.contains(ForgeDirection.UP)){
+					if(this.UP == "I"){
 						tile.addToOutput(ForgeDirection.UP);
 						this.UP = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.UP));
-
 						break;
-					}else if(outputs.contains(ForgeDirection.UP)){
+					}else if(this.UP == "O"){
 						tile.addToInput(ForgeDirection.UP);
 						this.UP = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.UP));
@@ -127,17 +127,18 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					tile.addToOutput(ForgeDirection.UP);
 					this.UP = "O";
 					MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.UP));
+					System.out.println("did output");
 
 					break;
 				}
 				case 3:{
-					if(inputs.contains(ForgeDirection.WEST)){
+					if(this.LEFT == "I"){
 						tile.addToOutput(ForgeDirection.WEST);
 						this.LEFT = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.WEST));
 
 						break;
-					}else if(outputs.contains(ForgeDirection.WEST)){
+					}else if(this.LEFT == "O"){
 						tile.addToInput(ForgeDirection.WEST);
 						this.LEFT = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.WEST));
@@ -151,13 +152,13 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					break;
 				}
 				case 4:{
-					if(inputs.contains(ForgeDirection.SOUTH)){
+					if(this.FRONT == "I"){
 						tile.addToOutput(ForgeDirection.SOUTH);
 						this.FRONT = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.SOUTH));
 
 						break;
-					}else if(outputs.contains(ForgeDirection.SOUTH)){
+					}else if(this.FRONT == "O"){
 						tile.addToInput(ForgeDirection.SOUTH);
 						this.FRONT = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.SOUTH));
@@ -171,13 +172,13 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					break;
 				}
 				case 5:{
-					if(inputs.contains(ForgeDirection.EAST)){
+					if(this.RIGHT == "I"){
 						tile.addToOutput(ForgeDirection.EAST);
 						this.RIGHT = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.EAST));
 
 						break;
-					}else if(outputs.contains(ForgeDirection.EAST)){
+					}else if(this.RIGHT == "O"){
 						tile.addToInput(ForgeDirection.EAST);
 						this.RIGHT = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.EAST));
@@ -191,13 +192,13 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					break;
 				}
 				case 6:{
-					if(inputs.contains(ForgeDirection.DOWN)){
+					if(this.DOWN == "I"){
 						tile.addToOutput(ForgeDirection.DOWN);
 						this.DOWN = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.DOWN));
 
 						break;
-					}else if(outputs.contains(ForgeDirection.DOWN)){
+					}else if(this.DOWN == "O"){
 						tile.addToInput(ForgeDirection.DOWN);
 						this.DOWN = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.DOWN));
@@ -211,13 +212,13 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 					break;
 				}
 				case 7:{
-					if(inputs.contains(ForgeDirection.NORTH)){
+					if(this.BACK == "I"){
 						tile.addToOutput(ForgeDirection.NORTH);
 						this.BACK = "O";
 						MysteryMain.packetPipeline.sendToServer(new ConverterOutputPacket(tile, ForgeDirection.NORTH));
 
 						break;
-					}else if(outputs.contains(ForgeDirection.NORTH)){
+					}else if(this.BACK == "O"){
 						tile.addToInput(ForgeDirection.NORTH);
 						this.BACK = "I";
 						MysteryMain.packetPipeline.sendToServer(new ConverterInputPacket(tile, ForgeDirection.NORTH));
@@ -266,7 +267,6 @@ private String UP,LEFT,RIGHT,FRONT,BACK,DOWN;
 	
 	
 	@Override		
-	/** DONT USE THIS !! USE drawBackScreen*/
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
 		if(showInfoContex){
