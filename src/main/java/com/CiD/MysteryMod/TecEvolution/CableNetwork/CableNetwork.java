@@ -3,6 +3,9 @@ package com.CiD.MysteryMod.TecEvolution.CableNetwork;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.tileentity.TileEntity;
+
+import com.CiD.API.energy.IContainesEnergy;
 import com.CiD.MysteryMod.Helper.Location;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEnergyProducer;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityCable;
@@ -74,8 +77,37 @@ private int allProducerDrain;
 		this.momEnergy = momEnergy;
 	}
 	
+	
+	public boolean addToTileEntity(IContainesEnergy tl){
+
+		System.out.println("called");
+		IContainesEnergy tile = (IContainesEnergy) tl;
+		TileEntity tile_entity = tile.getInstance();
+		if(this.getMomEnergy() >= tile.exchangePerTick()){
+			if(tile.getMaxEnergy() >= tile.getEnergy() + tile.exchangePerTick()){
+				tile.setEnergy(tile.getEnergy() + tile.exchangePerTick());
+				this.setMomEnergy(this.getMomEnergy() - tile.exchangePerTick());
+				tile_entity.getWorldObj().markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
+				
+				return true;
+
+			}
+		}else if(this.getMomEnergy() < tile.exchangePerTick() && this.getMomEnergy() > 0){
+			if(tile.getMaxEnergy() >= tile.getEnergy() + this.getMomEnergy()){
+				tile.setEnergy(tile.getEnergy() + this.getMomEnergy());
+				this.setMomEnergy(0);
+				tile_entity.getWorldObj().markBlockForUpdate(tile_entity.xCoord, tile_entity.yCoord, tile_entity.zCoord);
+
+				return true;
+			}
+		}
+		return false;
+
+	}
+	
+	
 	public boolean addToStorage(TileEntityEnergy tl){
-			
+
 		TileEntityStorage tile = (TileEntityStorage) tl;
 		if(this.getMomEnergy() >= tile.getDrainPerTickConnection()){
 			if(tile.getMaxEnergy() >= tile.getMomEnergy() + tile.getDrainPerTickConnection()){

@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import com.CiD.API.energy.IContainesEnergy;
 import com.CiD.MysteryMod.TecEvolution.TecHelper;
 import com.CiD.MysteryMod.TecEvolution.CableNetwork.CableNetwork;
 import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
@@ -330,6 +331,103 @@ public class TileEntityCable extends TileEntityEnergy{
 			
 			
 			
+			if(hasIContainsEnergy()){
+				boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+
+				for(int i = 0; i < connections.length; i++){
+					if(connections[i]){
+						switch(i){
+						case TecHelper.SIDE_DOWN :{
+							if(worldObj.getTileEntity(xCoord, yCoord -1, zCoord) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+						
+						if(tl != null){
+
+						if(tl != null && tl instanceof IContainesEnergy){
+							getNetwork().addToTileEntity(tl);
+						}
+						
+							}
+						}}
+						case TecHelper.SIDE_UP : {
+							if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+							
+							if(tl != null){
+
+
+							if(tl != null ){ 
+								if(tl instanceof IContainesEnergy){ 
+
+
+										getNetwork().addToTileEntity(tl);
+
+									
+							}
+							}}
+						}}
+						case TecHelper.SIDE_X : {
+							if(worldObj.getTileEntity(xCoord +1, yCoord, zCoord) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+							
+							if(tl != null){
+
+
+							if(tl != null && tl instanceof IContainesEnergy ){
+								getNetwork().addToTileEntity(tl);
+
+							}
+							}
+						}}
+						case TecHelper.SIDE_MX : {
+							if(worldObj.getTileEntity(xCoord -1, yCoord, zCoord) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+							if(tl != null){
+
+
+							if(tl != null && tl instanceof IContainesEnergy) {
+								getNetwork().addToTileEntity(tl);
+
+							}
+							}
+						}}
+						case TecHelper.SIDE_Z : {
+							if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+							if(tl != null){
+
+
+
+							if(tl != null && tl instanceof IContainesEnergy){
+								getNetwork().addToTileEntity(tl);
+
+							}
+							}}
+						}
+						case TecHelper.SIDE_MZ : {
+							if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IContainesEnergy){
+
+								IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+							
+							if(tl != null){
+
+
+							if(tl != null && tl instanceof IContainesEnergy){
+								getNetwork().addToTileEntity(tl);
+
+							}
+							}
+						}
+						}
+					}
+				}
+		}
+			}
 			
 			
 			
@@ -460,10 +558,7 @@ public class TileEntityCable extends TileEntityEnergy{
 	}
 	
 	
-	@Override
-	public void drainPower() {
-		
-	}
+	
 	
 	public boolean isConnected(){
 		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
@@ -768,6 +863,79 @@ public class TileEntityCable extends TileEntityEnergy{
 	return false;
 }
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public boolean hasIContainsEnergy(){
+		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
+			for(int i = 0; i < connections.length; i++){
+				if(connections[i]){
+					switch(i){
+					case TecHelper.SIDE_DOWN :{
+						if(worldObj.getTileEntity(xCoord, yCoord-1, zCoord ) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord -1 , zCoord);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+						}
+					}
+					case TecHelper.SIDE_UP : {
+						if(worldObj.getTileEntity(xCoord, yCoord+1, zCoord ) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+						}
+					}
+					case TecHelper.SIDE_X : {
+						if(worldObj.getTileEntity(xCoord+1, yCoord, zCoord) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+						}
+					}
+					case TecHelper.SIDE_MX : {
+						if(worldObj.getTileEntity(xCoord-1, yCoord, zCoord ) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord-1, yCoord, zCoord);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+						}
+					}
+					case TecHelper.SIDE_Z : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+
+					}}
+					case TecHelper.SIDE_MZ : {
+						if(worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IContainesEnergy){
+
+							IContainesEnergy tl = (IContainesEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
+						if(tl != null && tl instanceof IContainesEnergy) return true;
+						}
+					}
+				
+				}
+			}
+	}
+	return false;
+}
+	
+	
+	
+	
+	
 //	
 //	public void onCableUpdate(){
 //		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);

@@ -1,4 +1,4 @@
-package com.CiD.MysteryMod.TecEvolution.TileEntity;
+package com.CiD.API.color;
 
 public interface IRGBcoloredTile {
 

@@ -7,9 +7,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColorTexture;
 
 import cpw.mods.fml.relauncher.Side;

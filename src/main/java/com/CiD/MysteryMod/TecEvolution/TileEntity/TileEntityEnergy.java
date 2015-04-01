@@ -97,85 +97,7 @@ public class TileEntityEnergy extends TileEntity{
 		}
 	}
 	
-	
-	public void drainPower(){
-		boolean[] connections = TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
-		
-		for(int i = 0; i<connections.length; i++){
-			switch(i){
-			case TecHelper.SIDE_DOWN : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord-1, zCoord);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-				
-				}
-			}
-			case TecHelper.SIDE_MX : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-								}	
-						}
-			case TecHelper.SIDE_X : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord+1, yCoord, zCoord);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-				}
-			}
-			case TecHelper.SIDE_MZ : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord-1);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-				}
-			}
-			case TecHelper.SIDE_Z : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord, zCoord+1);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-				}
-			}
-			case TecHelper.SIDE_UP : {
-				if(connections[i] &&!isOutputSide[i]){
-					TileEntityEnergy tl = (TileEntityEnergy) worldObj.getTileEntity(xCoord, yCoord+1, zCoord);
-					if(tl != null && tl instanceof TileEntityEnergy &&tl.getMomEnergy() - this.getDrainPerTickConnection() >= 0){
-						if(this.getMomEnergy() + this.getDrainPerTickConnection() <= this.getMaxEnergy() ){
-							tl.setMomEnergy(tl.getMomEnergy() - this.getDrainPerTickConnection());
-							this.setMomEnergy(getMomEnergy() + getDrainPerTickConnection());
-						}
-					}
-				}
-			}
-			}
-		}
-		
-		
-	}
-	
+
 	public boolean[] getConnections(){
 		return TecHelper.checkConnections(worldObj, xCoord, yCoord, zCoord);
 	}
@@ -184,7 +106,7 @@ public class TileEntityEnergy extends TileEntity{
 	/**
 	 * 
 	 * @param Side Use TecHelper for the correct Side
-	 * @param output Wheater it is output
+	 * @param output Whether it is an output
 	 */
 	public void setSideOutput(int Side, boolean output){
 		this.isOutputSide[Side] = output; 

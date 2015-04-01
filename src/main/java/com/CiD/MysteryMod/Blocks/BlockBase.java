@@ -9,9 +9,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.client;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;

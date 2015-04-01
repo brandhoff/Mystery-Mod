@@ -1,5 +1,6 @@
 package com.CiD.MysteryMod.TecEvolution;
 
+import com.CiD.API.energy.IContainesEnergy;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 
 import net.minecraft.block.Block;
@@ -84,42 +85,42 @@ if(world.getBlock(x, y, z-1) == Type && world.getBlock(x, y+1, z-1) == Type && w
 	/** gets all the connections in an int[] */
 	public static boolean[] checkConnections(World world, int xCoord, int yCoord, int zCoord){
 		boolean[] connections = new boolean[6];
-		if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof TileEntityEnergy || world.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IContainesEnergy){
 			connections[SIDE_X] = true;
 		}else{
 			connections[SIDE_X] = false;
 
 		}
 		
-		if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof TileEntityEnergy || world.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IContainesEnergy){
 			connections[SIDE_MX] = true;
 		}else{
 			connections[SIDE_MX] = false;
 
 		}
 		
-		if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof TileEntityEnergy || world.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IContainesEnergy){
 			connections[SIDE_Z] = true;
 		}else{
 			connections[SIDE_Z] = false;
 
 		}
 		
-		if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof TileEntityEnergy || world.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IContainesEnergy){
 			connections[SIDE_MZ] = true;
 		}else{
 			connections[SIDE_MZ] = false;
 
 		}
 		
-		if(world.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof TileEntityEnergy || world.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof IContainesEnergy){
 			connections[SIDE_UP] = true;
 		}else{
 			connections[SIDE_UP] = false;
 
 		}
 		
-		if(world.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityEnergy){
+		if(world.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof TileEntityEnergy || world.getTileEntity(xCoord, yCoord - 1, zCoord) instanceof IContainesEnergy){
 			connections[SIDE_DOWN] = true;
 		}else{
 			connections[SIDE_DOWN] = false;

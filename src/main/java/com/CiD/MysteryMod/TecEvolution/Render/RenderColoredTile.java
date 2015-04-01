@@ -8,8 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.client;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
 public class RenderColoredTile extends TileEntitySpecialRenderer{
 private final ModelInnerBlock model = new ModelInnerBlock();

@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.CiD.MysteryMod.Blocks.BlockGreenCrystal;
@@ -164,6 +165,17 @@ public void preInit(FMLPreInitializationEvent event){
 public void init(FMLInitializationEvent event){
 
 channelHandler = new com.CiD.MysteryMod.ChannelHandler(this.MODID, this.CHANNEL);
+
+
+
+
+
+
+
+Class<TileEntity> allTileEntity = TileEntity.class;
+
+
+
 proxy.registerRenderThings();
 packetPipeline.initialise();
 	

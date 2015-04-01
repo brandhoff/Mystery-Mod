@@ -1,11 +1,14 @@
 package com.CiD.MysteryMod.TecEvolution.TileEntity;
 
+import com.CiD.API.color.ColoredTile;
+import com.CiD.API.color.IRGBcoloredTile;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-
+@ColoredTile()
 public class TileEntityColored extends TileEntity implements IRGBcoloredTile{
 private float red;
 private float green;

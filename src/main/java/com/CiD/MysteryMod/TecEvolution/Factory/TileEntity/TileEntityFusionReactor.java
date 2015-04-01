@@ -12,11 +12,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.TecEvolution.Tank;
 import com.CiD.MysteryMod.TecEvolution.Factory.MultiBlock.MultiBlockType;
 import com.CiD.MysteryMod.TecEvolution.Render.Particles.EnumTecParticles;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 
 public class TileEntityFusionReactor extends TileEntityFactoryBase implements ISidedInventory, IRGBcoloredTile, IFluidHandler{
 	public final Tank tank = new Tank("fusion_tank", FluidContainerRegistry.BUCKET_VOLUME * 32, this);

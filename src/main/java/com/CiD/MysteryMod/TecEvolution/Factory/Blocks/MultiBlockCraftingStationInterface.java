@@ -11,12 +11,12 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.GUIHandler;
 import com.CiD.MysteryMod.MysteryMain;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.TecEvolution.TecEvolutionMain;
 import com.CiD.MysteryMod.TecEvolution.Factory.TileEntity.TileEntityFactoryBase;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityColored;
 
 import cpw.mods.fml.relauncher.Side;

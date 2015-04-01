@@ -3,6 +3,8 @@ package com.CiD.MysteryMod.TecEvolution;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
+import com.CiD.API.color.ColoredRegister;
+import com.CiD.API.energy.TileEntityContainsEnergy;
 import com.CiD.MysteryMod.Blocks.BlockBase;
 import com.CiD.MysteryMod.Items.BaseItem;
 import com.CiD.MysteryMod.TecEvolution.Blocks.BlockAtomicMiner;
@@ -92,6 +94,8 @@ public class TecEvolutionMain {
 	public static BlockGravitomagnet gravito_magnet;
 	public static BlockKaonLinked kaon_linked_storage;
 	
+	public static BlockBase energy_checker;
+	
 	public static MultiBlockCraftingStationInterface crafting_station;
 	public static MultiBlockHull diamond_hull;
 	public static MultiBlockHull iron_hull;
@@ -141,6 +145,7 @@ public class TecEvolutionMain {
 		iron_tank = (BlockTank) new BlockTank(Material.glass, 1.0F, TileEntityTank.class, "iron_tank");
 		kaon_linked_storage = new BlockKaonLinked(Material.sand, 10.0F, "kaon_linked_storage");
 		
+//		energschecker = new BlockBase(Material.wood, 10.F, TileEntityContainsEnergy.class, "energy_checker");
 		
 		crafting_station = new MultiBlockCraftingStationInterface(Material.wood, 1.0F, TileEntityMultiBlockCraftingStation.class, "crafting_station");
 		diamond_hull = new MultiBlockHull(Material.iron, 90.0F, TileEntityFactoryHull.class, "diamond_hull");
@@ -192,6 +197,10 @@ public class TecEvolutionMain {
 		GameRegistry.registerTileEntity(TileEntityConverter.class, "MysteryMod_TileEntityConverter");
 		GameRegistry.registerTileEntity(TileEntityGravitomagnet.class, "MysteryMod_TileEntityGravitomagnet");
 		GameRegistry.registerTileEntity(TileEntityKaonLinkedStorage.class, "MysteryMod_TileEntityKaonLinkedStorage");
+		GameRegistry.registerTileEntity(TileEntityContainsEnergy.class, "TileEntityContainsEnergy");
+
+		ColoredRegister.registerTileEntity(TileEntityDeepBrick.class);
+		ColoredRegister.registerTileEntity(TileEntityColored.class);
 
 		
 		FluidRegister.registerFluids();

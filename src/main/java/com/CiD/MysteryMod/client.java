@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.CiD.API.color.ColoredRegister;
 import com.CiD.MysteryMod.Mobs.EntityChiGuard;
 import com.CiD.MysteryMod.Render.RenderChiGuard;
 import com.CiD.MysteryMod.Render.RenderGreenCrystal;
@@ -34,11 +35,14 @@ import com.CiD.MysteryMod.TileEntity.TileEntityGreenCrystal;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class client extends common {
+private	Class<TileEntity> allTileEntity = TileEntity.class;
 
+	
 private static List<Class> tileColorClasslist = new ArrayList<Class>();
 
 public static ResourceLocation TEXTUREmodel_white = new ResourceLocation(MysteryMain.MODID+":textures/model/model_white.png");
@@ -63,9 +67,14 @@ public static ResourceLocation MODELfusionhull = new ResourceLocation(MysteryMai
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBender.class, new TileModelRender(TEXTUREmodel_white, MODELbender));
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTank.class, new RenderTank());
 		  ClientRegistry.bindTileEntitySpecialRenderer(TileEntityColored.class, new RenderColoredTile());
+//
+//		  for(int i = 0; i<tileColorClasslist.size(); i++){
+//			  ClientRegistry.bindTileEntitySpecialRenderer(tileColorClasslist.get(i), new RenderColoredTile());
+//		  }
+//		  
+		  for(Class<?extends TileEntity> tile : ColoredRegister.tileList){
+			  ClientRegistry.bindTileEntitySpecialRenderer(tile, new RenderColoredTile());
 
-		  for(int i = 0; i<tileColorClasslist.size(); i++){
-			  ClientRegistry.bindTileEntitySpecialRenderer(tileColorClasslist.get(i), new RenderColoredTile());
 		  }
 		  
 		  RenderingRegistry.registerEntityRenderingHandler(EntityChiGuard.class, new RenderChiGuard(TEXTUREmodel_white, MODELchiguard));
@@ -84,6 +93,7 @@ public static ResourceLocation MODELfusionhull = new ResourceLocation(MysteryMai
 
 		public static void addToIcolorTileList(Class<? extends TileEntity> tileClass){
 			tileColorClasslist.add(tileClass);
+			
 		}
 		
 		@SideOnly(Side.CLIENT)

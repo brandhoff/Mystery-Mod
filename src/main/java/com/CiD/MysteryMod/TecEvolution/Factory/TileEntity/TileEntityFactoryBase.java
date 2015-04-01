@@ -4,9 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
+import com.CiD.API.color.IRGBcoloredTile;
 import com.CiD.MysteryMod.TecEvolution.Factory.MultiBlock.ITileMultiBlock;
 import com.CiD.MysteryMod.TecEvolution.Factory.MultiBlock.MultiBlockType;
-import com.CiD.MysteryMod.TecEvolution.TileEntity.IRGBcoloredTile;
 import com.CiD.MysteryMod.TecEvolution.TileEntity.TileEntityEnergy;
 
 public abstract class TileEntityFactoryBase extends TileEntityEnergy implements ITileMultiBlock, ISidedInventory
